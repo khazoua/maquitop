@@ -747,7 +747,7 @@ body{font-family:var(--f-body);font-size:15.5px;line-height:1.45;letter-spacing:
 .acctbtn{border-radius:12px;transition:border-color .15s}
 .acctbtn:hover{border-color:var(--accent)}
 .brand>span:last-child{display:none}
-.logo.plate,.top .brand .logo{background-color:#fff;background-origin:content-box;box-sizing:content-box;padding:5px 9px;border-radius:9px;height:22px;box-shadow:0 0 0 1px rgba(15,34,48,.08)}
+.logo.on-plate,.top .brand .logo{background-color:#fff;background-origin:content-box;box-sizing:content-box;padding:5px 9px;border-radius:9px;height:22px;box-shadow:0 0 0 1px rgba(15,34,48,.08)}
 @media (max-width:1023px){
   .top{background:var(--night);border-bottom:0;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--night-ink)}
   .top .iconbtn,.top .acctbtn{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:var(--night-ink)}
@@ -1514,6 +1514,8 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 [aria-invalid="true"]{border-color:var(--bad)!important;box-shadow:0 0 0 4px var(--bad-bg)!important}
 .btn[aria-busy="true"]{cursor:progress;opacity:.85}
 .btn[aria-busy="true"]::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+.only-desk{display:none}@media (min-width:1024px){.only-desk{display:inline-flex}}
+.empty-box{padding:18px 20px;border:1.5px dashed var(--line);border-radius:18px;color:var(--muted);font-size:14.5px;line-height:1.5}
 </style>
 <header class="top">
   <div class="wrap">
@@ -2210,7 +2212,7 @@ const IC={
  box:svg('<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>'),
  kit:svg('<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>'),
  swap:svg('<path d="M4 7h13l-3-3M20 17H7l3 3"/>'),
- xls:svg('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l3 4-3 4M16 8l-3 4 3 4"/>'),
+ xls:svg('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/>'),
  gear:svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'),
  mail:svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'),
  alert:svg('<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17v.5"/>'),
@@ -2374,7 +2376,7 @@ function vInicio(){
  +'</div><div class="col">'
  +'<section class="sec">'+secH('Dónde están los equipos',S.items.length,'<button class="linkbtn sm" data-act="tab" data-tab="inv">Ver inventario</button>')+'<div class="card pad">'+bars+'</div></section>'
  +(S.kits.length?'<section class="sec">'+secH('Kits',okK+' de '+S.kits.length+' completos','<button class="linkbtn sm" data-act="tab" data-tab="kits">Ver kits</button>')+'<div class="list">'+S.kits.slice(0,6).map(k=>withMore(kitRow(k),'kit',k.id,k.code)).join('')+'</div></section>':'')
- +'<section class="sec">'+secH('Actividad reciente',null,'<button class="linkbtn sm" data-act="tab" data-tab="movs">Ver movimientos</button>')+'<div class="list">'+act.map(mv).join('')+'</div></section>'
+ +'<section class="sec">'+secH('Actividad reciente',null,'<button class="linkbtn sm" data-act="tab" data-tab="movs">Ver movimientos</button>')+(act.length?'<div class="list">'+act.map(mv).join('')+'</div>':'<div class="empty-box">Aún no hay movimientos. Lo primero que registres (un envío, un ingreso o un cambio) aparecerá aquí.</div>')+'</section>'
  +'</div></div>';
 }
 function gstep(n,t,d,g,b){return '<li><span class="num">'+n+'</span><span class="txt"><b>'+t+'</b><span>'+d+'</span><button class="btn sm" data-act="guide" data-g="'+g+'">'+b+'</button></span></li>';}
@@ -2398,7 +2400,7 @@ function vInv(){
  const grps=[['todos','Todos'],['libres','Libres en almacén']].concat(almG,[['transito','En tránsito'],['obra','En obra'],['bad','Dañados']]);
  if(invFilter.grp.indexOf('place:')===0)grps.push([invFilter.grp,invFilter.grp.slice(6)]);
  const marcas=[...new Set(S.items.map(i=>i.marca))].sort();
- return '<div class="pagehead"><div><h1 class="h1">Inventario</h1><p class="lead">'+plural(S.items.length,'equipo registrado','equipos registrados')+' · '+plural(S.prods.length,'modelo en el catálogo','modelos en el catálogo')+'</p></div><div class="actions">'+(canDo('importar')?'<button class="btn" data-act="tab" data-tab="excel">'+IC.xls+'Importar</button>':'')+(canDo('exportar')?'<button class="btn" data-act="xExport" data-what="filtro">'+IC.xls+'Exportar esta lista</button>':'')+(noReg()?'':'<button class="btn primary" data-act="form" data-kind="nuevo">'+IC.ingreso+'Nuevo equipo</button>')+'</div></div>'
+ return '<div class="pagehead"><div><h1 class="h1">Inventario</h1><p class="lead">'+plural(S.items.length,'equipo registrado','equipos registrados')+' · '+plural(S.prods.length,'modelo en el catálogo','modelos en el catálogo')+'</p></div><div class="actions">'+(canDo('importar')?'<button class="btn only-desk" data-act="tab" data-tab="excel">'+IC.xls+'Importar</button>':'')+(canDo('exportar')?'<button class="btn" data-act="xExport" data-what="filtro">'+IC.xls+'Exportar esta lista</button>':'')+(noReg()?'':'<button class="btn primary" data-act="form" data-kind="nuevo">'+IC.ingreso+'Nuevo equipo</button>')+'</div></div>'
  +'<div class="toolbar"><div class="seg2" role="group" aria-label="Vista del inventario"><button class="chip" data-act="invView" data-v="equipo" aria-pressed="'+(invView==='equipo')+'">Por equipo</button><button class="chip" data-act="invView" data-v="modelo" aria-pressed="'+(invView==='modelo')+'">Por modelo: qué hay y qué falta</button></div>'
  +'<div class="search inv-search"><input id="invq" type="search" placeholder="Buscar nombre, serie, N° de parte, obra o persona" value="'+esc(invFilter.q)+'" autocomplete="off" aria-label="Buscar equipos"></div>'
  +'<div class="selects"><select id="invcat" aria-label="Categoría"><option value="">Todas las categorías</option>'+Object.keys(CATS).map(k=>'<option value="'+k+'"'+(invFilter.cat===k?' selected':'')+'>'+CATS[k]+'</option>').join('')+'</select><select id="invmarca" aria-label="Marca"><option value="">Todas las marcas</option>'+marcas.map(m=>'<option'+(invFilter.marca===m?' selected':'')+'>'+esc(m)+'</option>').join('')+'</select></div></div>'
@@ -3356,26 +3358,108 @@ function invAoa(items){
  return [H].concat(items.map(i=>{const p=locParts(i.loc),k=kitOf(i.id),m=lastMov(i);return [i.code,i.nombre,i.marca,CATS[i.cat]||'Otro',i.modelo,i.np,i.serie,1,i.cond,p.tipo,p.lugar,p.ciudad,p.persona,p.obra,p.maq,k?k.code:'',k?slotOf(tplOf(k),k.slots.indexOf(i.id)).l:'',m?toDate(m.fecha):'',m?m.tipo:''];}));
 }
 function modAoa(rows){const AL=almCols(rows);return [['N° de parte','Modelo','Marca','Categoría'].concat(AL,['En obra','En tránsito','Dañados o de baja','Total','Libres en almacén','Situación'])].concat(rows.map(r=>[r.np,r.nombre,r.marca,CATS[r.cat]||'Otro'].concat(AL.map(n=>r.alm[n]||0),[r.obra,r.transito,r.bad,r.total,r.libres,r.total===0?'No hay':r.libres===0?'Sin libres en almacén':'Disponible'])));}
+
+/* ---------- Excel: motor de exportación (ExcelJS: colores, anchos, filtros) ---------- */
+let xjsP=null;
+function loadExcelJS(){
+ if(window.ExcelJS)return Promise.resolve(window.ExcelJS);
+ if(xjsP)return xjsP;
+ const urls=['https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js','https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js'];
+ xjsP=new Promise((res,rej)=>{let k=0;const next=()=>{if(window.ExcelJS)return res(window.ExcelJS);if(k>=urls.length){xjsP=null;return rej(new Error('load'));}const s=document.createElement('script');s.src=urls[k++];s.onload=()=>window.ExcelJS?res(window.ExcelJS):next();s.onerror=()=>{s.remove();next();};document.head.appendChild(s);};next();});
+ return xjsP;
+}
+const XC={brand:'FF0082C0',ink:'FF0F2230',muted:'FF5B6B7B',zebra:'FFF2F7FB',line:'FFD9E2EA',white:'FFFFFFFF',ok:'FF1B7A3E',warn:'FF9A5B00',bad:'FFB42318',gray:'FF7A8794',okbg:'FFE7F5EC',warnbg:'FFFFF4DF',badbg:'FFFCE9E6'};
+function xTone(v){if(typeof v!=='string'||!v)return null;const t=v.toLowerCase();if(/dañad|de baja|falta|no llegó|retras|incompleto|no hay/.test(t))return 'bad';if(/reparaci|por recibir|parcial|sin libres|lugares distintos|en tránsito|pendiente/.test(t))return 'warn';if(/operativo|recibido|completo|disponible|conforme/.test(t))return 'ok';if(/anulado|desarmado/.test(t))return 'gray';return null;}
+const XTONE_COLS=/^(condición|estado|estado del kit|situación|tipo de ubicación)$/i;
+function xFromSerial(v){return new Date(Math.round((v-25569)*86400000));}
+function xSheet(wb,name,aoa,w,dc,o){
+ o=o||{};dc=dc||[];const H=aoa[0]||[],nC=Math.max(1,H.length),rows=aoa.slice(1);
+ const ws=wb.addWorksheet(String(name).slice(0,31),{properties:{tabColor:{argb:o.tab||XC.brand},defaultRowHeight:16},pageSetup:{orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9,margins:{left:.4,right:.4,top:.5,bottom:.5,header:.2,footer:.2}}});
+ ws.columns=H.map((h,c)=>({width:(w&&w[c])||14}));
+ let hr=1;
+ if(!o.plain){
+  const span=Math.max(1,Math.min(nC,8));
+  ws.mergeCells(1,1,1,span);const t=ws.getCell(1,1);t.value='MAQUITOP  ·  '+(o.title||name);t.font={name:'Calibri',size:16,bold:true,color:{argb:XC.ink}};t.alignment={vertical:'middle'};ws.getRow(1).height=28;
+  ws.mergeCells(2,1,2,span);const sc=ws.getCell(2,1);sc.value=[o.sub,rows.length+' '+(rows.length===1?(o.unit1||'fila'):(o.unit||'filas')),'Exportado el '+fdate(nowIso())+(meName()?' por '+meName():'')].filter(Boolean).join('   ·   ');sc.font={name:'Calibri',size:10,color:{argb:XC.muted}};sc.alignment={vertical:'middle'};ws.getRow(2).height=18;
+  ws.getRow(3).height=6;hr=4;
+ }
+ const hrow=ws.getRow(hr);hrow.height=o.plain?22:30;
+ H.forEach((h,c)=>{const cell=hrow.getCell(c+1);cell.value=h;cell.font={name:'Calibri',bold:true,size:10.5,color:{argb:XC.white}};cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:XC.ink}};cell.alignment={vertical:'middle',wrapText:true,horizontal:typeof (rows[0]||[])[c]==='number'&&!dc.includes(c)?'right':'left'};cell.border={bottom:{style:'medium',color:{argb:XC.brand}}};});
+ const toneCols=H.map((h,c)=>XTONE_COLS.test(String(h||''))?c:-1).filter(c=>c>=0);
+ rows.forEach((r,i)=>{
+  const row=ws.getRow(hr+1+i);row.height=o.wrap?undefined:17;
+  for(let c=0;c<nC;c++){
+   let v=r[c];if(v===undefined||v===null)v=null;
+   const cell=row.getCell(c+1);
+   if(dc.includes(c)&&typeof v==='number'){cell.value=xFromSerial(v);cell.numFmt='dd/mm/yyyy hh:mm';cell.alignment={vertical:'middle',horizontal:'left'};}
+   else{cell.value=v;cell.alignment={vertical:'middle',horizontal:typeof v==='number'?'right':'left',wrapText:!!o.wrap};if(typeof v==='number')cell.numFmt=Number.isInteger(v)?'0':'0.00';}
+   cell.font={name:'Calibri',size:10.5,color:{argb:XC.ink}};
+   cell.border={bottom:{style:'thin',color:{argb:XC.line}}};
+   if(i%2===1)cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:XC.zebra}};
+   if(toneCols.includes(c)){const tn=xTone(v);if(tn){cell.font={name:'Calibri',size:10.5,bold:true,color:{argb:XC[tn]}};if(tn!=='gray')cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:XC[tn+'bg']}};}}
+  }
+ });
+ ws.views=[{state:'frozen',ySplit:hr,showGridLines:!!o.plain}];
+ if(rows.length&&H.length)ws.autoFilter={from:{row:hr,column:1},to:{row:hr+rows.length,column:nC}};
+ ws.pageSetup.printTitlesRow=hr+':'+hr;
+ ws.headerFooter={oddFooter:'&L&8Maquitop · '+String(name)+'&R&8Página &P de &N'};
+ return ws;
+}
+function xResumen(wb){
+ const ws=wb.addWorksheet('Resumen',{properties:{tabColor:{argb:XC.ink}},pageSetup:{orientation:'portrait',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9}});
+ ws.columns=[{width:30},{width:14},{width:14},{width:4},{width:30},{width:14},{width:14}];
+ ws.views=[{showGridLines:false}];
+ ws.mergeCells('A1:G1');const t=ws.getCell('A1');t.value='MAQUITOP  ·  Inventario de equipos de machine control';t.font={name:'Calibri',size:18,bold:true,color:{argb:XC.ink}};ws.getRow(1).height=32;
+ ws.mergeCells('A2:G2');const sb=ws.getCell('A2');sb.value='Resumen al '+fdate(nowIso())+(meName()?'  ·  Exportado por '+meName():'')+'  ·  Base: '+almPrin();sb.font={name:'Calibri',size:10,color:{argb:XC.muted}};
+ const items=S.items,libres=items.filter(i=>i.loc.t==='almacen'&&!(i.cond!=='Operativo')).length,transito=items.filter(i=>i.loc.t==='transito').length,obra=items.filter(i=>i.loc.t==='tecnico'||i.loc.t==='instalado').length,bad=items.filter(i=>i.cond!=='Operativo').length;
+ const pend=S.movs.filter(m=>m.tipo==='Envío'&&m.estado==='pendiente'),retr=pend.filter(m=>retrasoDias(m)>0).length;
+ const kinf=S.kits.map(kitInfo),okK=kinf.filter(k=>k.st==='completo').length;
+ const kp=[['Equipos registrados',items.length],['Libres en almacén',libres],['En tránsito',transito],['En obra (técnicos o instalados)',obra],['Dañados o de baja',bad],['Kits armados',S.kits.length],['Kits completos',okK],['Envíos por recibir',pend.length],['Envíos retrasados',retr],['Modelos en el catálogo',S.prods.length]];
+ let r=4;
+ const head=(row,col,txt,span)=>{ws.mergeCells(row,col,row,col+span-1);const h=ws.getCell(row,col);h.value=txt;h.font={name:'Calibri',size:12,bold:true,color:{argb:XC.white}};h.fill={type:'pattern',pattern:'solid',fgColor:{argb:XC.brand}};h.alignment={vertical:'middle'};ws.getRow(row).height=24;};
+ const line=(row,col,vals,i)=>{vals.forEach((v,k)=>{const cell=ws.getCell(row,col+k);cell.value=v;cell.font={name:'Calibri',size:10.5,bold:i===-1||(k>0&&typeof v==='number'),color:{argb:i===-1?XC.muted:XC.ink}};cell.alignment={horizontal:typeof v==='number'?'right':'left',vertical:'middle'};cell.border={bottom:{style:'thin',color:{argb:XC.line}}};if(i%2===1)cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:XC.zebra}};if(typeof v==='number')cell.numFmt='0';});};
+ head(r,1,'Cifras',3);r++;kp.forEach((x,i)=>{line(r,1,[x[0],x[1]],i);r++;});
+ // Dónde están
+ const places={};items.forEach(i=>{let k;if(i.loc.t==='almacen')k=i.loc.a;else if(i.loc.t==='transito')k='En tránsito';else k=city(i.loc)||'Obra';places[k]=(places[k]||0)+1;});
+ const pl=Object.entries(places).sort((a,b)=>b[1]-a[1]);
+ let r2=4;head(r2,5,'Dónde están los equipos',3);r2++;line(r2,5,['Lugar','Equipos','% del total'],-1);r2++;
+ pl.forEach((x,i)=>{line(r2,5,[x[0],x[1],items.length?Math.round(x[1]/items.length*100)/100:0],i);ws.getCell(r2,7).numFmt='0%';r2++;});
+ // Por categoría
+ r2+=1;head(r2,5,'Por categoría',3);r2++;line(r2,5,['Categoría','Equipos','Libres'],-1);r2++;
+ const cats={};items.forEach(i=>{const k=CATS[i.cat]||'Otro';cats[k]=cats[k]||[0,0];cats[k][0]++;if(i.loc.t==='almacen'&&!(i.cond!=='Operativo'))cats[k][1]++;});
+ Object.entries(cats).sort((a,b)=>b[1][0]-a[1][0]).forEach((x,i)=>{line(r2,5,[x[0],x[1][0],x[1][1]],i);r2++;});
+ // Pendientes
+ r=Math.max(r,r2)+1;
+ if(pend.length){head(r,1,'Envíos por recibir',7);r++;line(r,1,['Envío','Hacia','Equipos','','Agencia · guía','Fecha','Estado'],-1);r++;
+  pend.sort((a,b)=>a.fecha<b.fecha?-1:1).forEach((m,i)=>{const rd=retrasoDias(m);line(r,1,[m.num,movDest(m),m.items.length,'',[m.agencia,m.guia].filter(Boolean).join(' · '),fdate(m.fecha),rd?'Retrasado · '+rd+' días':'Por recibir'],i);const sc=ws.getCell(r,7);sc.font={name:'Calibri',size:10.5,bold:true,color:{argb:rd?XC.bad:XC.warn}};r++;});r++;}
+ // Hojas
+ head(r,1,'Qué hay en este archivo',7);r++;
+ [['Inventario','Un equipo por fila: código, serie, dónde está, kit y último movimiento.'],['Por modelo','Qué hay y qué falta de cada número de parte, por almacén.'],['Movimientos','Todo lo que entró, salió o cambió, con guía, agencia y quién recibió.'],['Kits','Cada kit con sus componentes y lo que falta.'],['Plantillas','Qué espacios tiene cada plantilla y qué números de parte acepta.']].forEach((x,i)=>{line(r,1,[x[0],'','','','','',''],i);ws.mergeCells(r,2,r,7);const d=ws.getCell(r,2);d.value=x[1];d.font={name:'Calibri',size:10.5,color:{argb:XC.muted}};r++;});
+ ws.headerFooter={oddFooter:'&L&8Maquitop · Resumen&R&8Página &P de &N'};
+ return ws;
+}
 async function xExport(what){
- let X;try{X=await loadXLSX();}catch(e){toast('No se pudo cargar el módulo de Excel. Revisa tu conexión.','bad');return;}
- const wb=X.utils.book_new();
- const add=(name,aoa,w,dc)=>{const ws=X.utils.aoa_to_sheet(aoa);(dc||[]).forEach(c=>{for(let r=1;r<aoa.length;r++){const a=X.utils.encode_cell({r,c});if(ws[a]&&ws[a].t==='n')ws[a].z='dd/mm/yyyy hh:mm';}});ws['!cols']=w.map(x=>({wch:x}));if(aoa.length>1&&aoa[0].length)ws['!autofilter']={ref:X.utils.encode_range({s:{r:0,c:0},e:{r:aoa.length-1,c:aoa[0].length-1}})};X.utils.book_append_sheet(wb,ws,name);};
+ let E;try{E=await loadExcelJS();}catch(e){toast('No se pudo cargar el módulo de Excel. Revisa tu conexión.','bad');return;}
+ const X=null;
+ const wb=new E.Workbook();wb.creator='Maquitop';wb.lastModifiedBy=meName()||'Maquitop';wb.created=new Date();
+ const add=(name,aoa,w,dc,o)=>xSheet(wb,name,aoa,w,dc,o);
  const day=nowIso().slice(0,10);let fname;
  const wInv=[9,30,9,18,13,15,13,9,13,15,46,11,16,24,30,9,24,17,18],wMod=[15,34,9,18,12,14,9,11,15,8,15,20];
  if(what==='plantilla'){
-  add('Importar',[['Fecha','Artículo','Tipo','Lugar','Cantidad','Serie','N° de parte','Marca','Estado','Nota'],['14/10/2026','Antena GNSS Leica iCON gps 160','Ingreso','Almacén Lima',1,'1902231','LC-6014002','Leica','Operativo','Compra octubre'],['14/10/2026','Base magnética CHC','Ingreso','Almacén Arequipa',4,'','CHC-MNT-090','CHC','Operativo','Sin serie: se crean 4 unidades'],['15/10/2026','Radio Leica MCR 900','Traslado','Piura',2,'1902457, 1902458','LC-7930004','Leica','','Varias series separadas por coma'],['16/10/2026','Sensor IMU CHC','Baja','',1,'C24099001','CHC-1201-330','CHC','Dañado','Equipo irreparable']],[12,32,11,20,10,20,14,10,11,32]);
-  add('Valores aceptados',[['Columna','Qué poner'],['Fecha','12/10/2026, 2026-10-12 o una celda con formato de fecha. Día primero.'],['Artículo','Nombre del equipo. Si pones el N° de parte del catálogo, se completa solo.'],['Tipo','Ingreso (también Entrada, Compra, Alta, Inventario) · Traslado (también Salida, Envío, Despacho, Devolución) · Baja'],['Lugar','Nombre o ciudad de un almacén (ver hoja Lugares), nombre de obra, ciudad de la obra o código de máquina (ej. EX-07)'],['Cantidad','Número entero. Si hay serie, cuenta cada serie como una unidad.'],['Serie','Una serie o varias separadas por coma. Sin serie se crean unidades “Sin serie”.'],['N° de parte','Ver hoja Catálogo.'],['Estado','Operativo, Dañado, En reparación o De baja.']],[14,110]);
+  add('Importar',[['Fecha','Artículo','Tipo','Lugar','Cantidad','Serie','N° de parte','Marca','Estado','Nota'],['14/10/2026','Antena GNSS Leica iCON gps 160','Ingreso','Almacén Lima',1,'1902231','LC-6014002','Leica','Operativo','Compra octubre'],['14/10/2026','Base magnética CHC','Ingreso','Almacén Arequipa',4,'','CHC-MNT-090','CHC','Operativo','Sin serie: se crean 4 unidades'],['15/10/2026','Radio Leica MCR 900','Traslado','Piura',2,'1902457, 1902458','LC-7930004','Leica','','Varias series separadas por coma'],['16/10/2026','Sensor IMU CHC','Baja','',1,'C24099001','CHC-1201-330','CHC','Dañado','Equipo irreparable']],[12,32,11,20,10,20,14,10,11,32],null,{plain:true});
+  add('Valores aceptados',[['Columna','Qué poner'],['Fecha','12/10/2026, 2026-10-12 o una celda con formato de fecha. Día primero.'],['Artículo','Nombre del equipo. Si pones el N° de parte del catálogo, se completa solo.'],['Tipo','Ingreso (también Entrada, Compra, Alta, Inventario) · Traslado (también Salida, Envío, Despacho, Devolución) · Baja'],['Lugar','Nombre o ciudad de un almacén (ver hoja Lugares), nombre de obra, ciudad de la obra o código de máquina (ej. EX-07)'],['Cantidad','Número entero. Si hay serie, cuenta cada serie como una unidad.'],['Serie','Una serie o varias separadas por coma. Sin serie se crean unidades “Sin serie”.'],['N° de parte','Ver hoja Catálogo.'],['Estado','Operativo, Dañado, En reparación o De baja.']],[14,110],null,{plain:true,wrap:true});
   add('Catálogo',[['N° de parte','Artículo','Modelo','Marca','Categoría','Lleva serie','Sirve para']].concat(S.prods.map(p=>[p.np,p.nombre,p.modelo,p.marca,CATS[p.cat]||'Otro',p.serie?'Sí':'No',S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np))).map(t=>t.n).join(', ')])),[15,32,14,10,20,11,50]);
   add('Lugares',[['Lugar','Se registra como']].concat(alms().map(a=>[a.n+' / '+a.ciudad,a.n])).concat(S.obras.map(o=>[o.n+' / '+o.ciudad,'Con '+techFor(o.id)+' · Obra '+o.n])).concat(S.obras.flatMap(o=>o.maqs.map(m=>[m.split(' · ').pop(),'Instalado en '+m]))),[36,60]);
   fname='Maquitop_plantilla_importacion.xlsx';
  }else if((fname=xExportKits(what,add,X,day))!==null){if(!fname)return;
- }else if(what==='sel'){const it=[...sel].map(item).filter(Boolean);if(!it.length){toast('No hay equipos seleccionados.','bad');return;}add('Inventario',invAoa(it),wInv,[17]);fname='Maquitop_seleccion_'+day+'.xlsx';
- }else if(what==='movsfiltro'){const l=movsFiltered();if(!l.length){toast('No hay movimientos en la lista.','bad');return;}add('Movimientos',movsAoa(l),[17,14,16,9,30,13,15,9,34,44,24,14,15,12,16,17,15,40],[0,15]);fname='Maquitop_movimientos_'+day+'.xlsx';
+ }else if(what==='sel'){const it=[...sel].map(item).filter(Boolean);if(!it.length){toast('No hay equipos seleccionados.','bad');return;}add('Inventario',invAoa(it),wInv,[17],{sub:'Equipos seleccionados'});fname='Maquitop_seleccion_'+day+'.xlsx';
+ }else if(what==='movsfiltro'){const l=movsFiltered();if(!l.length){toast('No hay movimientos en la lista.','bad');return;}add('Movimientos',movsAoa(l),[17,14,16,9,30,13,15,9,34,44,24,14,15,12,16,17,15,40],[0,15],{sub:'Lista filtrada'+(movQ?' · “'+movQ+'”':'')+(movPer&&movPer!=='todo'?' · '+movPer:'')});fname='Maquitop_movimientos_'+day+'.xlsx';
  }else if(what==='filtro'){
   if(invView==='modelo'){add('Por modelo',modAoa(modelRows()),wMod);fname='Maquitop_por_modelo_'+day+'.xlsx';}
-  else{const it=invFiltered();if(!it.length){toast('No hay equipos con esos filtros.','bad');return;}add('Inventario',invAoa(it),wInv,[17]);fname='Maquitop_inventario_filtrado_'+day+'.xlsx';}
+  else{const it=invFiltered();if(!it.length){toast('No hay equipos con esos filtros.','bad');return;}add('Inventario',invAoa(it),wInv,[17],{sub:'Lista filtrada'+filtDesc()});fname='Maquitop_inventario_filtrado_'+day+'.xlsx';}
  }else{
-  add('Inventario',invAoa(S.items),wInv,[17]);
+  xResumen(wb);
+  add('Inventario',invAoa(S.items),wInv,[17],{sub:'Un equipo por fila'+filtDesc().replace(' (sin filtro: todo el inventario)','')});
   const sv=invFilter.q,sc=invFilter.cat;invFilter.q='';invFilter.cat='';const mr=modelRows();invFilter.q=sv;invFilter.cat=sc;
   add('Por modelo',modAoa(mr),wMod);
   const mh=movsAoa(S.movs);
@@ -3386,9 +3470,10 @@ async function xExport(what){
   const th=[['Plantilla','Marca','Máquinas','Espacio','N° de parte aceptados','Modelos aceptados']];S.tpls.forEach(t=>t.slots.forEach((s,ix)=>th.push([t.n,t.marca,(t.maquinas||[]).join(', '),s.l,s.nps.join(' / '),slotDesc(t,ix)])));add('Plantillas',th,[26,9,22,26,30,50]);
   fname='Maquitop_inventario_'+day+'.xlsx';
  }
- const buf=X.write(wb,{bookType:'xlsx',type:'array',compression:true});
+ const buf=await wb.xlsx.writeBuffer();
  await saveFile(fname,buf);
 }
+
 
 /* ---------- Excel: reconocimiento de columnas ---------- */
 const FIELDS={'':'No usar',fecha:'Fecha',articulo:'Artículo',tipo:'Tipo de movimiento',lugar:'Lugar',cantidad:'Cantidad',serie:'Serie',np:'N° de parte',marca:'Marca',categoria:'Categoría',modelo:'Modelo',estado:'Estado',persona:'Persona que recibe',guia:'Guía',nota:'Nota'};
@@ -3638,7 +3723,7 @@ function vExcel(){
  +'<section class="sec" id="xkits"><h2 class="sec-t">Controles de kits</h2><p class="sub-t">Hojas para revisar y firmar: cada una trae columnas con casillas ☐ para marcar a mano o en el Excel.</p><div class="list">'
  +xcard('Control de kits','Resumen (estado, responsable, última revisión), componentes con casilla de revisión, por comprar, qué puedes armar, plantillas, cambios e historial.','kits','Exportar control',true)
  +xcard('Lista de compra','Lo que falta para completar los kits, con casillas de pedido y llegada, y las piezas libres que ya puedes asignar.','compra','Exportar lista')
- +'<div class="xcard"><span class="rmain"><span class="rname">Lista de empaque de un kit</span><span class="rsub">Componente por componente con casillas “Sale” y “Llega”, historial y firmas de entrega.</span></span><span class="xpick"><select id="xkit" aria-label="Kit">'+S.kits.map(k=>'<option value="'+k.id+'">'+esc(k.code)+' · '+esc(tplOf(k).n)+'</option>').join('')+'</select><button class="btn" data-act="xKit"'+(S.kits.length?'':' disabled')+'>Exportar</button></span></div>'
+ +'<div class="xcard"><span class="rmain"><span class="rname">Lista de empaque de un kit</span><span class="rsub">Componente por componente con casillas “Sale” y “Llega”, historial y firmas de entrega.</span></span><span class="xpick">'+(S.kits.length?'<select id="xkit" aria-label="Kit">'+S.kits.map(k=>'<option value="'+k.id+'">'+esc(k.code)+' · '+esc(tplOf(k).n)+'</option>').join('')+'</select><button class="btn" data-act="xKit">Exportar</button>':'<span class="muted small">Aún no hay kits armados.</span>')+'</span></div>'
  +'<div class="xcard"><span class="rmain"><span class="rname">Acta de lo que tiene a cargo cada técnico</span><span class="rsub">Equipos con serie, obra y kit, con casilla de verificación y firmas.</span></span><span class="xpick"><select id="xcargo" aria-label="Persona">'+(ppl.length?ppl.map(p=>'<option'+(p.n===me?' selected':'')+'>'+esc(p.n)+'</option>').join(''):'<option value="">Nadie tiene equipos a cargo</option>')+'</select><button class="btn" data-act="xCargo"'+(ppl.length?'':' disabled')+'>Exportar</button></span></div>'
  +(imp?xcard('Plantillas de kit','Una fila por espacio: marca, máquinas y N° de parte aceptados. Edítalo y vuelve a importarlo.','tplmodelo','Descargar plantillas'):'')
  +'</div>'+(!FB_ON&&window.claude?'<p class="sub-t">Al exportar, el navegador te pide confirmar la descarga.</p>':'')+'</section>':'<section class="sec"><p class="empty">Tu nivel no permite exportar.</p></section>')
@@ -3841,7 +3926,7 @@ window.addEventListener('popstate',e=>{
  if(!$('#modal').hidden)closeAsk();
  if(st.tab&&TABS.includes(st.tab)&&st.tab!==tab)goTab(st.tab,true);
 });
-function goTab(t,fromHist){if(!fromHist)navTab(t);tab=t;sheetStack=[];renderSheet(true);if(t==='excel')loadXLSX().catch(()=>{});if(t==='avisos'&&avisoTab==='mios'){avisosHL=readUntil||'';setReadUntil(nowIso());}else avisosHL=null;if(t!=='inv')sel.clear();closeGres();render();viewEnter();window.scrollTo(0,0);}
+function goTab(t,fromHist){if(!fromHist)navTab(t);tab=t;sheetStack=[];renderSheet(true);if(t==='excel')loadExcelJS().catch(()=>{});if(t==='avisos'&&avisoTab==='mios'){avisosHL=readUntil||'';setReadUntil(nowIso());}else avisosHL=null;if(t!=='inv')sel.clear();closeGres();render();viewEnter();window.scrollTo(0,0);}
 function closeGres(){const g=$('#gres');if(g)g.hidden=true;}
 function copyText(txt,okMsg){
  const fallback=()=>{ask({title:'Copia el texto',ok:'Listo',html:'<textarea class="wa" id="cpTxt" readonly>'+esc(txt)+'</textarea><p class="small muted">Selecciona todo y cópialo.</p>',fn:()=>{}});setTimeout(()=>{const t=$('#cpTxt');if(t){t.focus();t.select();}},60);};
@@ -4327,7 +4412,7 @@ function nlBox(e){const isA=e.nlT==='alm';const fl=(id,lab,inp)=>'<div class="fi
  +'<div class="grid2">'+fl('on-nln',isA?'Nombre del almacén':'Nombre de la obra','<input id="on-nln" data-on="nlN" value="'+esc(e.nlN||'')+'" placeholder="'+(isA?'Ej. Almacén Marcona':'Ej. Marcona')+'" autocomplete="off">')+fl('on-nlc','Ciudad','<input id="on-nlc" data-on="nlC" value="'+esc(e.nlC||'')+'" placeholder="Ej. Marcona" list="ciudades" autocomplete="off">'+cityList())+'</div>'
  +'<p class="small muted" style="margin:0">Queda guardado para todos.'+(isA?'':' Las máquinas de la obra se pueden agregar después.')+'</p></div>';}
 function lgArt(){return '<div class="lg-art">'+topoSvg(900,1100,{fix:true,hills:[[0.66,0.34,1.2,16,30],[0.12,0.9,1.1,10,30]]})
-  +'<div class="lg-brand"><span class="logo plate" role="img" aria-label="Maquitop"></span></div>'
+  +'<div class="lg-brand"><span class="logo on-plate" role="img" aria-label="Maquitop"></span></div>'
   +'<div class="lg-copy"><h1>Cada equipo, en su lugar.</h1><p>Inventario de machine control CHC y Leica: dónde está cada equipo, quién lo recibió y qué le falta a cada kit.</p>'
   +'<ul class="lg-facts"><li>'+IC.truck+'<span>Envíos con boleta y recepción confirmada</span></li><li>'+IC.kit+'<span>Kits completos por tipo de máquina</span></li><li>'+IC.users+'<span>Lo que tiene a cargo cada técnico</span></li></ul></div>'
   +'<p class="lg-foot">Maquitop · '+esc(almPrin())+'</p></div>';}
@@ -4404,7 +4489,7 @@ function renderDrawer(){
  const nav=(t,ic,label,badge)=>'<button class="dr-link'+(tab===t?' on':'')+'" data-act="tab" data-tab="'+t+'">'+IC[ic]+'<span>'+label+'</span>'+(badge?'<em>'+badge+'</em>':'')+'</button>';
  const th=themeNow();
  d.innerHTML='<div class="dr-head">'+topoSvg(420,220,{hills:[[0.85,0.35,1.2,9,22]]})
-  +'<div class="dr-top"><span class="logo plate" role="img" aria-label="Maquitop"></span><button class="dr-close" data-act="drawerClose" aria-label="Cerrar menú">✕</button></div>'
+  +'<div class="dr-top"><span class="logo on-plate" role="img" aria-label="Maquitop"></span><button class="dr-close" data-act="drawerClose" aria-label="Cerrar menú">✕</button></div>'
   +(nm?'<button class="dr-me" data-act="tab" data-tab="perfil"><span class="avatar lg" style="background:'+avColor(nm)+'">'+esc(initials(nm))+'</span><span><b>'+esc(nm)+'</b><span>'+esc(p?(CARGOS?p.rol+(ob?' · '+ob.n:' · '+p.base):ubicPersona(p)):'')+'</span></span></button>':'')+'</div>'
   +'<div class="dr-body">'
   +'<button class="dr-search" data-act="searchGo">'+IC.search+'<span>Buscar equipo, serie, kit o guía</span></button>'
