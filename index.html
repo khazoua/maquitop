@@ -1521,6 +1521,67 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 .empty-box{padding:18px 20px;border:1.5px dashed var(--line);border-radius:18px;color:var(--muted);font-size:14.5px;line-height:1.5}
 .nextstep.ns-top{margin:0 0 16px}
 .home-head .topo .fix-c,.dr-head .topo .fix-c,.lg-art .topo .fix-c{filter:drop-shadow(0 0 6px rgba(58,169,227,.75))}
+
+/* ===== Aire claro: sin bloques oscuros (Inicio, menú, entrada y barra lateral) ===== */
+:root{--topo-ink:rgba(0,130,192,.17);--fix-ink:#0082C0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--topo-ink:rgba(108,192,239,.15);--fix-ink:#3AA9E3}}
+:root[data-theme="dark"]{--topo-ink:rgba(108,192,239,.15);--fix-ink:#3AA9E3}
+.topo .fix-c{fill:var(--fix-ink)}
+.topo .fix-r{stroke:var(--fix-ink)}
+.topo .fix-h{fill:var(--fix-ink)}
+.home-head .topo .fix-c,.dr-head .topo .fix-c,.lg-art .topo .fix-c{filter:drop-shadow(0 0 5px rgba(0,130,192,.4))}
+
+/* Inicio: tarjeta blanca, curvas de nivel suaves solo a la derecha */
+.home-head{background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home-head .topo{color:var(--topo-ink);-webkit-mask-image:linear-gradient(90deg,transparent 18%,#000 62%);mask-image:linear-gradient(90deg,transparent 18%,#000 62%)}
+.home-head .ph-date{color:var(--muted)}
+.home-head .h1{color:var(--ink)}
+.home-head .lead{color:var(--muted)}
+.home-head .quick .btn{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.home-head .quick .btn:hover{background:var(--surface-3)}
+.home-head .quick .btn svg{color:var(--accent)}
+.home-head .quick .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.home-head .quick .btn.primary:hover{background:var(--accent-strong)}
+.home-head .quick .btn.primary svg{color:currentColor}
+
+/* Menú ☰ */
+.dr-head{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+.dr-head .topo{color:var(--topo-ink);-webkit-mask-image:linear-gradient(90deg,transparent 25%,#000 75%);mask-image:linear-gradient(90deg,transparent 25%,#000 75%)}
+.dr-me b{color:var(--ink)}
+.dr-me span span{color:var(--muted)}
+.dr-close{background:var(--surface-2);border-color:var(--line);color:var(--ink)}
+.dr-head .logo.on-plate,.lg-brand .logo.on-plate{background-color:transparent;box-shadow:none;padding-left:0}
+
+/* Entrada */
+.lg-art{background:var(--accent-soft);color:var(--ink)}
+.lg-art::after{display:none}
+.lg-art .topo{color:var(--topo-ink);-webkit-mask-image:radial-gradient(circle at 68% 20%,#000 0,#000 30%,transparent 72%);mask-image:radial-gradient(circle at 68% 20%,#000 0,#000 30%,transparent 72%)}
+.lg-copy h1{color:var(--ink)}
+.lg-copy>p,.lg-foot{color:var(--muted)}
+.lg-facts li{color:var(--ink-2)}
+.lg-facts svg{background:var(--surface);color:var(--accent)}
+
+/* Barra lateral (escritorio) */
+@media (min-width:1024px){
+  .tabs{background:var(--surface);color:var(--ink);border-right:1px solid var(--line)}
+  .side-brand .logo{background-color:transparent;box-shadow:none;padding-left:0}
+  .side-brand span{color:var(--muted)}
+  .tabs button{color:var(--ink-2)}
+  .tabs button svg{color:var(--muted)}
+  .tabs button:hover{background:var(--surface-2);color:var(--ink)}
+  .tabs button[aria-current="page"]{background:var(--accent-soft);color:var(--accent-strong)}
+  .tabs button[aria-current="page"] svg{color:var(--accent)}
+  .tabs .sep{border-color:var(--line);background:var(--line)}
+  .side-who{border-top-color:var(--line);color:var(--muted)}
+  .side-who b{color:var(--ink)}
+}
+
+/* modo oscuro: el logo vuelve a su placa blanca */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dr-head .logo.on-plate{background-color:#fff;padding-left:9px}:root:not([data-theme="light"]) .lg-brand .logo.on-plate{background-color:#fff;padding-left:12px}}
+:root[data-theme="dark"] .dr-head .logo.on-plate{background-color:#fff;padding-left:9px}
+:root[data-theme="dark"] .lg-brand .logo.on-plate{background-color:#fff;padding-left:12px}
+@media (min-width:1024px) and (prefers-color-scheme: dark){:root:not([data-theme="light"]) .side-brand .logo{background-color:#fff;padding-left:10px}}
+@media (min-width:1024px){:root[data-theme="dark"] .side-brand .logo{background-color:#fff;padding-left:10px}}
 </style>
 <header class="top">
   <div class="wrap">
@@ -2367,7 +2428,7 @@ function vInicio(){
  const fechaL=DIAS[now.getDay()]+' '+now.getDate()+' de '+MESL[now.getMonth()];
  const cell=(n,l,sub,act,extra,cls)=>'<button class="kc-cell'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="kc-l">'+l+'</span><span class="kpi-n">'+n+'</span><span class="kc-s">'+sub+'</span></button>';
  const mv=(m)=>withMore(movRow(m),'mov',m.id,m.num);
- return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.25,hills:[[0.71,0.3,1.5,12,22],[0.16,1.15,1.2,7,30]]}):topoSvg(600,380,{fix:true,fixS:1.15,par:'xMaxYMin',hills:[[0.83,0.19,1.15,12,22],[0.08,1.1,1.1,8,28]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
+ return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.2,hills:[[0.7,0.37,1.5,12,22],[0.16,1.15,1.2,7,30]]}):topoSvg(600,380,{fix:true,fixS:1.1,par:'xMaxYMin',hills:[[0.85,0.13,1.15,12,22],[0.08,1.1,1.1,8,28]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
  +(mine.length?'<button class="pendbar" data-act="goPorRecibir"><span class="pb-ic">'+IC.truck+'</span><span class="pb-t"><b>'+(mine.length===1?'Tienes 1 envío por recibir':'Tienes '+mine.length+' envíos por recibir')+'</b><span>Confírmalo cuando llegue, equipo por equipo y con tu boleta.</span></span><span class="pb-go">Revisar</span></button>':'')
  +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep ns-top"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario del cuaderno de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
  +(!S.items.length&&MODE==='online'?'':'<div class="kstrip">')+(!S.items.length&&MODE==='online'?'':cell(S.items.length,'Equipos','Total registrado','tab',' data-tab="inv"')+cell(libres,'Libres en almacén',Object.keys(ac).length>1?esc(Object.keys(ac).sort((x,y)=>ac[y]-ac[x]).map(n=>almShort(n)+' '+ac[n]).join(' · ')):esc(Object.keys(ac)[0]||almPrin()),'goinv',' data-grp="libres"')+cell(c.transito,'En tránsito',retr?plural(retr,'retrasado','retrasados'):'Sin retrasos','goinv',' data-grp="transito"',retr?'warn':'')+cell(c.obra,'En obra','Con técnicos o instalados','goinv',' data-grp="obra"')+cell(S.kits.length?okK+'/'+S.kits.length:'0','Kits completos',S.kits.length?'De '+S.kits.length+' armados':'Sin kits armados','tab',' data-tab="kits"')+cell(bad,'Dañados',bad?'Ver cuáles':'Todo operativo','goinv',' data-grp="bad"',bad?'bad':'')+'</div>')
@@ -3534,7 +3595,8 @@ function resolveLugar(v){
  for(const a of alms())if(n.includes(norm(almShort(a.n)))||n.includes(norm(a.ciudad)))return alm(a.n);
  return null;
 }
-function findNp(v){const k=String(v==null?'':v).trim().toUpperCase().replace(/\s+/g,'');if(!k)return null;const p=S.prods.find(x=>x.np.toUpperCase()===k)||S.prods.find(x=>x.np.toUpperCase().replace(/-/g,'')===k.replace(/-/g,''));return p?p.np:null;}
+function npKey(v){return String(v==null?'':v).toUpperCase().replace(/[\s\-_.]+/g,'');}
+function findNp(v){const k=npKey(v);if(!k)return null;const raw=String(v).trim().toUpperCase();const p=S.prods.find(x=>x.np.toUpperCase()===raw)||S.prods.find(x=>npKey(x.np)===k);return p?p.np:null;}
 function findProdByName(art){const n=norm(art);let best=null,bs=0;S.prods.forEach(p=>{const k=p.np;const toks=norm(p.nombre).split(/\s+/).filter(t=>t.length>2);if(toks.length&&toks.every(t=>n.includes(t))){const s=toks.length+(n.includes(norm(p.modelo))?2:0);if(s>bs){bs=s;best=k;}}});return best;}
 function condOf(v){const n=norm(v);if(!n)return 'Operativo';if(/baja/.test(n))return 'De baja';if(/repar/.test(n))return 'En reparación';if(/dan|malog|aver|falla|defect|roto/.test(n))return 'Dañado';return 'Operativo';}
 function colLetter(c){let s='';c++;while(c>0){const m=(c-1)%26;s=String.fromCharCode(65+m)+s;c=Math.floor((c-1)/26);}return s;}
