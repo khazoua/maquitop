@@ -1,6 +1,6 @@
 /* Rumbo: permite abrir la app sin señal. La página siempre se pide primero a internet (así llegan las
    actualizaciones); si no hay señal o tarda más de 4 s, se usa la última copia guardada. Los datos no pasan por aquí. */
-const CACHE = 'rumbo-v1';
+const CACHE = 'rumbo-v2';
 const SHELL = ['./', './manifest.webmanifest', './icon-192.png', './icon-180.png'];
 const CDN = /^(www\.gstatic\.com|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)$/;
 
