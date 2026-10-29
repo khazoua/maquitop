@@ -3475,11 +3475,11 @@ function xSheet(wb,name,aoa,w,dc,o){
 }
 function xResumen(wb){
  const ws=wb.addWorksheet('Resumen',{properties:{tabColor:{argb:XC.ink}},pageSetup:{orientation:'portrait',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9}});
- ws.columns=[{width:30},{width:14},{width:14},{width:4},{width:30},{width:14},{width:14}];
+ ws.columns=[{width:34},{width:12},{width:10},{width:4},{width:30},{width:13},{width:19}];
  ws.views=[{showGridLines:false}];
  ws.mergeCells('A1:G1');const t=ws.getCell('A1');t.value='MAQUITOP  ·  Inventario de equipos de machine control';t.font={name:'Calibri',size:18,bold:true,color:{argb:XC.ink}};ws.getRow(1).height=32;
  ws.mergeCells('A2:G2');const sb=ws.getCell('A2');sb.value='Resumen al '+fdate(nowIso())+(meName()?'  ·  Exportado por '+meName():'')+'  ·  Base: '+almPrin();sb.font={name:'Calibri',size:10,color:{argb:XC.muted}};
- const items=S.items,libres=items.filter(i=>i.loc.t==='almacen'&&!(i.cond!=='Operativo')).length,transito=items.filter(i=>i.loc.t==='transito').length,obra=items.filter(i=>i.loc.t==='tecnico'||i.loc.t==='instalado').length,bad=items.filter(i=>i.cond!=='Operativo').length;
+ const items=S.items,libres=items.filter(i=>i.loc.t==='almacen'&&i.cond==='Operativo'&&!kitOf(i.id)).length,transito=items.filter(i=>i.loc.t==='transito').length,obra=items.filter(i=>i.loc.t==='tecnico'||i.loc.t==='instalado').length,bad=items.filter(i=>i.cond!=='Operativo').length;
  const pend=S.movs.filter(m=>m.tipo==='Envío'&&m.estado==='pendiente'),retr=pend.filter(m=>retrasoDias(m)>0).length;
  const kinf=S.kits.map(kitInfo),okK=kinf.filter(k=>k.st==='completo').length;
  const kp=[['Equipos registrados',items.length],['Libres en almacén',libres],['En tránsito',transito],['En obra (técnicos o instalados)',obra],['Dañados o de baja',bad],['Kits armados',S.kits.length],['Kits completos',okK],['Envíos por recibir',pend.length],['Envíos retrasados',retr],['Modelos en el catálogo',S.prods.length]];
@@ -3494,12 +3494,12 @@ function xResumen(wb){
  pl.forEach((x,i)=>{line(r2,5,[x[0],x[1],items.length?Math.round(x[1]/items.length*100)/100:0],i);ws.getCell(r2,7).numFmt='0%';r2++;});
  // Por categoría
  r2+=1;head(r2,5,'Por categoría',3);r2++;line(r2,5,['Categoría','Equipos','Libres'],-1);r2++;
- const cats={};items.forEach(i=>{const k=CATS[i.cat]||'Otro';cats[k]=cats[k]||[0,0];cats[k][0]++;if(i.loc.t==='almacen'&&!(i.cond!=='Operativo'))cats[k][1]++;});
+ const cats={};items.forEach(i=>{const k=CATS[i.cat]||'Otro';cats[k]=cats[k]||[0,0];cats[k][0]++;if(i.loc.t==='almacen'&&i.cond==='Operativo'&&!kitOf(i.id))cats[k][1]++;});
  Object.entries(cats).sort((a,b)=>b[1][0]-a[1][0]).forEach((x,i)=>{line(r2,5,[x[0],x[1][0],x[1][1]],i);r2++;});
  // Pendientes
  r=Math.max(r,r2)+1;
- if(pend.length){head(r,1,'Envíos por recibir',7);r++;line(r,1,['Envío','Hacia','Equipos','','Agencia · guía','Fecha','Estado'],-1);r++;
-  pend.sort((a,b)=>a.fecha<b.fecha?-1:1).forEach((m,i)=>{const rd=retrasoDias(m);line(r,1,[m.num,movDest(m),m.items.length,'',[m.agencia,m.guia].filter(Boolean).join(' · '),fdate(m.fecha),rd?'Retrasado · '+rd+' días':'Por recibir'],i);const sc=ws.getCell(r,7);sc.font={name:'Calibri',size:10.5,bold:true,color:{argb:rd?XC.bad:XC.warn}};r++;});r++;}
+ if(pend.length){head(r,1,'Envíos por recibir',7);r++;line(r,1,['Hacia','Envío','Equipos','','Agencia · guía','Fecha','Estado'],-1);r++;
+  pend.sort((a,b)=>a.fecha<b.fecha?-1:1).forEach((m,i)=>{const rd=retrasoDias(m);line(r,1,[movDest(m),m.num,m.items.length,'',[m.agencia,m.guia].filter(Boolean).join(' · '),fdate(m.fecha).slice(0,10),rd?'Retrasado · '+rd+' días':'Por recibir'],i);ws.getCell(r,1).alignment={wrapText:true,vertical:'middle'};const sc=ws.getCell(r,7);sc.font={name:'Calibri',size:10.5,bold:true,color:{argb:rd?XC.bad:XC.warn}};r++;});r++;}
  // Hojas
  head(r,1,'Qué hay en este archivo',7);r++;
  [['Inventario','Un equipo por fila: código, serie, dónde está, kit y último movimiento.'],['Por modelo','Qué hay y qué falta de cada número de parte, por almacén.'],['Movimientos','Todo lo que entró, salió o cambió, con guía, agencia y quién recibió.'],['Kits','Cada kit con sus componentes y lo que falta.'],['Plantillas','Qué espacios tiene cada plantilla y qué números de parte acepta.']].forEach((x,i)=>{line(r,1,[x[0],'','','','','',''],i);ws.mergeCells(r,2,r,7);const d=ws.getCell(r,2);d.value=x[1];d.font={name:'Calibri',size:10.5,color:{argb:XC.muted}};r++;});
