@@ -1,7 +1,17 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Maquitop Demo Lima</title>
+<title>Rumbo · Inventario Maquitop</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="theme-color" content="#0082C0">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111C25" media="(prefers-color-scheme: dark)">
+<meta name="application-name" content="Rumbo">
+<meta name="apple-mobile-web-app-title" content="Rumbo">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="Rumbo: inventario de equipos de machine control de Maquitop.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <meta name="format-detection" content="telephone=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1583,11 +1593,16 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 :root[data-theme="dark"] .lg-brand .logo.on-plate{background-color:#fff;padding-left:12px}
 @media (min-width:1024px) and (prefers-color-scheme: dark){:root:not([data-theme="light"]) .side-brand .logo{background-color:#fff;padding-left:10px}}
 @media (min-width:1024px){:root[data-theme="dark"] .side-brand .logo{background-color:#fff;padding-left:10px}}
+.topo .topo-l path.ix{stroke-width:1.9}
+.lg-art .topo{-webkit-mask-image:radial-gradient(circle at 63% 27%,#000 0,#000 34%,transparent 78%);mask-image:radial-gradient(circle at 63% 27%,#000 0,#000 34%,transparent 78%)}
+@media (max-width:1023px){.lg-art .topo{-webkit-mask-image:radial-gradient(circle at 80% 22%,#000 0,#000 30%,transparent 80%);mask-image:radial-gradient(circle at 80% 22%,#000 0,#000 30%,transparent 80%)}}
+.lg-app{display:block;margin-top:10px;font-family:var(--f-disp);font-weight:600;font-size:16px;color:var(--ink-2)}
+@media (min-width:1024px){.lg-app{font-size:18px}}
 </style>
 <header class="top">
   <div class="wrap">
     <button class="iconbtn menubtn" id="menuBtn" data-act="drawer" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="nbadge" id="bMenu" hidden></span></button>
-    <div class="brand"><span class="logo" role="img" aria-label="Maquitop"></span><span>Inventario de equipos</span></div>
+    <div class="brand"><span class="logo" role="img" aria-label="Maquitop"></span><span>Rumbo · Inventario de equipos</span></div>
     <div class="gsearch" id="gsearch">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <input id="gq" type="search" placeholder="Buscar equipo, serie, N° de parte, kit o guía" aria-label="Buscar en toda la app" autocomplete="off"><kbd>/</kbd>
@@ -1606,7 +1621,7 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 
 <nav class="tabs" aria-label="Secciones">
   <div class="wrap">
-    <div class="side-brand"><span class="logo" role="img" aria-label="Maquitop"></span><span>Inventario de equipos</span></div>
+    <div class="side-brand"><span class="logo" role="img" aria-label="Maquitop"></span><span>Rumbo · Inventario de equipos</span></div>
     <button data-act="tab" data-tab="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio<span class="nbadge" id="bIni" hidden></span></button>
     <button data-act="tab" data-tab="inv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>Inventario</button>
     <button data-act="menu" class="plus" aria-label="Registrar movimiento"><span class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Registrar</button>
@@ -1645,6 +1660,12 @@ const APP_CFG={demo:'lima',cargos:false,key:'maquitop-lima-v1'};
    Pega aquí la configuración de tu app web de Firebase
    (Consola de Firebase › ⚙ Configuración del proyecto › Tus apps › Configuración del SDK).
    Si apiKey queda vacío, la app funciona como demo: los datos se guardan solo en este navegador. */
+/* Ingreso con Google sin ventana emergente (la app abierta desde el icono del celular no puede usar ventanas).
+   ID de cliente web de Google del proyecto (Google Cloud › APIs y servicios › Credenciales › Web client).
+   Debe tener como origen autorizado este sitio y como URI de redirección esta misma página. */
+const GOOGLE_CLIENT_ID='342822127027-umkikjk5jarrhf5dmmccd250shrbcr0l.apps.googleusercontent.com';
+const OAUTH_HASH=(()=>{try{const h=location.hash.slice(1);if(/(^|&)(id_token|error)=/.test(h)){history.replaceState(null,'',location.pathname+location.search);return h;}}catch(e){}return '';})();
+let OAUTH_BUSY=!!OAUTH_HASH;
 const FIREBASE_CONFIG={
  apiKey:'AIzaSyAdTAF0EeWsBmV6UReCnN8zZ25LqJpgtYA',
  authDomain:'maquitop-inventario.firebaseapp.com',
@@ -2021,6 +2042,7 @@ async function startOnline(){
  });
  if(MODE==='loading'){MODE='online';linkMe();}
  if(FB_ON)fbAdminListen();
+ if(FB_ON){fbAutoSeed().then(()=>fbBackupTick());setInterval(()=>fbBackupTick(),6*3600*1000);}
  try{const st=await DB.doc('data/users/'+uid+'/state').get();if(st.exists){const d=st.data()||{};readUntil=d.readUntil||'';}}catch(e){}
  return true;
 }
@@ -2062,7 +2084,7 @@ function renderGate(){
  const who=u?'<div class="gate-who"><span class="avatar" style="background:'+avColor(u.displayName||u.email||'?')+'">'+esc(initials(u.displayName||u.email||'?'))+'</span><span><b>'+esc(u.displayName||'Cuenta de Google')+'</b><span>'+esc(u.email||'')+'</span></span></div>':'';
  let b='';
  if(g.st==='connecting')b='<h2>Conectando…</h2>'+who+'<p class="lg-sub"><span class="spin"></span> Abriendo la base compartida de Maquitop.</p>';
- else if(g.st==='signin')b='<h2>Entrar</h2><p class="lg-sub">Entra con tu cuenta de Google. No necesitas otra contraseña.</p><button class="btn primary block lg-go" data-act="fbSignIn">Entrar con Google</button>'+(g.msg?'<p class="bolst warn" style="margin-top:12px">'+esc(g.msg)+'</p>':'')+'<p class="small muted" style="margin:14px 0 0">La primera vez, el administrador debe aprobar tu acceso.</p>';
+ else if(g.st==='signin')b='<h2>Entrar a Rumbo</h2><p class="lg-sub">Entra con tu cuenta de Google. No necesitas otra contraseña.</p><button class="btn primary block lg-go" data-act="fbSignIn">Entrar con Google</button>'+(g.msg?'<p class="bolst warn" style="margin-top:12px">'+esc(g.msg)+'</p>':'')+'<p class="small muted" style="margin:14px 0 0">La primera vez, el administrador debe aprobar tu acceso.</p>'+(isStandalone()&&!GOOGLE_CLIENT_ID?'<p class="small muted" style="margin:8px 0 0">Si al tocar el botón no avanza, abre Rumbo en Safari o Chrome para entrar.</p>':'');
  else if(g.st==='pending')b='<h2>Acceso pendiente</h2>'+who+'<p class="lg-sub">Tu solicitud llegó al administrador. Cuando la apruebe, esta pantalla se abre sola: no necesitas recargar.</p><button class="btn ghost block" data-act="fbSignOut">Entrar con otra cuenta</button>';
  else if(g.st==='revoked')b='<h2>Sin acceso</h2>'+who+'<p class="lg-sub">Esta cuenta no tiene permiso para ver los datos. Si es un error, pídele al administrador que te vuelva a aprobar.</p><button class="btn primary block" data-act="fbReload">Volver a intentar</button><button class="btn ghost block" data-act="fbSignOut" style="margin-top:8px">Entrar con otra cuenta</button>';
  else b='<h2>No se pudo conectar</h2>'+who+'<p class="lg-sub">'+esc(g.msg||'Revisa tu conexión a internet e inténtalo de nuevo.')+'</p><button class="btn primary block" data-act="fbReload">Reintentar</button>'+(u?'<button class="btn ghost block" data-act="fbSignOut" style="margin-top:8px">Entrar con otra cuenta</button>':'');
@@ -2077,7 +2099,8 @@ async function fbStart(){
  if(window.__MAQ_EMU){try{fs.useEmulator('127.0.0.1',8080);auth.useEmulator('http://127.0.0.1:9099',{disableWarnings:true});}catch(e){}}
  try{await fs.enablePersistence({synchronizeTabs:true});}catch(e){} // sin señal: lo registrado se guarda y se sube al volver la conexión
  FBA={fb,fs,auth};
- const u=await new Promise(res=>{auth.onAuthStateChanged(x=>{if(x)res(x);else showGate('signin',GATE&&GATE.st==='signin'?{msg:GATE.msg}:{});});});
+ if(OAUTH_HASH){showGate('connecting');gConsumeRedirect();}
+ const u=await new Promise(res=>{auth.onAuthStateChanged(x=>{if(x)res(x);else if(!OAUTH_BUSY)showGate('signin',GATE&&GATE.st==='signin'?{msg:GATE.msg}:{});});});
  const email=String(u.email||'').toLowerCase();const owner=isFbAdminEmail(email);
  showGate('connecting',{u});
  const memRef=fs.collection('miembros').doc(u.uid);
@@ -2096,12 +2119,33 @@ async function fbStart(){
  hideGate();
  return {db:fbDb(fs),user:{id:async()=>u.uid,me:async()=>({name:u.displayName||email,avatarUrl:u.photoURL||'',isOwner:owner,email}),can:async()=>true}};
 }
+function isStandalone(){try{return !!(navigator.standalone||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches));}catch(e){return false;}}
+function gRedirectUri(){return location.origin+location.pathname.replace(/index\.html$/,'');}
+function gRand(){const a=new Uint8Array(16);(window.crypto||window.msCrypto).getRandomValues(a);return Array.from(a,b=>b.toString(16).padStart(2,'0')).join('');}
+function gSignInRedirect(){
+ const st=gRand(),nn=gRand();try{localStorage.setItem('rumbo-oauth',JSON.stringify({st,nn,t:Date.now()}));}catch(e){}
+ const q=new URLSearchParams({client_id:GOOGLE_CLIENT_ID,redirect_uri:gRedirectUri(),response_type:'id_token',scope:'openid email profile',nonce:nn,state:st,prompt:'select_account'});
+ location.assign('https://accounts.google.com/o/oauth2/v2/auth?'+q.toString());
+}
+async function gConsumeRedirect(){
+ const p=new URLSearchParams(OAUTH_HASH);let saved=null;
+ try{saved=JSON.parse(localStorage.getItem('rumbo-oauth')||'null');localStorage.removeItem('rumbo-oauth');}catch(e){}
+ const fail=m=>{OAUTH_BUSY=false;showGate('signin',{msg:m});};
+ if(p.get('error'))return p.get('error')==='access_denied'?fail(''):fail('Google no permitió entrar ('+p.get('error')+'). Inténtalo de nuevo.');
+ const tok=p.get('id_token');
+ if(!tok||!saved||p.get('state')!==saved.st||Date.now()-saved.t>15*60*1000)return fail('El ingreso tardó demasiado o no empezó aquí. Toca Entrar con Google otra vez.');
+ let cl=null;try{cl=JSON.parse(atob(tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));}catch(e){}
+ if(!cl||cl.nonce!==saved.nn)return fail('No se pudo comprobar el ingreso. Toca Entrar con Google otra vez.');
+ try{await FBA.auth.signInWithCredential(FBA.fb.auth.GoogleAuthProvider.credential(tok));OAUTH_BUSY=false;}
+ catch(e){const c=(e&&e.code)||'';fail(c==='auth/network-request-failed'?'Sin conexión a internet. Inténtalo de nuevo.':'No se pudo entrar ('+c+'). Inténtalo de nuevo.');}
+}
 async function fbSignIn(){
  if(!FBA)return;const p=new FBA.fb.auth.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
+ if(GOOGLE_CLIENT_ID&&isStandalone()){gSignInRedirect();return;}
  try{await FBA.auth.signInWithPopup(p);}
  catch(e){const c=(e&&e.code)||'';
   if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;
-  if(c==='auth/popup-blocked'||c==='auth/operation-not-supported-in-environment'){try{await FBA.auth.signInWithRedirect(p);return;}catch(e2){}}
+  if(c==='auth/popup-blocked'||c==='auth/operation-not-supported-in-environment'){if(GOOGLE_CLIENT_ID){gSignInRedirect();return;}try{await FBA.auth.signInWithRedirect(p);return;}catch(e2){}}
   showGate('signin',{msg:c==='auth/unauthorized-domain'?'Este sitio no está autorizado en Firebase: agrega su dominio en Authentication › Configuración › Dominios autorizados.':c==='auth/operation-not-allowed'||c==='auth/configuration-not-found'?'El inicio con Google no está activado en Firebase (Authentication › Método de acceso › Google).':c==='auth/network-request-failed'?'Sin conexión a internet. Inténtalo de nuevo.':'No se pudo entrar ('+c+').'});}
 }
 function fbSignOut(){if(!FBA||!FBA.auth){location.reload();return;}FBA.auth.signOut().then(()=>location.reload(),()=>location.reload());}
@@ -2429,7 +2473,7 @@ function vInicio(){
  const fechaL=DIAS[now.getDay()]+' '+now.getDate()+' de '+MESL[now.getMonth()];
  const cell=(n,l,sub,act,extra,cls)=>'<button class="kc-cell'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="kc-l">'+l+'</span><span class="kpi-n">'+n+'</span><span class="kc-s">'+sub+'</span></button>';
  const mv=(m)=>withMore(movRow(m),'mov',m.id,m.num);
- return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.2,hills:[[0.7,0.37,1.5,12,22],[0.16,1.15,1.2,7,30]]}):topoSvg(600,380,{fix:true,fixS:1.1,par:'xMaxYMin',hills:[[0.85,0.13,1.15,12,22],[0.08,1.1,1.1,8,28]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
+ return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.2,seed:3,levels:12,hills:[[0.7,0.38,0.2,0.13,1,0.2],[0.15,1.2,0.25,0.2,0.7,0]]}):topoSvg(600,380,{fix:true,fixS:1.1,par:'xMaxYMin',seed:9,levels:12,hills:[[0.84,0.16,0.3,0.24,1,0.5],[0.05,1.05,0.35,0.25,0.6,0]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
  +(mine.length?'<button class="pendbar" data-act="goPorRecibir"><span class="pb-ic">'+IC.truck+'</span><span class="pb-t"><b>'+(mine.length===1?'Tienes 1 envío por recibir':'Tienes '+mine.length+' envíos por recibir')+'</b><span>Confírmalo cuando llegue, equipo por equipo y con tu boleta.</span></span><span class="pb-go">Revisar</span></button>':'')
  +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep ns-top"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario del cuaderno de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
  +(!S.items.length&&MODE==='online'?'':'<div class="kstrip">')+(!S.items.length&&MODE==='online'?'':cell(S.items.length,'Equipos','Total registrado','tab',' data-tab="inv"')+cell(libres,'Libres en almacén',Object.keys(ac).length>1?esc(Object.keys(ac).sort((x,y)=>ac[y]-ac[x]).map(n=>almShort(n)+' '+ac[n]).join(' · ')):esc(Object.keys(ac)[0]||almPrin()),'goinv',' data-grp="libres"')+cell(c.transito,'En tránsito',retr?plural(retr,'retrasado','retrasados'):'Sin retrasos','goinv',' data-grp="transito"',retr?'warn':'')+cell(c.obra,'En obra','Con técnicos o instalados','goinv',' data-grp="obra"')+cell(S.kits.length?okK+'/'+S.kits.length:'0','Kits completos',S.kits.length?'De '+S.kits.length+' armados':'Sin kits armados','tab',' data-tab="kits"')+cell(bad,'Dañados',bad?'Ver cuáles':'Todo operativo','goinv',' data-grp="bad"',bad?'bad':'')+'</div>')
@@ -2642,7 +2686,7 @@ function vAjustes(){
  const ed=isAdmin();
  if(ajTab==='cuenta')ajTab='personas';
  const pendN=S.people.filter(p=>p.pendiente).length+(FB_ON&&FB_ADM?ACC.reqs.length:0);
- const tabs=[['personas',(PERMISOS?'Usuarios y permisos':'Usuarios')+(pendN?' <span class="cnt">'+pendN+'</span>':'')],['obras','Almacenes y obras'],['agencias','Agencias'],['catalogo','Catálogo'],['plantillas','Plantillas de kit']];
+ const tabs=[['personas',(PERMISOS?'Usuarios y permisos':'Usuarios')+(pendN?' <span class="cnt">'+pendN+'</span>':'')],['obras','Almacenes y obras'],['agencias','Agencias'],['catalogo','Catálogo'],['plantillas','Plantillas de kit'],['respaldos','Respaldos']];
  let b='';
  if(ajTab==='personas'){
   const pend=S.people.filter(p=>p.pendiente);
@@ -2659,11 +2703,13 @@ function vAjustes(){
  }else if(ajTab==='catalogo'){
   b='<div class="tablewrap"><table class="tbl"><thead><tr><th><span class="nosort">N° de parte</span></th><th><span class="nosort">Artículo</span></th><th><span class="nosort">Marca</span></th><th><span class="nosort">Categoría</span></th><th><span class="nosort">Lleva serie</span></th><th><span class="nosort">Sirve para</span></th><th class="num"><span class="nosort">Unidades</span></th><th></th></tr></thead><tbody>'
   +S.prods.map(p=>{const us=S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np)));return '<tr><td class="mono nowrap">'+esc(p.np)+'</td><td><b>'+esc(p.nombre)+'</b><span class="sub">'+esc(p.modelo)+'</span></td><td>'+esc(p.marca)+'</td><td>'+esc(CATS[p.cat]||'Otro')+'</td><td>'+(p.serie?'<span class="pill p-info">Sí</span>':'<span class="pill p-neutral">No</span>')+'</td><td class="small">'+(us.length?esc(us.map(t=>t.n).join(', ')):'<span class="muted">Ningún kit</span>')+'</td><td class="num">'+S.items.filter(i=>i.np===p.np).length+'</td><td><button class="btn sm" data-act="prodEdit" data-id="'+p.id+'">Editar</button></td></tr>';}).join('')+'</tbody></table></div><div class="actions"><button class="btn primary" data-act="prodEdit" data-id="">+ Agregar modelo</button></div>';
+ }else if(ajTab==='respaldos'){
+  b=vRespaldos();
  }else if(ajTab==='plantillas'){
   b='<p class="sub-t">Una plantilla define el sistema: la marca, para qué máquinas sirve y qué números de parte acepta cada espacio. Una misma pieza (por ejemplo un panel) puede servir en varias plantillas. También puedes cargarlas desde Excel.</p><div class="actions" style="margin-bottom:12px"><button class="btn" data-act="tplXlsx">'+IC.xls+'Importar plantillas desde Excel</button><button class="btn" data-act="xExport" data-what="tplmodelo">Descargar plantillas en Excel</button></div><div class="tplgrid">'+S.tpls.map(t=>{const used=S.kits.filter(k=>k.tpl===t.id).length;return '<div class="card tplc"><div class="rtop"><span class="rname">'+esc(t.n)+'</span><span class="pill p-info">'+esc(t.marca)+'</span></div><span class="rmeta">'+(t.maquinas||[]).map(m=>'<span class="pill p-neutral">'+esc(m)+'</span>').join('')+'</span><span class="rsub">'+plural(t.slots.length,'componente','componentes')+' · '+plural(used,'kit armado','kits armados')+'</span><span class="rsub">'+esc(t.slots.map(s=>s.l).join(', '))+'</span><div class="actions"><button class="btn sm" data-act="tplEdit" data-id="'+t.id+'">Editar</button><button class="btn sm ghost" data-act="tplDup" data-id="'+t.id+'">Duplicar</button></div></div>';}).join('')+'</div><div class="actions"><button class="btn primary" data-act="tplEdit" data-id="">+ Nueva plantilla</button></div>';
  }
  if(!ed)return emptyBox('Solo para administradores','Pide al administrador que te habilite si necesitas cambiar la configuración.');
- return '<div class="pagehead"><div><h1 class="h1">Ajustes</h1><p class="lead">Usuarios, almacenes y obras, agencias, catálogo de modelos y plantillas de kit.</p></div></div>'
+ return '<div class="pagehead"><div><h1 class="h1">Ajustes</h1><p class="lead">Usuarios, almacenes y obras, agencias, catálogo de modelos, plantillas de kit y respaldos.</p></div></div>'
  +'<div class="chips">'+tabs.map(t=>'<button class="chip" data-act="ajTab" data-t="'+t[0]+'" aria-pressed="'+(ajTab===t[0])+'">'+t[1]+'</button>').join('')+'</div>'+b;
 }
 
@@ -4030,6 +4076,9 @@ document.addEventListener('click',e=>{
  if(a==='fbRevoke')return fbRevoke(d.id);
  if(a==='fbAdmin')return fbSetAdmin(d.id,d.v==='1');
  if(a==='fbSeed')return seedShared();
+ if(a==='bkNow')return bkNow();
+ if(a==='bkDownload')return bkDownload();
+ if(a==='bkRestore')return bkRestore(d.id);
  if(a==='mCancel')return closeAsk();
  if(a==='mOk'){const fn=askFn;closeAsk();if(fn)fn();return;}
  if(a==='tab')return confirmLeave(()=>goTab(d.tab));
@@ -4189,6 +4238,7 @@ document.addEventListener('change',async e=>{
   else if(x==='defLugar')IMP.defLugar=el.value;
   else if(x==='map'){const c=+el.dataset.c,f=el.value;if(f){const o=IMP.map.indexOf(f);if(o>=0&&o!==c){IMP.map[o]='';IMP.how[o]='';}}IMP.map[c]=f;IMP.how[c]=f?'manual':'';}
   analyze();render();return;}
+ if(el.dataset.file==='bkFile'){const f=el.files&&el.files[0];el.value='';if(!isAdmin())return;bkFromFile(f);return;}
  if(el.dataset.file==='xlsxImport'){const f=el.files&&el.files[0];el.value='';if(guard('importar'))return;readImport(f);return;}
  if(el.dataset.file==='bol'){const f=el.files&&el.files[0];el.value='';if(!f)return;const key=el.dataset.k;let ctx=null;if(key==='rec'){const m=mov(R.mid);ctx={otherHash:m&&m.bolHashEnv};}attachBoleta(f,key,ctx);return;}
  if(el.dataset.file){
@@ -4240,6 +4290,7 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeAsk();});
 if(DESK.addEventListener)DESK.addEventListener('change',()=>{render();renderSheet(false);});
 
 /* ================= Arranque ================= */
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')&&FB_ON){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 (async function boot(){
  const inViewer=FB_ON||!!(window.claude&&typeof window.claude.use==='function');
  try{const h=decodeURIComponent(location.hash.slice(1));if(TABS.includes(h))tab=h;history.replaceState({tab,l:0},'','#'+tab);}catch(e){}
@@ -4260,8 +4311,98 @@ function seedShared(){
  const sd=buildSeed();
  ask({title:'¿Cargar el inventario inicial?',ok:'Cargar',html:'<p style="margin:0">Se agregan <b>'+sd.items.length+' equipos</b> del cuaderno de Almacén Lima (13/10/2026) y el catálogo de '+sd.prods.length+' modelos. Todos quedan en Almacén Lima. Se hace una sola vez.</p>',fn:()=>{
   if(S.items.length||S.movs.length){toast('La base ya tiene equipos.','bad');return;}
-  S.prods=sd.prods;S.items=sd.items;S.movs=sd.movs;if(!S.alms||!S.alms.length)S.alms=sd.alms;
-  commit();toast('Inventario cargado: '+sd.items.length+' equipos.');}});
+  seedApply(sd);commit();toast('Inventario cargado: '+sd.items.length+' equipos.');}});
+}
+/* agrega el inventario del cuaderno sin borrar modelos ni almacenes que ya existan */
+function seedApply(sd){const have=new Set(S.prods.map(p=>p.np));S.prods=S.prods.concat(sd.prods.filter(p=>!have.has(p.np)));S.items=sd.items;S.movs=sd.movs;if(!S.alms||!S.alms.length)S.alms=sd.alms;}
+async function fbAutoSeed(){
+ if(!FB_ON||!FBA||!ME.owner||RO)return;
+ if(S.items.length||S.movs.length)return;
+ try{const r=await Promise.all(['items','movs'].map(c=>FBA.fs.collection(c).limit(1).get({source:'server'})));if(r.some(x=>!x.empty))return;}
+ catch(e){return;} // sin señal o sin permiso: no se carga nada a ciegas
+ if(S.items.length||S.movs.length)return;
+ const sd=buildSeed();seedApply(sd);commit();toast('Inventario del cuaderno cargado: '+sd.items.length+' equipos en '+almPrin()+'.');
+}
+/* ---------- Respaldos: una copia diaria en la base (sin fotos) y copias completas en archivo ---------- */
+const BK_KEEP=30,BK_EVERY=20*3600*1000,BK_CHUNK=300000;
+let BK={list:null,busy:false,err:''};
+function bkSnapshot(){const d={};COLS.forEach(c=>{d[c]=JSON.parse(JSON.stringify(colArr(c)||[]));});return d;}
+function bkStrip(x){if(typeof x==='string')return x.indexOf('data:')===0&&x.length>500?'__img__':x;if(Array.isArray(x))return x.map(bkStrip);if(x&&typeof x==='object'){const o={};for(const k in x)o[k]=bkStrip(x[k]);return o;}return x;}
+function bkMergeImgs(b,c){if(b==='__img__')return typeof c==='string'&&c.indexOf('data:')===0?c:null;if(Array.isArray(b))return b.map((x,i)=>bkMergeImgs(x,Array.isArray(c)?c[i]:undefined));if(b&&typeof b==='object'){const o={};for(const k in b)o[k]=bkMergeImgs(b[k],c&&typeof c==='object'?c[k]:undefined);return o;}return b;}
+function bkCounts(d){return {equipos:(d.items||[]).length,movimientos:(d.movs||[]).length,kits:(d.kits||[]).length,personas:(d.people||[]).length};}
+async function bkList(){const sn=await FBA.fs.collection('respaldos').where('meta','==',true).get();BK.list=sn.docs.map(x=>Object.assign({id:x.id},x.data())).sort((a,b)=>a.fecha<b.fecha?1:-1);return BK.list;}
+/* espera a que todo lo guardado esté confirmado por el servidor: un respaldo a medio guardar no sirve */
+async function bkIdle(ms){const t0=Date.now();while(Date.now()-t0<(ms||90000)){if(!WQ.size&&!wRunning){await new Promise(r=>setTimeout(r,1500));if(!WQ.size&&!wRunning)return true;}else await new Promise(r=>setTimeout(r,500));}return false;}
+async function bkCreate(motivo){
+ if(!(await bkIdle()))throw {code:'busy'};
+ const data=bkStrip(bkSnapshot());const txt=JSON.stringify(data);
+ const id='r'+nowIso().replace(/[^0-9]/g,'').slice(0,12)+gRand().slice(0,4);
+ const col=FBA.fs.collection('respaldos');const n=Math.max(1,Math.ceil(txt.length/BK_CHUNK));
+ for(let i=0;i<n;i++)await col.doc(id+'_'+i).set({meta:false,bk:id,n:i,data:txt.slice(i*BK_CHUNK,(i+1)*BK_CHUNK)});
+ await col.doc(id).set({meta:true,fecha:nowIso(),por:meName()||ME.email||'',motivo:motivo||'Automático',partes:n,bytes:txt.length,cnt:bkCounts(data)});
+ return id;
+}
+async function bkPrune(list){
+ if(!FB_ADM||!list||list.length<=BK_KEEP)return;
+ for(const b of list.slice(BK_KEEP)){try{for(let i=0;i<(b.partes||1);i++)await FBA.fs.collection('respaldos').doc(b.id+'_'+i).delete();await FBA.fs.collection('respaldos').doc(b.id).delete();}catch(e){}}
+}
+async function fbBackupTick(){
+ if(!FB_ON||!FBA||RO||isPending()||BK.busy)return;
+ if(!S.items.length&&!S.movs.length)return;
+ BK.busy=true;
+ try{let list=await bkList();const last=list[0];
+  if((!last||Date.now()-Date.parse(last.fecha)>BK_EVERY)&&(S.items.length||S.movs.length)){await bkCreate('Automático');list=await bkList();}
+  await bkPrune(list);BK.err='';
+ }catch(e){BK.err=(e&&e.code)==='permission-denied'?'reglas':'red';}
+ BK.busy=false;if(tab==='ajustes'&&ajTab==='respaldos')render();
+}
+async function bkLoad(b){let txt='';for(let i=0;i<(b.partes||1);i++){const d=await FBA.fs.collection('respaldos').doc(b.id+'_'+i).get();if(!d.exists)throw new Error('incompleto');txt+=d.data().data;}return JSON.parse(txt);}
+function bkApply(data){
+ COLS.forEach(c=>{const cur=new Map((colArr(c)||[]).map(o=>[o.id,o]));const arr=(data[c]||[]).map(o=>bkMergeImgs(o,cur.get(o.id)));
+  if(c==='config'){if(arr[0])S.config=arr[0];}else S[c]=sortCol(c,arr);});
+ if(!S.alms||!S.alms.length)S.alms=deriveAlms(S);normPeople();
+}
+function bkWhen(f){return fdate(f).replace(' ',' · ');}
+function bkRestoreAsk(data,label){
+ const c=bkCounts(data);
+ ask({title:'¿Restaurar este respaldo?',ok:'Sí, restaurar',danger:true,html:'<p style="margin:0">El inventario volverá a como estaba en <b>'+esc(label)+'</b>: '+c.equipos+' equipos, '+c.movimientos+' movimientos y '+c.kits+' kits. Antes se guarda un respaldo de cómo está ahora, por si quieres volver.</p>',fn:async()=>{
+  toast('Guardando un respaldo de cómo está ahora…');
+  try{if(MODE==='online'&&FB_ON){await bkCreate('Antes de restaurar');}}catch(e){toast('No se pudo guardar el respaldo previo (sin señal o con cambios por subir). No se restauró nada.','bad',7000);return;}
+  bkApply(data);commit();toast('Respaldo restaurado.');if(MODE==='online'&&FB_ON)bkList().then(()=>render()).catch(()=>{});
+ }});
+}
+async function bkNow(){
+ if(BK.busy)return;BK.busy=true;render();
+ try{await bkCreate('Manual');await bkList();toast('Respaldo guardado.');}catch(e){const c=e&&e.code;toast(c==='permission-denied'?'Falta publicar las reglas nuevas de Firestore para guardar respaldos.':c==='busy'?'Todavía se están guardando cambios. Intenta en un momento, con señal.':'No se pudo guardar el respaldo. Revisa tu conexión.','bad',7000);}
+ BK.busy=false;render();
+}
+async function bkRestore(id){
+ const b=(BK.list||[]).find(x=>x.id===id);if(!b)return;
+ try{const data=await bkLoad(b);bkRestoreAsk(data,bkWhen(b.fecha));}catch(e){toast('No se pudo leer ese respaldo.','bad');}
+}
+function bkDownload(){
+ const data={app:'Rumbo · Inventario Maquitop',v:1,fecha:nowIso(),por:meName()||'',datos:bkSnapshot()};
+ saveFile('Rumbo_respaldo_'+nowIso().slice(0,10)+'.json',new Blob([JSON.stringify(data)],{type:'application/json'}));
+}
+async function bkFromFile(f){
+ if(!f)return;let d=null;try{d=JSON.parse(await f.text());}catch(e){}
+ const data=d&&d.datos;if(!data||!Array.isArray(data.items)){toast('Ese archivo no es un respaldo de Rumbo.','bad');return;}
+ bkRestoreAsk(data,'el archivo del '+fdate(d.fecha||'').slice(0,10));
+}
+function vRespaldos(){
+ const on=MODE==='online'&&FB_ON;
+ let h='<p class="sub-t">Los datos están en la base compartida, aparte de la página: actualizar la app no los toca. Igual se guarda una copia automática cada día (sin las fotos) y se conservan las últimas '+BK_KEEP+'.</p>';
+ if(on){
+  if(BK.list===null&&!BK.busy){BK.busy=true;bkList().then(()=>{BK.busy=false;BK.err='';render();}).catch(e=>{BK.busy=false;BK.list=[];BK.err=(e&&e.code)==='permission-denied'?'reglas':'red';render();});}
+  if(BK.err==='reglas')h+='<div class="alertbox">'+IC.alert+'<span>Para guardar respaldos en la base hay que publicar las reglas nuevas de Firestore (incluyen «respaldos»). Mientras tanto, usa <b>Descargar respaldo</b>.</span></div>';
+  h+='<div class="actions" style="margin:4px 0 14px"><button class="btn primary" data-act="bkNow"'+(BK.busy?' disabled':'')+'>'+(BK.busy?'Guardando…':'Guardar respaldo ahora')+'</button><button class="btn" data-act="bkDownload">Descargar respaldo (.json)</button><label class="btn">Restaurar desde archivo<input class="vh" type="file" accept=".json,application/json" data-file="bkFile"></label></div>';
+  const L=BK.list||[];
+  h+=L.length?'<div class="list">'+L.map(b=>'<div class="row"><span class="mico">'+IC.clock+'</span><span class="rmain"><span class="rname">'+esc(bkWhen(b.fecha))+'</span><span class="rsub">'+esc(b.motivo||'')+' · '+esc(b.por||'')+' · '+((b.cnt&&b.cnt.equipos)||0)+' equipos, '+((b.cnt&&b.cnt.movimientos)||0)+' movimientos</span></span><button class="btn sm" data-act="bkRestore" data-id="'+esc(b.id)+'">Restaurar</button></div>').join('')+'</div>'
+   :'<div class="empty-box">'+(BK.busy?'Buscando respaldos…':'Todavía no hay respaldos guardados. El primero se crea solo hoy; también puedes tocar «Guardar respaldo ahora».')+'</div>';
+ }else{
+  h+='<div class="actions" style="margin:4px 0 14px"><button class="btn primary" data-act="bkDownload">Descargar respaldo (.json)</button><label class="btn">Restaurar desde archivo<input class="vh" type="file" accept=".json,application/json" data-file="bkFile"></label></div>';
+ }
+ return h;
 }
 function nextKitCode(){let mx=0;S.kits.forEach(k=>{mx=Math.max(mx,codeNum(k.code));});S.movs.forEach(m=>{if(m.kitCode)mx=Math.max(mx,codeNum(m.kitCode));});return 'KIT-'+String(mx+1).padStart(3,'0');}
 
@@ -4457,16 +4598,78 @@ document.addEventListener('change',e=>{
 /* ================= Inicio de sesión, menú lateral (☰), tema y animaciones ================= */
 
 /* Curvas de nivel (topografía) generadas: fondo de la pantalla de entrada, del inicio y del menú */
+/* Curvas de nivel reales: un relieve suave (colinas gaussianas deformadas) y sus isolíneas por marching squares.
+   Las isolíneas de un mismo campo nunca se cruzan. Suavizado Chaikin para un trazo orgánico. */
+function topoRng(seed){let s=seed|0;return function(){s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function topoModel(w,h,o){
+ const R=topoRng(o.seed||11),M=Math.max(w,h);
+ const waves=[];for(let i=0;i<7;i++){const a=R()*Math.PI*2,f=(0.7+R()*2.2)*2*Math.PI/M;waves.push([Math.cos(a)*f,Math.sin(a)*f,R()*Math.PI*2,0.35+R()*0.65]);}
+ const wsum=waves.reduce((s,x)=>s+x[3],0);
+ for(let i=0;i<6;i++){const a=R()*Math.PI*2,f=(3.5+R()*3.5)*2*Math.PI/M;waves.push([Math.cos(a)*f,Math.sin(a)*f,R()*Math.PI*2,(0.06+R()*0.08)*wsum/1.6]);}
+ const warp=(x,y,ph)=>{let s=0;for(const q of waves)s+=q[3]*Math.sin(q[0]*x+q[1]*y+q[2]+ph);return s/wsum;};
+ const H=o.hills.map(p=>({cx:p[0]*w,cy:p[1]*h,sx:p[2]*M,sy:p[3]*M,a:p[4],c:Math.cos(p[5]||0),s:Math.sin(p[5]||0)}));
+ const W=(o.warp==null?0.085:o.warp)*M;
+ return function(x,y){const wx=x+warp(x,y,0)*W,wy=y+warp(x,y,1.9)*W;let v=0;for(const p of H){const dx=wx-p.cx,dy=wy-p.cy,u=(dx*p.c+dy*p.s)/p.sx,q=(-dx*p.s+dy*p.c)/p.sy;v+=p.a*Math.exp(-(u*u+q*q)/2);}return v;};
+}
+function topoChaikin(pts,closed,it){
+ for(let k=0;k<it;k++){const n=pts.length;if(n<3)return pts;const out=[];
+  if(!closed)out.push(pts[0]);
+  const m=closed?n:n-1;
+  for(let i=0;i<m;i++){const a=pts[i],b=pts[(i+1)%n];out.push([a[0]*.75+b[0]*.25,a[1]*.75+b[1]*.25],[a[0]*.25+b[0]*.75,a[1]*.25+b[1]*.75]);}
+  if(!closed)out.push(pts[n-1]);pts=out;}
+ return pts;
+}
+function topoLines(w,h,o){
+ const f=topoModel(w,h,o),cs=o.cell||Math.max(6,Math.round(Math.max(w,h)/110));
+ const pad=cs*2,x0=-pad,y0=-pad,nx=Math.ceil((w+2*pad)/cs)+1,ny=Math.ceil((h+2*pad)/cs)+1;
+ const V=new Float64Array(nx*ny);let vmin=1e9,vmax=-1e9,pk=[0,0];
+ for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const v=f(x0+i*cs,y0+j*cs);V[j*nx+i]=v;if(v<vmin)vmin=v;if(v>vmax){vmax=v;pk=[x0+i*cs,y0+j*cs];}}
+ // afinar la cima
+ let best=f(pk[0],pk[1]);for(let r=cs;r>0.5;r/=2){let moved=true;while(moved){moved=false;for(const d of [[r,0],[-r,0],[0,r],[0,-r]]){const v=f(pk[0]+d[0],pk[1]+d[1]);if(v>best){best=v;pk=[pk[0]+d[0],pk[1]+d[1]];moved=true;}}}}
+ const n=o.levels||14,lo=vmin+(vmax-vmin)*(o.lo==null?0.04:o.lo),hi=vmax*(o.hi==null?0.94:o.hi),lines=[];
+ for(let k=0;k<n;k++){
+  const L=lo+(hi-lo)*(k/(n-1));
+  const pt=new Map(),adj=new Map();
+  const ep=(id,xa,ya,va,xb,yb,vb)=>{if(!pt.has(id)){const t=(L-va)/(vb-va);pt.set(id,[xa+(xb-xa)*t,ya+(yb-ya)*t]);}return id;};
+  const link=(a,b)=>{(adj.get(a)||adj.set(a,[]).get(a)).push(b);(adj.get(b)||adj.set(b,[]).get(b)).push(a);};
+  for(let j=0;j<ny-1;j++)for(let i=0;i<nx-1;i++){
+   const a=V[j*nx+i],b=V[j*nx+i+1],c=V[(j+1)*nx+i+1],d=V[(j+1)*nx+i];
+   const idx=(a>L?8:0)|(b>L?4:0)|(c>L?2:0)|(d>L?1:0);if(idx===0||idx===15)continue;
+   const X=x0+i*cs,Y=y0+j*cs;
+   const T=()=>ep('h'+i+'_'+j,X,Y,a,X+cs,Y,b),Rr=()=>ep('v'+(i+1)+'_'+j,X+cs,Y,b,X+cs,Y+cs,c),B=()=>ep('h'+i+'_'+(j+1),X,Y+cs,d,X+cs,Y+cs,c),Lf=()=>ep('v'+i+'_'+j,X,Y,a,X,Y+cs,d);
+   const ctr=(a+b+c+d)/4>L;
+   switch(idx){
+    case 1:case 14:link(Lf(),B());break;
+    case 2:case 13:link(B(),Rr());break;
+    case 3:case 12:link(Lf(),Rr());break;
+    case 4:case 11:link(T(),Rr());break;
+    case 6:case 9:link(T(),B());break;
+    case 7:case 8:link(Lf(),T());break;
+    case 5:if(ctr){link(Lf(),T());link(B(),Rr());}else{link(Lf(),B());link(T(),Rr());}break;
+    case 10:if(ctr){link(T(),Rr());link(Lf(),B());}else{link(Lf(),T());link(B(),Rr());}break;
+   }
+  }
+  const used=new Set();
+  const walk=(start)=>{const seq=[start];used.add(start);let cur=start,prev=null;for(;;){const nb=(adj.get(cur)||[]).filter(x=>x!==prev);const nxt=nb.find(x=>!used.has(x));if(nxt==null){const closed=nb.includes(start)&&seq.length>2;return {seq,closed};}used.add(nxt);seq.push(nxt);prev=cur;cur=nxt;}};
+  // primero los extremos abiertos (grado 1), luego los anillos
+  for(const [id,nb] of adj)if(nb.length===1&&!used.has(id)){const r=walk(id);lines.push({k,closed:false,pts:r.seq.map(x=>pt.get(x))});}
+  for(const id of adj.keys())if(!used.has(id)){const r=walk(id);lines.push({k,closed:true,pts:r.seq.map(x=>pt.get(x))});}
+ }
+ return {lines,peak:pk,cs};
+}
+function topoPathD(pts,closed){const s=topoChaikin(pts,closed,2);let d='M'+s[0][0].toFixed(1)+' '+s[0][1].toFixed(1);for(let i=1;i<s.length;i++)d+='L'+s[i][0].toFixed(1)+' '+s[i][1].toFixed(1);return d+(closed?'Z':'');}
+var TOPO_CACHE;
 function topoSvg(w,h,o){
- o=o||{};const hills=o.hills||[[0.72,0.42,1.25,14,26],[0.18,0.88,1.0,9,24]];let p='';
- hills.forEach((hl,hi)=>{const cx=w*hl[0],cy=h*hl[1],sx=hl[2];
-  for(let k=1;k<=hl[3];k++){const r=k*hl[4];let d='';
-   for(let i=0;i<=90;i++){const a=i/90*Math.PI*2;const rr=r*(1+0.16*Math.sin(3*a+k*0.45+hi)+0.07*Math.sin(5*a-k*0.8)+0.04*Math.cos(7*a+hi*2));
-    const x=cx+rr*Math.cos(a)*sx,y=cy+rr*Math.sin(a);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}
-   p+='<path pathLength="1" style="--i:'+k+'" d="'+d+'Z"/>';}});
- const pk=hills[0];
- return '<svg class="topo'+(o.cls?' '+o.cls:'')+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="'+(o.par||'xMidYMid')+' slice" aria-hidden="true"><g class="topo-l">'+p+'</g>'
-  +(o.fix?fixMark(w*pk[0],h*pk[1],o.fixS||1):'')+'</svg>';
+ TOPO_CACHE=TOPO_CACHE||new Map();o=o||{};const key=w+'x'+h+JSON.stringify(o);
+ if(!TOPO_CACHE.has(key)){
+  const r=topoLines(w,h,{seed:o.seed,levels:o.levels,hills:o.hills,warp:o.warp,lo:o.lo,hi:o.hi});
+  const n=o.levels||14;let p='';
+  r.lines.forEach(L=>{p+='<path pathLength="1" style="--i:'+(n-L.k)+'"'+((L.k%5)===4?' class="ix"':'')+' d="'+topoPathD(L.pts,L.closed)+'"/>';});
+  TOPO_CACHE.set(key,{p,peak:r.peak});
+ }
+ const t=TOPO_CACHE.get(key);
+ return '<svg class="topo'+(o.cls?' '+o.cls:'')+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="'+(o.par||'xMidYMid')+' slice" aria-hidden="true"><g class="topo-l">'+t.p+'</g>'
+  +(o.fix?fixMark(t.peak[0],t.peak[1],o.fixS||1):'')+'</svg>';
 }
 function fixMark(x,y,k){
  const r0=(7*k).toFixed(1),r1=(46*k).toFixed(1),rc=(5.5*k).toFixed(1),rh=(13*k).toFixed(1),still=rm();
@@ -4488,8 +4691,8 @@ function nlBox(e){const isA=e.nlT==='alm';const fl=(id,lab,inp)=>'<div class="fi
  return '<div class="nlbox"><div class="seg" role="radiogroup" aria-label="Tipo de lugar">'+[['obra','Obra'],['alm','Almacén']].map(x=>'<label><input type="radio" name="on-nlt" value="'+x[0]+'" data-on="nlT"'+(e.nlT===x[0]?' checked':'')+'><span>'+x[1]+'</span></label>').join('')+'</div>'
  +'<div class="grid2">'+fl('on-nln',isA?'Nombre del almacén':'Nombre de la obra','<input id="on-nln" data-on="nlN" value="'+esc(e.nlN||'')+'" placeholder="'+(isA?'Ej. Almacén Marcona':'Ej. Marcona')+'" autocomplete="off">')+fl('on-nlc','Ciudad','<input id="on-nlc" data-on="nlC" value="'+esc(e.nlC||'')+'" placeholder="Ej. Marcona" list="ciudades" autocomplete="off">'+cityList())+'</div>'
  +'<p class="small muted" style="margin:0">Queda guardado para todos.'+(isA?'':' Las máquinas de la obra se pueden agregar después.')+'</p></div>';}
-function lgArt(){return '<div class="lg-art">'+topoSvg(900,1100,{fix:true,fixS:1.6,hills:[[0.66,0.34,1.2,16,30],[0.12,0.9,1.1,10,30]]})
-  +'<div class="lg-brand"><span class="logo on-plate" role="img" aria-label="Maquitop"></span></div>'
+function lgArt(){return '<div class="lg-art">'+(isDesk()?topoSvg(900,1100,{fix:true,fixS:1.6,seed:5,levels:16,hills:[[0.66,0.3,0.28,0.22,1,0.4],[0.15,0.95,0.3,0.24,0.75,-0.3],[0.95,0.85,0.2,0.18,0.45,0]]}):topoSvg(600,520,{fix:true,fixS:1.25,par:'xMaxYMin',seed:17,levels:13,hills:[[0.8,0.2,0.26,0.2,1,0.5],[0.05,1.0,0.32,0.26,0.7,0]]}))
+  +'<div class="lg-brand"><span class="logo on-plate" role="img" aria-label="Maquitop"></span><span class="lg-app">Rumbo · Inventario de equipos</span></div>'
   +'<div class="lg-copy"><h1>Cada equipo, en su lugar.</h1><p>Inventario de machine control CHC y Leica: dónde está cada equipo, quién lo recibió y qué le falta a cada kit.</p>'
   +'<ul class="lg-facts"><li>'+IC.truck+'<span>Envíos con boleta y recepción confirmada</span></li><li>'+IC.kit+'<span>Kits completos por tipo de máquina</span></li><li>'+IC.users+'<span>Lo que tiene a cargo cada técnico</span></li></ul></div>'
   +'<p class="lg-foot">Maquitop · '+esc(almPrin())+'</p></div>';}
@@ -4565,7 +4768,7 @@ function renderDrawer(){
  const tile=(act,ic,t,s,extra,cls)=>'<button class="dr-tile'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="dt-ic">'+IC[ic]+'</span><b>'+t+'</b>'+(s?'<span>'+s+'</span>':'')+'</button>';
  const nav=(t,ic,label,badge)=>'<button class="dr-link'+(tab===t?' on':'')+'" data-act="tab" data-tab="'+t+'">'+IC[ic]+'<span>'+label+'</span>'+(badge?'<em>'+badge+'</em>':'')+'</button>';
  const th=themeNow();
- d.innerHTML='<div class="dr-head">'+topoSvg(420,220,{fix:true,fixS:.85,hills:[[0.8,0.66,1.2,9,22]]})
+ d.innerHTML='<div class="dr-head">'+topoSvg(420,220,{fix:true,fixS:.85,seed:21,levels:10,hills:[[0.8,0.62,0.32,0.26,1,0.3]]})
   +'<div class="dr-top"><span class="logo on-plate" role="img" aria-label="Maquitop"></span><button class="dr-close" data-act="drawerClose" aria-label="Cerrar menú">✕</button></div>'
   +(nm?'<button class="dr-me" data-act="tab" data-tab="perfil"><span class="avatar lg" style="background:'+avColor(nm)+'">'+esc(initials(nm))+'</span><span><b>'+esc(nm)+'</b><span>'+esc(p?(CARGOS?p.rol+(ob?' · '+ob.n:' · '+p.base):ubicPersona(p)):'')+'</span></span></button>':'')+'</div>'
   +'<div class="dr-body">'
