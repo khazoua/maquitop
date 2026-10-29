@@ -1499,8 +1499,9 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 .telsdd{display:flex;flex-direction:column;gap:6px}
 .tel{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 11px;border-radius:var(--pill);background:var(--tonal);color:var(--ink);font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap}
 .tel svg{width:14px;height:14px}
-.tel.wa{background:#E3F5E8;color:#1C7A4D}
-:root[data-theme="dark"] .tel.wa{background:#122C1E;color:#5BC489}
+.tel.tel-wa{background:#E3F5E8;color:#1C7A4D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tel.tel-wa{background:#122C1E;color:#5BC489}}
+:root[data-theme="dark"] .tel.tel-wa{background:#122C1E;color:#5BC489}
 .tel:hover{background:var(--tonal-2)}
 .xfilters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0 8px}
 @media (max-width:520px){.xfilters{grid-template-columns:1fr}}
@@ -2377,7 +2378,7 @@ function chipFade(){document.querySelectorAll('.chips').forEach(c=>{const f=()=>
 /* teléfono y WhatsApp de una persona (números de Perú: 9 dígitos → +51) */
 function telDigits(t){let d=String(t||'').replace(/\D/g,'');if(d.length===9)d='51'+d;return d.length>=9?d:'';}
 function telLinks(name,opts){const p=person(name);const d=p?telDigits(p.tel):'';if(!d)return '';opts=opts||{};
- return '<span class="tels">'+(opts.noName?'':'<span>'+esc(name)+'</span>')+'<a class="tel" href="tel:+'+d+'" aria-label="Llamar a '+esc(name)+'">'+IC.phone+esc(p.tel)+'</a><a class="tel wa" href="https://wa.me/'+d+'" target="_blank" rel="noopener" aria-label="WhatsApp de '+esc(name)+'">'+IC.wa+'WhatsApp</a></span>';}
+ return '<span class="tels">'+(opts.noName?'':'<span>'+esc(name)+'</span>')+'<a class="tel" href="tel:+'+d+'" aria-label="Llamar a '+esc(name)+'">'+IC.phone+esc(p.tel)+'</a><a class="tel tel-wa" href="https://wa.me/'+d+'" target="_blank" rel="noopener" aria-label="WhatsApp de '+esc(name)+'">'+IC.wa+'WhatsApp</a></span>';}
 function initials(n){return String(n).split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
 function avColor(n){let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return 'hsl('+h+' 55% 42%)';}
 
