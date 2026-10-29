@@ -826,8 +826,9 @@ body{font-family:var(--f-body);font-size:15.5px;line-height:1.45;letter-spacing:
 /* topografía */
 .topo .topo-l path{fill:none;stroke:currentColor;stroke-width:1.1;vector-effect:non-scaling-stroke}
 .topo .fix-c{fill:var(--signal)}
-.topo .fix-r{fill:none;stroke:var(--signal);stroke-width:2;transform-origin:center;transform-box:fill-box;animation:fix 2.6s ease-out infinite}
-.topo .fix-r.d2{animation-delay:1.3s}
+.topo .fix-r{fill:none;stroke:var(--signal);stroke-width:2}
+.topo .fix-h{fill:var(--signal);opacity:.2}
+.topo .fix-dot{fill:#fff}
 @keyframes fix{from{transform:scale(1);opacity:.9}to{transform:scale(5.5);opacity:0}}
 .hero-home .topo-l{animation:drift 60s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate(0,0)}to{transform:translate(-40px,12px)}}
@@ -961,6 +962,7 @@ body.authing .top,body.authing .tabs,body.authing main,body.authing #banner{visi
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .topo .fix-r{display:none}
 }
+.topo .fix{pointer-events:none}
 .dr-head,.dr-body{flex:none}
 @media (max-width:1023px){.top .brand .logo{display:inline-block;width:auto;max-width:none}}
 @media (max-width:1023px){.top .brand{align-items:flex-start;justify-content:center}.top .brand .logo{align-self:flex-start}}
@@ -1294,6 +1296,7 @@ body{font-family:var(--f-body);font-size:14px;line-height:1.5;letter-spacing:0;c
 .lp-t b{font-family:var(--f-body);font-size:15px;font-weight:600}
 .topo .fix-c{fill:#3AA9E3}
 .topo .fix-r{stroke:#3AA9E3}
+.topo .fix-h{fill:#3AA9E3}
 @media (max-width:899px){
   .lg-copy h1{font-size:32px}
   .lg-card{padding:20px;border-radius:12px}
@@ -1516,6 +1519,8 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
 .btn[aria-busy="true"]::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
 .only-desk{display:none}@media (min-width:1024px){.only-desk{display:inline-flex}}
 .empty-box{padding:18px 20px;border:1.5px dashed var(--line);border-radius:18px;color:var(--muted);font-size:14.5px;line-height:1.5}
+.nextstep.ns-top{margin:0 0 16px}
+.home-head .topo .fix-c,.dr-head .topo .fix-c,.lg-art .topo .fix-c{filter:drop-shadow(0 0 6px rgba(58,169,227,.75))}
 </style>
 <header class="top">
   <div class="wrap">
@@ -1548,7 +1553,7 @@ body{font-family:var(--f-body);font-size:14.5px;letter-spacing:0}
     <div class="sep" aria-hidden="true"></div>
     <button data-act="tab" data-tab="perfil" class="only-desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Mi perfil y a mi cargo</button>
     <button data-act="tab" data-tab="avisos" class="only-desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>Avisos y correos<span class="nbadge" id="bAv" hidden></span></button>
-    <button data-act="tab" data-tab="excel" class="only-desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l3 4-3 4M16 8l-3 4 3 4"/></svg>Excel</button>
+    <button data-act="tab" data-tab="excel" class="only-desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/></svg>Excel</button>
     <button data-act="tab" data-tab="ajustes" class="only-desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Ajustes<span class="nbadge" id="bAj" hidden></span></button>
     <div class="side-who" id="sideWho"></div>
   </div>
@@ -2341,7 +2346,7 @@ function vInicio(){
  // lugares
  const places={};S.items.forEach(i=>{let k;if(i.loc.t==='almacen')k=i.loc.a;else if(i.loc.t==='transito')k='En tránsito';else k=city(i.loc)||'Obra';places[k]=(places[k]||0)+1;});
  const pl=Object.entries(places).sort((a,b)=>b[1]-a[1]);const mx=Math.max(1,...pl.map(x=>x[1]));
- const bars='<div class="bars">'+pl.map(([k,n])=>'<button class="bar" data-act="placeGo" data-p="'+esc(k)+'"><span class="bar-l">'+esc(k)+'</span><span class="bar-t"><span style="width:'+Math.round(n/mx*100)+'%" class="'+(k==='En tránsito'?'warn':k.indexOf('Almacén')===0?'acc':'ok')+'"></span></span><span class="bar-n">'+n+'</span></button>').join('')+'</div>';
+ const bars=!pl.length?'<p class="muted small" style="margin:0">Todavía no hay equipos registrados.</p>':'<div class="bars">'+pl.map(([k,n])=>'<button class="bar" data-act="placeGo" data-p="'+esc(k)+'"><span class="bar-l">'+esc(k)+'</span><span class="bar-t"><span style="width:'+Math.round(n/mx*100)+'%" class="'+(k==='En tránsito'?'warn':k.indexOf('Almacén')===0?'acc':'ok')+'"></span></span><span class="bar-n">'+n+'</span></button>').join('')+'</div>';
  const act=S.movs.slice().sort(byDateDesc).slice(0,7);
  const quick='<div class="quick">'+(noReg()?'':'<button class="btn primary" data-act="form" data-kind="envio">'+IC.envio+'Enviar a obra</button><button class="btn" data-act="form" data-kind="nuevo">'+IC.ingreso+'Nuevo equipo</button>')+(noKit()?'':'<button class="btn" data-act="newkit">'+IC.kit+'Armar kit</button>')+(canDo('importar')||canDo('exportar')?'<button class="btn" data-act="tab" data-tab="excel">'+IC.xls+'Excel</button>':'')+'</div>';
  const myC=nm?cargoOf(nm):[];const myK=nm?kitsOf(nm):[];const myP=myPerson();const myO=myP&&myP.obra?obra(myP.obra):null;
@@ -2362,15 +2367,16 @@ function vInicio(){
  const fechaL=DIAS[now.getDay()]+' '+now.getDate()+' de '+MESL[now.getMonth()];
  const cell=(n,l,sub,act,extra,cls)=>'<button class="kc-cell'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="kc-l">'+l+'</span><span class="kpi-n">'+n+'</span><span class="kc-s">'+sub+'</span></button>';
  const mv=(m)=>withMore(movRow(m),'mov',m.id,m.num);
- return '<div class="pagehead home-head">'+topoSvg(1200,360,{hills:[[0.8,0.55,1.6,13,24],[0.22,1.1,1.2,7,30]]})+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
+ return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.25,hills:[[0.71,0.3,1.5,12,22],[0.16,1.15,1.2,7,30]]}):topoSvg(600,380,{fix:true,fixS:1.15,par:'xMaxYMin',hills:[[0.83,0.19,1.15,12,22],[0.08,1.1,1.1,8,28]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
  +(mine.length?'<button class="pendbar" data-act="goPorRecibir"><span class="pb-ic">'+IC.truck+'</span><span class="pb-t"><b>'+(mine.length===1?'Tienes 1 envío por recibir':'Tienes '+mine.length+' envíos por recibir')+'</b><span>Confírmalo cuando llegue, equipo por equipo y con tu boleta.</span></span><span class="pb-go">Revisar</span></button>':'')
- +'<div class="kstrip">'+cell(S.items.length,'Equipos','Total registrado','tab',' data-tab="inv"')+cell(libres,'Libres en almacén',Object.keys(ac).length>1?esc(Object.keys(ac).sort((x,y)=>ac[y]-ac[x]).map(n=>almShort(n)+' '+ac[n]).join(' · ')):esc(Object.keys(ac)[0]||almPrin()),'goinv',' data-grp="libres"')+cell(c.transito,'En tránsito',retr?plural(retr,'retrasado','retrasados'):'Sin retrasos','goinv',' data-grp="transito"',retr?'warn':'')+cell(c.obra,'En obra','Con técnicos o instalados','goinv',' data-grp="obra"')+cell(S.kits.length?okK+'/'+S.kits.length:'0','Kits completos',S.kits.length?'De '+S.kits.length+' armados':'Sin kits armados','tab',' data-tab="kits"')+cell(bad,'Dañados',bad?'Ver cuáles':'Todo operativo','goinv',' data-grp="bad"',bad?'bad':'')+'</div>'
+ +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep ns-top"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario del cuaderno de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
+ +(!S.items.length&&MODE==='online'?'':'<div class="kstrip">')+(!S.items.length&&MODE==='online'?'':cell(S.items.length,'Equipos','Total registrado','tab',' data-tab="inv"')+cell(libres,'Libres en almacén',Object.keys(ac).length>1?esc(Object.keys(ac).sort((x,y)=>ac[y]-ac[x]).map(n=>almShort(n)+' '+ac[n]).join(' · ')):esc(Object.keys(ac)[0]||almPrin()),'goinv',' data-grp="libres"')+cell(c.transito,'En tránsito',retr?plural(retr,'retrasado','retrasados'):'Sin retrasos','goinv',' data-grp="transito"',retr?'warn':'')+cell(c.obra,'En obra','Con técnicos o instalados','goinv',' data-grp="obra"')+cell(S.kits.length?okK+'/'+S.kits.length:'0','Kits completos',S.kits.length?'De '+S.kits.length+' armados':'Sin kits armados','tab',' data-tab="kits"')+cell(bad,'Dañados',bad?'Ver cuáles':'Todo operativo','goinv',' data-grp="bad"',bad?'bad':'')+'</div>')
  +'<div class="home"><div class="col">'
- +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario del cuaderno de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
+ +''
  +(!S.obras.length&&!noReg()&&S.items.length?'<section class="nextstep"><span class="ns-ic">'+IC.truck+'</span><span class="ns-t"><b>Siguiente paso: registra tus obras</b><span>Todo está en '+esc(almPrin())+', el almacén principal. Agrega las obras (por ejemplo Marcona: nombre y ciudad; las máquinas pueden ir después) y empieza a enviar equipos con su guía.</span></span><button class="btn primary" data-act="obraEdit">+ Nueva obra</button></section>':'')
  +cargoCard
  +(mine.length?'<section class="sec">'+secH('Por recibir',mine.length)+'<div class="list">'+mine.map(mv).join('')+'</div></section>':'')
- +'<section class="sec">'+secH('Requiere atención',att.length)+(att.length?'<div class="list">'+att.map(x=>'<button class="row att" data-act="'+x.act+'"'+(x.id?' data-id="'+x.id+'"':'')+(x.grp?' data-grp="'+x.grp+'"':'')+'><span class="mico '+(x.cls==='bad'?'ret':'envio')+'">'+IC[x.ic]+'</span><span class="rmain"><span class="rname">'+esc(x.t)+'</span><span class="rsub">'+esc(x.d)+'</span></span></button>').join('')+'</div>':'<p class="empty">Nada pendiente: no hay envíos retrasados, kits incompletos ni equipos dañados en obra.</p>')+'</section>'
+ +'<section class="sec">'+secH('Requiere atención',att.length||null)+(att.length?'<div class="list">'+att.map(x=>'<button class="row att" data-act="'+x.act+'"'+(x.id?' data-id="'+x.id+'"':'')+(x.grp?' data-grp="'+x.grp+'"':'')+'><span class="mico '+(x.cls==='bad'?'ret':'envio')+'">'+IC[x.ic]+'</span><span class="rmain"><span class="rname">'+esc(x.t)+'</span><span class="rsub">'+esc(x.d)+'</span></span></button>').join('')+'</div>':'<p class="empty">Nada pendiente: no hay envíos retrasados, kits incompletos ni equipos dañados en obra.</p>')+'</section>'
  +(others.length?'<section class="sec">'+secH('Otros envíos en camino',others.length,'<button class="linkbtn sm" data-act="mfilGo" data-f="porrec">Ver todos</button>')+'<div class="list">'+others.slice(0,6).map(mv).join('')+'</div></section>':'')
  +(DEMO?'':guide)
  +'</div><div class="col">'
@@ -4396,8 +4402,16 @@ function topoSvg(w,h,o){
     const x=cx+rr*Math.cos(a)*sx,y=cy+rr*Math.sin(a);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}
    p+='<path pathLength="1" style="--i:'+k+'" d="'+d+'Z"/>';}});
  const pk=hills[0];
- return '<svg class="topo'+(o.cls?' '+o.cls:'')+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="topo-l">'+p+'</g>'
-  +(o.fix?'<g class="fix" transform="translate('+(w*pk[0]).toFixed(0)+' '+(h*pk[1]).toFixed(0)+')"><circle class="fix-r" r="10"/><circle class="fix-r d2" r="10"/><circle class="fix-c" r="6"/></g>':'')+'</svg>';
+ return '<svg class="topo'+(o.cls?' '+o.cls:'')+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="'+(o.par||'xMidYMid')+' slice" aria-hidden="true"><g class="topo-l">'+p+'</g>'
+  +(o.fix?fixMark(w*pk[0],h*pk[1],o.fixS||1):'')+'</svg>';
+}
+function fixMark(x,y,k){
+ const r0=(7*k).toFixed(1),r1=(46*k).toFixed(1),rc=(5.5*k).toFixed(1),rh=(13*k).toFixed(1),still=rm();
+ const wave=d=>'<circle class="fix-r" r="'+r0+'">'+(still?'':'<animate attributeName="r" values="'+r0+';'+r1+'" dur="2.8s" begin="'+d+'s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".2 .6 .3 1"/><animate attributeName="opacity" values=".95;0" dur="2.8s" begin="'+d+'s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="'+(2.6*k).toFixed(1)+';'+(0.6*k).toFixed(1)+'" dur="2.8s" begin="'+d+'s" repeatCount="indefinite"/>')+'</circle>';
+ return '<g class="fix" transform="translate('+x.toFixed(0)+' '+y.toFixed(0)+')">'+wave(0)+wave(1.4)
+  +'<circle class="fix-h" r="'+rh+'">'+(still?'':'<animate attributeName="opacity" values=".22;.06;.22" dur="1.6s" repeatCount="indefinite"/>')+'</circle>'
+  +'<circle class="fix-c" r="'+rc+'">'+(still?'':'<animate attributeName="opacity" values="1;.45;1" dur="1.6s" repeatCount="indefinite"/>')+'</circle>'
+  +'<circle class="fix-dot" r="'+(1.8*k).toFixed(1)+'"/></g>';
 }
 function rm(){try{return window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){return false;}}
 
@@ -4411,7 +4425,7 @@ function nlBox(e){const isA=e.nlT==='alm';const fl=(id,lab,inp)=>'<div class="fi
  return '<div class="nlbox"><div class="seg" role="radiogroup" aria-label="Tipo de lugar">'+[['obra','Obra'],['alm','Almacén']].map(x=>'<label><input type="radio" name="on-nlt" value="'+x[0]+'" data-on="nlT"'+(e.nlT===x[0]?' checked':'')+'><span>'+x[1]+'</span></label>').join('')+'</div>'
  +'<div class="grid2">'+fl('on-nln',isA?'Nombre del almacén':'Nombre de la obra','<input id="on-nln" data-on="nlN" value="'+esc(e.nlN||'')+'" placeholder="'+(isA?'Ej. Almacén Marcona':'Ej. Marcona')+'" autocomplete="off">')+fl('on-nlc','Ciudad','<input id="on-nlc" data-on="nlC" value="'+esc(e.nlC||'')+'" placeholder="Ej. Marcona" list="ciudades" autocomplete="off">'+cityList())+'</div>'
  +'<p class="small muted" style="margin:0">Queda guardado para todos.'+(isA?'':' Las máquinas de la obra se pueden agregar después.')+'</p></div>';}
-function lgArt(){return '<div class="lg-art">'+topoSvg(900,1100,{fix:true,hills:[[0.66,0.34,1.2,16,30],[0.12,0.9,1.1,10,30]]})
+function lgArt(){return '<div class="lg-art">'+topoSvg(900,1100,{fix:true,fixS:1.6,hills:[[0.66,0.34,1.2,16,30],[0.12,0.9,1.1,10,30]]})
   +'<div class="lg-brand"><span class="logo on-plate" role="img" aria-label="Maquitop"></span></div>'
   +'<div class="lg-copy"><h1>Cada equipo, en su lugar.</h1><p>Inventario de machine control CHC y Leica: dónde está cada equipo, quién lo recibió y qué le falta a cada kit.</p>'
   +'<ul class="lg-facts"><li>'+IC.truck+'<span>Envíos con boleta y recepción confirmada</span></li><li>'+IC.kit+'<span>Kits completos por tipo de máquina</span></li><li>'+IC.users+'<span>Lo que tiene a cargo cada técnico</span></li></ul></div>'
@@ -4488,7 +4502,7 @@ function renderDrawer(){
  const tile=(act,ic,t,s,extra,cls)=>'<button class="dr-tile'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="dt-ic">'+IC[ic]+'</span><b>'+t+'</b>'+(s?'<span>'+s+'</span>':'')+'</button>';
  const nav=(t,ic,label,badge)=>'<button class="dr-link'+(tab===t?' on':'')+'" data-act="tab" data-tab="'+t+'">'+IC[ic]+'<span>'+label+'</span>'+(badge?'<em>'+badge+'</em>':'')+'</button>';
  const th=themeNow();
- d.innerHTML='<div class="dr-head">'+topoSvg(420,220,{hills:[[0.85,0.35,1.2,9,22]]})
+ d.innerHTML='<div class="dr-head">'+topoSvg(420,220,{fix:true,fixS:.85,hills:[[0.8,0.66,1.2,9,22]]})
   +'<div class="dr-top"><span class="logo on-plate" role="img" aria-label="Maquitop"></span><button class="dr-close" data-act="drawerClose" aria-label="Cerrar menú">✕</button></div>'
   +(nm?'<button class="dr-me" data-act="tab" data-tab="perfil"><span class="avatar lg" style="background:'+avColor(nm)+'">'+esc(initials(nm))+'</span><span><b>'+esc(nm)+'</b><span>'+esc(p?(CARGOS?p.rol+(ob?' · '+ob.n:' · '+p.base):ubicPersona(p)):'')+'</span></span></button>':'')+'</div>'
   +'<div class="dr-body">'
