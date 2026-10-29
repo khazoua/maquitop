@@ -2894,7 +2894,7 @@ function constPdfBuild(m){
  // tabla
  y+=1.5;
  const cols=[['N°',8,'c'],['Código',33,'l'],['Descripción',60,'l'],['N° de parte',27,'l'],['Serie',26,'l'],['Cant.',12,'r'],['Empaque',16,'c']];
- const head=()=>{doc.setFillColor(233,239,244);doc.rect(L,y-4.2,R-L,6.4,'F');font('bold',7.8);let x=L;cols.forEach(c=>{const tx=c[2]==='c'?x+c[1]/2:c[2]==='r'?x+c[1]-1.5:x+1.5;T(c[0],tx,y,{align:c[2]==='c'?'center':c[2]==='r'?'right':'left'});x+=c[1];});y+=4.4;};
+ const head=()=>{doc.setFillColor(233,239,244);doc.rect(L,y-4.2,R-L,6.4,'F');font('bold',7.8);let x=L;cols.forEach(c=>{const tx=c[2]==='c'?x+c[1]/2:c[2]==='r'?x+c[1]-1.5:x+1.5;T(c[0],tx,y,{align:c[2]==='c'?'center':c[2]==='r'?'right':'left'});x+=c[1];});y+=5.6;};
  head();
  const rows=constRows(m);const pk=m.empaque&&m.empaque.n>=m.items.length;
  rows.forEach((r,ix)=>{
