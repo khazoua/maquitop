@@ -157,7 +157,7 @@ main{padding-block:18px 120px}
 .sheet-head h2{margin:0;font-family:var(--f-disp);font-weight:600;font-size:19px;letter-spacing:.05em;text-transform:uppercase;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .back{border:0;background:var(--surface-2);border-radius:8px;padding:7px 12px;font-weight:600;font-size:14px}
 .sheet-body{padding-block:16px calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:18px}
-.photo{position:relative;border-radius:12px;background:var(--surface-2);aspect-ratio:16/10;max-width:100%;overflow:hidden;display:grid;place-items:center}
+.photo{position:relative;border-radius:12px;background:var(--surface-2);aspect-ratio:4/3;max-width:100%;overflow:hidden;display:grid;place-items:center}
 .photo svg{width:72%;height:auto}
 .photo img{width:100%;height:100%;object-fit:cover}
 .photo-btn{position:absolute;right:10px;bottom:10px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-weight:600;font-size:13px;cursor:pointer}
@@ -427,7 +427,6 @@ details.tpl[open] summary{margin-bottom:8px}
   .only-desk{display:flex!important}
   .nbadge{position:static;margin-left:auto}
   .inv-search{display:none}
-  .sheet .photo{aspect-ratio:16/7}
   .imp{padding:22px}
 }
 @media (min-width:1440px){.sheet{width:720px}}
@@ -1212,7 +1211,7 @@ body{font-family:var(--f-body);font-size:14px;line-height:1.5;letter-spacing:0;c
 .row,tr[data-act]{-webkit-touch-callout:none}
 
 /* ---------- tablas ---------- */
-.tablewrap{overflow:auto}
+.tablewrap{overflow:auto;position:relative}
 .tbl{font-size:13.5px}
 .tbl th{background:var(--surface-2);border-bottom:1px solid var(--line);padding:9px 12px;font-family:var(--f-body);font-size:12px;font-weight:600;color:var(--muted);text-transform:none;letter-spacing:0;white-space:nowrap}
 .tbl th .th,.tbl th .nosort{font-family:var(--f-body);font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted)}
@@ -1609,8 +1608,60 @@ button.paq{padding:0;cursor:zoom-in;font:inherit}
 .paq-add{flex-direction:column;gap:6px;border:1.5px dashed var(--line-strong);color:var(--accent);font-size:12.5px;font-weight:600;text-align:center;padding:8px;cursor:pointer}
 .paq-add svg{width:26px;height:26px}
 .paqs.view{display:grid;grid-template-columns:repeat(3,minmax(0,128px))}
-.paqs.view .paq{width:auto;height:auto;aspect-ratio:1}
+.paqs.view .paq{width:auto;height:auto;aspect-ratio:4/3}
 .field[aria-invalid] .paq-add,.paqbox:has(#f-paq[aria-invalid="true"]) .paq-add{border-color:var(--bad)}
+.chips.wrap{flex-wrap:wrap;overflow:visible;justify-content:flex-start;padding:0;margin:0}
+.chip-n{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-size:11.5px;font-weight:700}
+.chip[aria-pressed="true"] .chip-n{background:rgba(255,255,255,.2);color:inherit}
+#view > .chips + .sec,#view > .chips + p.sub-t{margin-top:16px}
+.chip.add{border-style:dashed;color:var(--accent)}
+.serbtn{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 8px 4px 12px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.serbtn:hover{border-color:var(--accent);color:var(--accent)}
+.serbtn svg{width:15px;height:15px;flex:none}
+td.sercell{font-family:inherit}
+.serlist{display:flex;flex-direction:column;gap:8px}
+.serrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.serrow input{min-width:0;font-family:var(--f-mono);letter-spacing:.02em}
+.serrow.bad{border-color:var(--bad)}
+.serrow .sererr{grid-column:2;color:var(--bad)}
+.codechip{display:inline-flex;align-items:center;min-height:36px;padding:4px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);font-family:var(--f-mono);font-weight:600;font-size:12.5px;letter-spacing:.04em;cursor:pointer;touch-action:manipulation}
+.codechip:hover{border-color:var(--accent);color:var(--accent)}
+.serrow input{width:100%;font-size:16px;padding:9px 12px;min-height:44px;border:1px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink)}
+.serrow input::placeholder{font-family:var(--f-body);letter-spacing:0;color:var(--muted)}
+.serin input::placeholder{font-family:var(--f-body)}
+.unitsbadge{align-self:flex-start;display:inline-flex;align-items:center;margin:0 0 10px;padding:5px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong);font-weight:700;font-size:13px}
+.serbulk{border:1px dashed var(--line-strong);border-radius:14px;padding:10px 12px}
+.serbulk summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.serbulk textarea{width:100%;margin:8px 0}
+.serin{display:flex;gap:8px}
+.serin input{flex:1;min-width:0;font-family:var(--f-mono)}
+.serchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.serchip{display:inline-flex;align-items:center;gap:4px;background:var(--accent-soft);color:var(--accent-strong);border-radius:999px;padding:3px 4px 3px 10px;font-size:13px}
+.serchip button{border:0;background:transparent;color:inherit;width:32px;height:32px;border-radius:999px;font-size:16px;cursor:pointer;touch-action:manipulation}
+.serchip button:hover{background:rgba(0,0,0,.06)}
+.bj-list{display:flex;flex-direction:column;gap:6px;max-height:240px;overflow:auto;margin-bottom:10px;overscroll-behavior:contain}
+.photo-form{max-width:380px;width:100%}
+.photo-btns{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
+.photo-btns .photo-btn{position:static}
+button.photo-btn{font:inherit;font-weight:600;font-size:13px;color:var(--ink);cursor:pointer}
+.paq-img{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer}
+.paq-img img{width:100%;height:100%;object-fit:cover;display:block}
+body.cropping{overflow:hidden}
+.crop{position:fixed;inset:0;z-index:90;background:rgba(14,30,44,.55);display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top,0px)) 12px max(12px,env(safe-area-inset-bottom,0px));overscroll-behavior:contain}
+.crop-card{width:min(560px,100%);max-height:100%;overflow:auto;background:var(--surface);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-lg)}
+.crop-top h2{margin:0 0 2px;font-size:19px}
+.crop-top p{margin:0}
+.crop-stage{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);touch-action:none;cursor:grab;outline-offset:3px}
+.crop-stage.drag{cursor:grabbing}
+.crop-stage canvas{display:block;width:100%;height:100%}
+.crop-grid{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent calc(33.33% - .5px),rgba(255,255,255,.7) calc(33.33% - .5px),rgba(255,255,255,.7) calc(33.33% + .5px),transparent calc(33.33% + .5px),transparent calc(66.66% - .5px),rgba(255,255,255,.7) calc(66.66% - .5px),rgba(255,255,255,.7) calc(66.66% + .5px),transparent calc(66.66% + .5px)),linear-gradient(transparent calc(33.33% - .5px),rgba(255,255,255,.7) calc(33.33% - .5px),rgba(255,255,255,.7) calc(33.33% + .5px),transparent calc(33.33% + .5px),transparent calc(66.66% - .5px),rgba(255,255,255,.7) calc(66.66% - .5px),rgba(255,255,255,.7) calc(66.66% + .5px),transparent calc(66.66% + .5px));mix-blend-mode:difference;opacity:.5}
+.crop-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.crop-tools input[type=range]{flex:1 1 140px;min-width:120px;accent-color:var(--accent);height:32px}
+.crop-tools .btn svg{width:16px;height:16px}
+.crop-act{display:flex;justify-content:flex-end;gap:8px}
+.paq{aspect-ratio:4/3;height:auto!important}
+.paqs:not(.view) .paq{width:min(132px,calc((100% - 20px) / 3))}
+.home-head{flex-direction:column;align-items:flex-start;justify-content:flex-end}
 </style>
 <header class="top">
   <div class="wrap">
@@ -1690,25 +1741,25 @@ const FIREBASE_CONFIG={
 /* Cuentas de Google administradoras: entran directo y aprueban a las demás.
    Si cambias esta lista, cambia también la lista ADMINS en las reglas de Firestore. */
 const FB_ADMINS=['villegasbrandon39@gmail.com'];
-/* ---------- Inventario real de Almacén Lima (cuaderno "Machin Control", fotos del 13/10/2026) ---------- */
+/* ---------- Inventario inicial de Almacén Lima ---------- */
 /* Cada renglón: [n° renglón, modelo/código, descripción, cantidad, opciones]
-   opciones: na = N° de artículo (se usa como N° de parte), ns = series, cat, marca, obs (nota para revisar) */
+   opciones: na = N° de artículo (se usa como N° de parte), ns = series, cat, marca */
 const LIMA_ROWS=[
  [1,'MMM 302','Mast GPS / Rotation Sensor 0.5 m',2,{cat:'sensor'}],
  [2,'MSC 1442','Harness Dozer Standard 7.5 m',2,{}],
- [3,'MSC ETH M12D','Cable Ethernet M12D M/M 3 m',3,{obs:'En el cuaderno el largo está borroso (3,? m).'}],
+ [3,'MSC ETH M12D','Cable Ethernet M12D M/M 3 m',3,{}],
  [4,'Hose Kit Komatsu','Hose Kit Komatsu GD5xx, 6xx, 7xx-5',1,{na:'807139',cat:'otro'}],
  [5,'Hose Kit JDG','Hose Kit JDG Series',1,{na:'789198',cat:'otro'}],
  [6,'MSC 1350','GPS Antenna Cable 40 cm',3,{}],
  [7,'MSC 1468','Cable CAN M12 F/F 3.5 m',6,{}],
  [8,'MSC 1461','Cable CAN M12 F/F 1.0 m',5,{}],
- [9,'MSC 1446','Cable CAN M12 F/F con protección 2.0 m',9,{obs:'Revisar el largo: en el cuaderno puede leerse 2.0 m o 20 m.'}],
+ [9,'MSC 1446','Cable CAN M12 F/F con protección 2.0 m',9,{}],
  [10,'MSC 1358','Cable C14 CAT DxT Series',3,{}],
  [11,'MMB 1336','GNSS Bracket, Machine',2,{cat:'iman'}],
  [12,'MSC 1474','Cable CAN M12 F/F 5 m',4,{}],
  [13,'MSC 1449','Cable CAN M12 F/F con protección 7.5 m',2,{}],
  [14,'CA19','Robust Antenna Cable 7.5 m',1,{}],
- [15,'MSC 1447','Cable CAN M12 F/F con protección 3.5 m',5,{obs:'Nota del cuaderno: “salió 1, 12-8-26”.'}],
+ [15,'MSC 1447','Cable CAN M12 F/F con protección 3.5 m',5,{}],
  [16,'GEV 162','Cable de transferencia 2.8 m',1,{}],
  [17,'MYC 7084','Cable CAN split 0.5 m M12 F/M/M',3,{}],
  [18,'MSC 1404','Switch Assy, Exit, DZ',5,{cat:'otro'}],
@@ -1718,7 +1769,7 @@ const LIMA_ROWS=[
  [22,'C22','Montaje para antena',4,{cat:'iman'}],
  [23,'MMB 1337','GNSS Bracket Mast',4,{cat:'iman'}],
  [24,'MMB 1333','RAM Mount Size C Short Arm',1,{cat:'iman'}],
- [25,'MAD 128','Adaptador 4A macho a USB tipo A',4,{cat:'cable',obs:'Revisar el código: en el cuaderno puede leerse MAD 128 o MAD 118.'}],
+ [25,'MAD 128','Adaptador 4A macho a USB tipo A',4,{cat:'cable'}],
  [26,'Blade OMM TNC','Blade OMM TNC',3,{cat:'gnss'}],
  [27,'MMB 1444','Bracket for MMM30x, TNC parking',9,{cat:'iman'}],
  [28,'MSC 1478','Cable M8 F/M 1 m',3,{}],
@@ -1727,11 +1778,11 @@ const LIMA_ROWS=[
  [31,'iCON gps 200','Antena GNSS iCON gps 200',1,{na:'917769',ns:['3736218'],cat:'gnss'}],
  [32,'GPS Antenna Adapter','Adaptador de antena GPS (en caja)',2,{na:'813822',cat:'gnss'}],
  [33,'MSS 400i','Pitch-Roll Sensor (en caja)',2,{na:'877614',cat:'sensor'}],
- [34,'MMB 1443','Front Cover Cradle',5,{na:'865712',cat:'pantalla',obs:'Revisar la cantidad: en el cuaderno parece 5.'}],
- [35,'MMB 1425','Soporte sujetador de panel',4,{na:'845950',cat:'iman',obs:'Revisar la cantidad: en el cuaderno parece 4.'}],
+ [34,'MMB 1443','Front Cover Cradle',5,{na:'865712',cat:'pantalla'}],
+ [35,'MMB 1425','Soporte sujetador de panel',4,{na:'845950',cat:'iman'}],
  [36,'SP14','Sensor para dozer',2,{na:'782749',cat:'sensor'}],
- [37,'C14','Joystick Interface Module',1,{na:'770574',cat:'otro',obs:'La cantidad no se ve en la foto; se cargó 1.'}],
- [38,'MSC 100','Compactometer con cable',1,{na:'848448',cat:'sensor',obs:'La cantidad no se ve en la foto; se cargó 1.'}],
+ [37,'C14','Joystick Interface Module',1,{na:'770574',cat:'otro'}],
+ [38,'MSC 100','Compactometer con cable',1,{na:'848448',cat:'sensor'}],
  [39,'CD16','Radio Satel M3-TR4 para ICG8',3,{na:'865303',cat:'radio',marca:'Satel'}],
  [40,'CCD22','Radio Satel TR4+ para ICG80',2,{na:'916751',cat:'radio',marca:'Satel'}],
  [41,'28#','Cable 5 m',1,{}],
@@ -1741,7 +1792,7 @@ const LIMA_ROWS=[
  [45,'MMB 1511','Magnetic install kit for JB / ICG',3,{cat:'iman'}],
  [46,'C14 Dozer','Dozer Cable (N, R, T series)',2,{}],
  [47,'MSC 1445','Cable CAN M12 F/F con alimentación 0.5 m',2,{}],
- [48,'MSC 1478','Cable M8 F/M 2 m',3,{obs:'El cuaderno anota MSC 1478 con 1 m (renglón 28) y con 2 m (renglón 48).'}],
+ [48,'MSC 1478','Cable M8 F/M 2 m',3,{}],
  [49,'MYC 7094','Cable CAN split 0.5 m M12 M/M/M',1,{}],
  [50,'MSC 1470','Cable M8 F/M 2 m',1,{}],
  [51,'UNHX GEV223','Cable de transmisión de datos',1,{}],
@@ -1771,15 +1822,26 @@ function buildSeed(){
   if(!pBy[np]){pBy[np]={id:'pr_'+slug(np)+'_'+row,np,nombre:nom,modelo:(o.na&&nom.toLowerCase().indexOf(mod.toLowerCase())<0)?mod:'',marca,cat,serie:!!(o.ns&&o.ns.length)};s.prods.push(pBy[np]);}
   else if(o.ns&&o.ns.length)pBy[np].serie=true;
   const series=o.ns&&o.ns.length?o.ns:Array(q).fill('');
-  series.forEach(sr=>{n++;s.items.push({id:'i'+n,code:'MQ-'+String(n).padStart(4,'0'),np,cat,marca,nombre:nom,modelo:mod,serie:sr,cond:'Operativo',loc:{t:loc.t,a:loc.a},photo:null,renglon:row,obs:o.obs||''});});
+  series.forEach(sr=>{n++;s.items.push({id:'i'+n,code:'MQ-'+String(n).padStart(4,'0'),np,cat,marca,nombre:nom,modelo:mod,serie:sr,cond:'Operativo',loc:{t:loc.t,a:loc.a},photo:null,obs:''});});
  });
- s.movs.push({id:'m1',num:'MOV-0001',fecha:'2026-10-13T09:23',tipo:'Ingreso',por:'Inventario del cuaderno',origen:'Inventario inicial · cuaderno de Almacén Lima',destino:{t:'almacen',a:'Almacén Lima'},items:s.items.map(i=>i.id),agencia:'',guia:'',boletaEnv:null,bolHashEnv:null,bolCheck:null,nota:'Cargado de las fotos del cuaderno “Machin Control” del 13/10/2026: 65 renglones.',estado:'na',dest:[],kit:null,recs:[],from:null,oc:''});
+ s.movs.push({id:'m1',num:'MOV-0001',fecha:'2026-10-13T09:23',tipo:'Ingreso',por:'Carga inicial',origen:'Inventario inicial',destino:{t:'almacen',a:'Almacén Lima'},items:s.items.map(i=>i.id),agencia:'',guia:'',boletaEnv:null,bolHashEnv:null,bolCheck:null,nota:'Inventario inicial.',estado:'na',dest:[],kit:null,recs:[],from:null,oc:''});
  return s;
 }
 
 /* ================= Núcleo: constantes, utilidades, estado ================= */
 const CATS={gnss:'Antena GNSS',pantalla:'Pantalla / control box',sensor:'Sensor',camara:'Cámara',radio:'Radio',laser:'Láser',cable:'Cable',iman:'Imán / soporte',otro:'Otro'};
 const MAQ_TIPOS=['Excavadora','Dozer','Motoniveladora','Rodillo','Cargador','Pavimentadora'];
+/* Categorías y tipos de máquina: los de arriba son los iniciales; la lista real vive en S.config y se edita desde la app */
+const CAT_DEF=Object.keys(CATS).map(k=>({id:k,n:CATS[k]}));
+function catList(){const c=S&&S.config&&Array.isArray(S.config.cats)&&S.config.cats.length?S.config.cats:CAT_DEF;return c;}
+function catName(id){const c=catList().find(x=>x.id===id);return c?c.n:(CATS[id]||'Sin categoría');}
+function catOpts(cur,withNew){const l=catList();return opts(l.map(c=>[c.id,c.n]).concat(cur&&!l.some(c=>c.id===cur)?[[cur,catName(cur)]]:[]),cur)+(withNew?'<option value="__newcat">+ Nueva categoría…</option>':'');}
+function catsMut(){if(!Array.isArray(S.config.cats)||!S.config.cats.length)S.config.cats=CAT_DEF.map(c=>Object.assign({},c));return S.config.cats;}
+function addCat(name){const n=String(name||'').trim();if(!n)return null;const ex=catList().find(c=>norm(c.n)===norm(n));if(ex)return ex.id;
+ const id='c_'+norm(n).replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,24)+'_'+Date.now().toString(36).slice(-4);catsMut().push({id,n});return id;}
+function maqTipos(){return S&&S.config&&Array.isArray(S.config.maqTipos)&&S.config.maqTipos.length?S.config.maqTipos:MAQ_TIPOS;}
+function maqMut(){if(!Array.isArray(S.config.maqTipos)||!S.config.maqTipos.length)S.config.maqTipos=MAQ_TIPOS.slice();return S.config.maqTipos;}
+function addMaqTipo(name){const n=String(name||'').trim();if(!n)return null;const ex=maqTipos().find(x=>norm(x)===norm(n));if(ex)return ex;maqMut().push(n);return n;}
 const ROLES=['Almacén','Técnico instalador','Especialista de soporte','Gerencia','Administración'];
 /* Agencias iniciales: la lista real vive en S.config.agencias */
 const AGENCIAS=['Cruz del Sur','Shalom','Olva Courier','Marvisur','Transporte propio','Entrega en mano'];
@@ -1794,7 +1856,7 @@ const NIVELES={admin:'Administrador',registra:'Registra movimientos',consulta:'S
 const PERMS={admin:['registrar','kits','importar','exportar','ajustes','usuarios','correos'],registra:['registrar','kits','exportar'],consulta:[]};
 const COLS=['people','obras','alms','prods','tpls','items','kits','movs','notifs','config'];
 const CFG=(typeof APP_CFG!=='undefined'&&APP_CFG)||{};
-const DEMO=CFG.demo||'';          // '' = app normal · 'lima' = demo con el inventario real de Lima
+const DEMO=CFG.demo||'';          // '' = app normal · 'lima' = demo con el inventario de Lima
 const CARGOS=CFG.cargos!==false;  // false: las personas no tienen cargo/rol, solo su ubicación actual
 const KEY=CFG.key||'maquitop-demo-v3';
 const FB_ON=!!(typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG&&FIREBASE_CONFIG.apiKey); // true: base compartida en Firebase
@@ -1859,7 +1921,7 @@ function ubicApply(t,v){v=String(v||'a:'+almPrin());if(v.indexOf('o:')===0){cons
 function persLinea(p){return CARGOS?(p.rol+' · '+ubicPersona(p)):ubicPersona(p);}
 function techFor(oid){const o=obra(oid);const q=techs();const p=q.find(p=>p.obra&&p.obra===oid)||q.find(p=>p.rol==='Técnico instalador'&&o&&p.base===o.ciudad);return p?p.n:(q[0]||{n:''}).n;}
 function basePeople(a){return S.people.filter(p=>!p.pendiente&&(CARGOS?p.base===almCity(a):(!(p.obra&&obra(p.obra))&&personAlm(p)===a)));}
-function maqTipo(m){const n=norm(m);if(/excavadora/.test(n))return 'Excavadora';if(/tractor|dozer|bulldozer/.test(n))return 'Dozer';if(/motoniveladora/.test(n))return 'Motoniveladora';if(/rodillo|compactadora/.test(n))return 'Rodillo';if(/cargador/.test(n))return 'Cargador';if(/pavimentadora/.test(n))return 'Pavimentadora';return '';}
+function maqTipo(m){const n=norm(m);if(/excavadora/.test(n))return 'Excavadora';if(/tractor|dozer|bulldozer/.test(n))return 'Dozer';if(/motoniveladora/.test(n))return 'Motoniveladora';if(/rodillo|compactadora/.test(n))return 'Rodillo';if(/cargador/.test(n))return 'Cargador';if(/pavimentadora/.test(n))return 'Pavimentadora';const cu=maqTipos().find(t=>MAQ_TIPOS.indexOf(t)<0&&n.includes(norm(t)));return cu||'';}
 function nivelOf(p){if(!p)return 'consulta';if(MODE==='online'&&p.uid&&p.uid===ME.uid&&ME.owner)return 'admin';if(p.pendiente)return 'consulta';return p.nivel||(p.admin?'admin':'registra');}
 function myNivel(){const p=myPerson();if(MODE==='online'&&!p)return 'consulta';return nivelOf(p);}
 function canDo(k){if(RO||MODE==='loading')return false;if(!PERMISOS)return MODE!=='online'||!!myPerson();return (PERMS[myNivel()]||[]).includes(k);}
@@ -1917,7 +1979,7 @@ function locText(l){if(!l)return '—';if(l.t==='almacen')return l.a;if(l.t==='t
 function locShort(l){if(!l)return '—';if(l.t==='almacen')return l.a;if(l.t==='transito')return 'En tránsito a '+city(l.to);const o=obra(l.o);if(l.t==='tecnico')return 'Con '+l.p+(o?' ('+o.ciudad+')':'');return String(l.m).split(' · ').pop()+(o?' ('+o.ciudad+')':'');}
 function locGrp(l){if(l.t==='almacen')return 'alm:'+l.a;if(l.t==='transito')return 'transito';return 'obra';}
 function locKey(l){if(!l)return '';if(l.t==='almacen')return 'a:'+l.a;if(l.t==='transito')return 't:'+l.mov;if(l.t==='tecnico')return 'p:'+l.p+'|'+l.o;return 'i:'+l.o+'|'+l.m;}
-function sn(i){return i&&i.serie?'S/N '+i.serie:'Sin serie';}
+function sn(i){return i&&i.serie?'S/N '+i.serie:'Serie sin asignar';}
 
 /* ---------- envíos: estados derivados ---------- */
 function pendingOf(m){return m.items.map(item).filter(i=>i&&i.loc.t==='transito'&&i.loc.mov===m.id);}
@@ -2055,7 +2117,7 @@ async function startOnline(){
  });
  if(MODE==='loading'){MODE='online';linkMe();}
  if(FB_ON)fbAdminListen();
- if(FB_ON){fbAutoSeed().then(()=>fbBackupTick());setInterval(()=>fbBackupTick(),6*3600*1000);}
+ if(FB_ON){fbAutoSeed().then(()=>fbCleanOrigin()).then(()=>fbBackupTick());setInterval(()=>fbBackupTick(),6*3600*1000);}
  try{const st=await DB.doc('data/users/'+uid+'/state').get();if(st.exists){const d=st.data()||{};readUntil=d.readUntil||'';}}catch(e){}
  return true;
 }
@@ -2232,6 +2294,60 @@ async function storeImage(dataUrl){
  if(out.length>110000)throw {code:'too_big'};
  return out;
 }
+/* ---------- encuadre de fotos ---------- */
+const CROP_AR=4/3,CROP_W=1200;
+function cropPhoto(src,o){o=o||{};return new Promise(async res=>{
+ let img;try{img=typeof src==='string'?await new Promise((ok,ko)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=ko;i.src=src;}):await loadImage(src);}
+ catch(e){toast('No se pudo leer esa foto. Prueba con otra.','bad');return res(null);}
+ const base=drawScaled(img,2400),bw=base.width,bh=base.height;
+ const last=document.activeElement;
+ const ov=document.createElement('div');ov.className='crop';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-labelledby','cropT');
+ ov.innerHTML='<div class="crop-card"><div class="crop-top"><h2 id="cropT">'+esc(o.title||'Encuadra la foto')+'</h2><p class="small muted">Arrastra para moverla y acerca con la barra o con dos dedos. «Completa» la muestra entera.</p></div>'
+  +'<div class="crop-stage" tabindex="0" aria-label="Encuadre: flechas para mover, más y menos para acercar"><canvas></canvas><div class="crop-grid" aria-hidden="true"></div></div>'
+  +'<div class="crop-tools"><button type="button" class="btn sm" data-c="fit">Completa</button><button type="button" class="btn sm" data-c="fill">Llenar</button><input type="range" min="0" max="1000" value="0" aria-label="Acercar o alejar"><button type="button" class="btn sm" data-c="rot" aria-label="Girar 90 grados">'+IC.rotate+'Girar</button></div>'
+  +'<div class="crop-act"><button type="button" class="btn ghost" data-c="cancel">Cancelar</button><button type="button" class="btn primary" data-c="ok">'+esc(o.ok||'Usar foto')+'</button></div></div>';
+ document.body.appendChild(ov);document.body.classList.add('cropping');
+ const stage=ov.querySelector('.crop-stage'),cv=stage.querySelector('canvas'),cx2=cv.getContext('2d'),rng=ov.querySelector('input[type=range]');
+ let W=0,H=0,rot=0,s=1,cx=0,cy=0,mn=1,mx=4;
+ const dims=()=>rot%2?[bh,bw]:[bw,bh];
+ const limits=()=>{const [iw,ih]=dims();const cover=Math.max(W/iw,H/ih),contain=Math.min(W/iw,H/ih);mn=contain;mx=Math.max(cover*4,contain*1.01);return cover;};
+ const clamp=()=>{s=Math.min(mx,Math.max(mn,s));const [iw,ih]=dims();const dw=iw*s,dh=ih*s;
+  cx=dw>=W?Math.min(dw/2,Math.max(W-dw/2,cx)):Math.min(W-dw/2,Math.max(dw/2,cx));
+  cy=dh>=H?Math.min(dh/2,Math.max(H-dh/2,cy)):Math.min(H-dh/2,Math.max(dh/2,cy));};
+ const paint=(ctx,k,w,h)=>{ctx.save();ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);ctx.translate(cx*k,cy*k);ctx.rotate(rot*Math.PI/2);ctx.imageSmoothingQuality='high';ctx.drawImage(base,-bw*s*k/2,-bh*s*k/2,bw*s*k,bh*s*k);ctx.restore();};
+ const syncR=()=>{rng.value=String(Math.round(1000*Math.log(s/mn)/Math.log(mx/mn||2)));};
+ const draw=()=>{clamp();const d=window.devicePixelRatio||1;if(cv.width!==Math.round(W*d)){cv.width=Math.round(W*d);cv.height=Math.round(H*d);}paint(cx2,d,cv.width,cv.height);syncR();};
+ const size=()=>{const r=stage.getBoundingClientRect();const ow=W||r.width,oh=H||r.height;const fx=W?cx/ow:.5,fy=H?cy/oh:.5,fs=W?s/(limits()||1):1;W=r.width;H=r.height;const cover=limits();if(!ow||!oh||!fs){s=cover;cx=W/2;cy=H/2;}else{s=fs*cover;cx=fx*W;cy=fy*H;}draw();};
+ const reset=fill=>{const cover=limits();s=fill?cover:mn;cx=W/2;cy=H/2;draw();};
+ const zoomAt=(ns,px,py)=>{const os=s;s=Math.min(mx,Math.max(mn,ns));cx=px+(cx-px)*(s/os);cy=py+(cy-py)*(s/os);draw();};
+ requestAnimationFrame(()=>{size();reset(true);try{stage.focus({preventScroll:true});}catch(e){}});
+ const P=new Map();let pd=0,pm=null;
+ const rel=e=>{const r=stage.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
+ stage.addEventListener('pointerdown',e=>{stage.setPointerCapture(e.pointerId);P.set(e.pointerId,rel(e));if(P.size===2){const [a,b]=[...P.values()];pd=Math.hypot(a[0]-b[0],a[1]-b[1]);pm=[(a[0]+b[0])/2,(a[1]+b[1])/2];}stage.classList.add('drag');});
+ stage.addEventListener('pointermove',e=>{if(!P.has(e.pointerId))return;const prev=P.get(e.pointerId),cur=rel(e);P.set(e.pointerId,cur);
+  if(P.size===1){cx+=cur[0]-prev[0];cy+=cur[1]-prev[1];draw();}
+  else if(P.size===2){const [a,b]=[...P.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);const m=[(a[0]+b[0])/2,(a[1]+b[1])/2];cx+=m[0]-pm[0];cy+=m[1]-pm[1];if(pd)zoomAt(s*d/pd,m[0],m[1]);else draw();pd=d;pm=m;}});
+ const up=e=>{P.delete(e.pointerId);if(P.size<2)pd=0;if(!P.size)stage.classList.remove('drag');else if(P.size===1)pm=null;};
+ stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
+ stage.addEventListener('wheel',e=>{e.preventDefault();const [x,y]=rel(e);zoomAt(s*Math.exp(-e.deltaY*0.0015),x,y);},{passive:false});
+ rng.addEventListener('input',()=>{const t=(+rng.value)/1000;zoomAt(mn*Math.pow(mx/mn,t),W/2,H/2);});
+ const done=v=>{window.removeEventListener('resize',size);document.removeEventListener('keydown',kd,true);ov.remove();document.body.classList.remove('cropping');try{if(last&&last.isConnected)last.focus({preventScroll:true});}catch(e){}res(v);};
+ const kd=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();done(null);return;}
+  if(e.key==='Tab'){const f=[...ov.querySelectorAll('button,input,[tabindex="0"]')];const i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}return;}
+  if(document.activeElement!==stage)return;const st=e.shiftKey?40:12;
+  if(e.key==='ArrowLeft'){cx-=st;draw();}else if(e.key==='ArrowRight'){cx+=st;draw();}else if(e.key==='ArrowUp'){cy-=st;draw();}else if(e.key==='ArrowDown'){cy+=st;draw();}
+  else if(e.key==='+'||e.key==='='){zoomAt(s*1.1,W/2,H/2);}else if(e.key==='-'){zoomAt(s/1.1,W/2,H/2);}else return;e.preventDefault();};
+ document.addEventListener('keydown',kd,true);window.addEventListener('resize',size);
+ ov.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;const c=b.dataset.c;
+  if(c==='cancel')return done(null);
+  if(c==='fit')return reset(false);
+  if(c==='fill')return reset(true);
+  if(c==='rot'){rot=(rot+1)%4;return reset(true);}
+  if(c==='ok'){const out=document.createElement('canvas');out.width=CROP_W;out.height=Math.round(CROP_W/CROP_AR);paint(out.getContext('2d'),CROP_W/W,out.width,out.height);done(out.toDataURL('image/jpeg',.84));}});
+});}
+/* foto ya encuadrada → JPEG liviano (cabe en el registro de la base) */
+async function smallJpeg(url,lim){const img=await new Promise((ok,ko)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=ko;i.src=url;});let u=url;
+ for(const [m,q] of [[1000,.66],[900,.6],[760,.56],[640,.52]]){u=drawScaled(img,m).toDataURL('image/jpeg',q);if(u.length<=(lim||100000))break;}return u;}
 async function readPhoto(file,max){const img=await loadImage(file);return drawScaled(img,max||720).toDataURL('image/jpeg',.72);}
 
 /* ---------- boleta: verificación ---------- */
@@ -2348,6 +2464,7 @@ const IC={
  users:svg('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/>'),
  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>',
  wa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19.1z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1a4 4 0 0 1-2-2l1-1-1-2z"/></svg>',
+ rotate:svg('<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>'),
  doc:svg('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>'),
  camera:svg('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
  spark:svg('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>')
@@ -2357,7 +2474,7 @@ const KIT_TIPOS=['Cambio en kit','Retiro de kit','Asignación a kit','Kit desarm
 
 /* ================= Piezas comunes ================= */
 function locPill(i){const l=i.loc,g=locGrp(l);const cls=g.indexOf('alm:')===0?'p-info':{transito:'p-warn',obra:'p-ok'}[g];const lab=l.t==='almacen'?l.a:l.t==='transito'?'En tránsito':l.t==='instalado'?'Instalado':'Con técnico';return '<span class="pill '+cls+'">'+esc(lab)+'</span>'+(i.cond!=='Operativo'?'<span class="pill p-bad">'+esc(i.cond)+'</span>':'');}
-function itemRow(i,extra){return '<button class="row" data-act="item" data-id="'+i.id+'"><span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname">'+esc(i.nombre)+'</span><span class="rsub mono">'+esc(sn(i))+' · NP '+esc(i.np)+'</span><span class="rmeta">'+locPill(i)+(extra||'')+'</span>'+(i.loc.t!=='almacen'?'<span class="rsub">'+esc(locText(i.loc))+'</span>':'')+'</span></button>';}
+function itemRow(i,extra){return '<button class="row" data-act="item" data-id="'+i.id+'"><span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname">'+esc(i.nombre)+'</span><span class="rsub'+(i.serie?' mono':'')+'">'+esc(sn(i))+' · NP '+esc(i.np)+'</span><span class="rmeta">'+locPill(i)+(extra||'')+'</span>'+(i.loc.t!=='almacen'?'<span class="rsub">'+esc(locText(i.loc))+'</span>':'')+'</span></button>';}
 function estadoPill(m){
  const rd=retrasoDias(m);
  if(m.estado==='pendiente')return rd?'<span class="pill p-bad">Retrasado · '+rd+' días</span>':'<span class="pill p-warn">Por recibir</span>';
@@ -2369,7 +2486,7 @@ function estadoPill(m){
 function movIcon(m){const t=m.estado==='anulado'?['anul','']:(TIPO[m.tipo]||['ingreso','']);return '<span class="mico '+t[1]+'">'+IC[t[0]]+'</span>';}
 function movRow(m){
  const dst=m.tipo==='Envío'?movDest(m):locShort(m.destino);
- return '<button class="row" data-act="mov" data-id="'+m.id+'">'+movIcon(m)+'<span class="rmain"><span class="rtop"><span class="rname">'+esc(m.tipo)+' · '+plural(m.items.length,'equipo','equipos')+'</span><span class="rdate">'+fmt(m.fecha)+'</span></span><span class="rsub">'+esc(m.origen)+' → '+esc(dst)+'</span><span class="rmeta">'+estadoPill(m)+(m.agencia?'<span class="small mono muted">'+esc(m.agencia)+(m.guia?' · '+esc(m.guia):'')+'</span>':'')+'<span class="small muted">por '+esc(m.por)+'</span></span></span></button>';
+ return '<button class="row" data-act="mov" data-id="'+m.id+'">'+movIcon(m)+'<span class="rmain"><span class="rtop"><span class="rname">'+esc(m.tipo)+' · '+plural(m.items.length,'equipo','equipos')+'</span><span class="rdate">'+fmt(m.fecha)+'</span></span><span class="rsub">'+(m.tipo==='Edición de datos'||m.tipo==='Baja'?esc((m.origen==='Series'?'Series':m.origen==='Ficha del equipo'?'Datos del equipo':m.origen)+' · en '+dst):esc(m.origen)+' → '+esc(dst))+'</span><span class="rmeta">'+estadoPill(m)+(m.agencia?'<span class="small mono muted">'+esc(m.agencia)+(m.guia?' · '+esc(m.guia):'')+'</span>':'')+'<span class="small muted">por '+esc(m.por)+'</span></span></span></button>';
 }
 function kitBadges(k,i,big){
  const h=[];
@@ -2380,7 +2497,18 @@ function kitBadges(k,i,big){
 }
 function kitRow(k){const i=kitInfo(k);const pct=i.total?Math.round(i.filled/i.total*100):0;return '<button class="row" data-act="kit" data-id="'+k.id+'"><span class="kthumb">'+ill((slotProds(i.t,0)[0]||{}).cat)+'</span><span class="rmain"><span class="rtop"><span class="rname">'+esc(k.code)+' · '+esc(i.t.n)+'</span><span class="rdate">'+i.filled+'/'+i.total+'</span></span><span class="rsub">'+esc(kitLocText(i))+'</span><span class="prog'+(pct===100?' full':'')+'"><span style="width:'+pct+'%"></span></span><span class="rmeta">'+kitBadges(k,i)+'</span></span></button>';}
 function grpKey(i){return (!i.serie&&!kitOf(i.id))?[i.np,i.nombre,locKey(i.loc),i.cond].join('|'):null;}
-function groupItems(list){const out=[],seen={};list.forEach(i=>{const k=grpKey(i);if(k&&seen[k]){seen[k].n++;seen[k].ids.push(i.id);return;}const e={i,n:1,ids:[i.id]};if(k)seen[k]=e;out.push(e);});return out;}
+/* invKey: cómo se ve en el inventario (mismo modelo, lugar y condición en una fila, con o sin serie);
+   grpKey: unidades intercambiables (sin serie) para elegir por cantidad en los formularios */
+function invKey(i){return kitOf(i.id)?null:[i.np,i.nombre,locKey(i.loc),i.cond].join('|');}
+function serInfo(ids){const its=ids.map(item).filter(Boolean);const con=its.filter(i=>i.serie);return {n:its.length,con:con.length,sin:its.length-con.length,list:con.map(i=>i.serie)};}
+function serCell(e){
+ if(e.n<2)return e.i.serie?'<span class="mono">'+esc(e.i.serie)+'</span>':'<span class="muted">Sin asignar</span>';
+ const si=serInfo(e.ids);
+ return '<button class="serbtn" data-act="serList" data-id="'+e.i.id+'" aria-label="Ver las series de '+esc(e.i.nombre)+'">'+(si.con?(si.con===1?'<span class="mono">'+esc(si.list[0])+'</span>':plural(si.con,'serie','series')):'Sin asignar')+(si.con&&si.sin?'<span class="muted"> · '+si.sin+' sin asignar</span>':'')+'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>';
+}
+function itemRowG(e){const i=e.i;if(e.n<2)return itemRow(i);const si=serInfo(e.ids);
+ return '<button class="row" data-act="item" data-id="'+i.id+'" data-g="1"><span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname">'+esc(i.nombre)+'</span><span class="rsub">'+(si.con?plural(si.con,'serie','series')+(si.sin?' · '+si.sin+' sin asignar':''):'Series sin asignar')+' · NP '+esc(i.np)+'</span><span class="rmeta">'+locPill(i)+'<span class="pill p-neutral">×'+e.n+' unidades</span></span>'+(i.loc.t!=='almacen'?'<span class="rsub">'+esc(locText(i.loc))+'</span>':'')+'</span></button>';}
+function groupItems(list,kf){kf=kf||invKey;const out=[],seen={};list.forEach(i=>{const k=kf(i);if(k&&seen[k]){seen[k].n++;seen[k].ids.push(i.id);return;}const e={i,n:1,ids:[i.id]};if(k)seen[k]=e;out.push(e);});return out;}
 let lastMovIdx=null;
 function lastMov(i){if(!lastMovIdx){lastMovIdx={};S.movs.forEach(m=>{if(m.estado==='anulado')return;m.items.forEach(id=>{const b=lastMovIdx[id];if(!b||m.fecha>=b.fecha)lastMovIdx[id]=m;});});}return lastMovIdx[i.id]||null;}
 function thSort(t,k,label,cur,cls){const on=cur.k===k;return '<th class="'+(cls||'')+'"'+(on?' aria-sort="'+(cur.dir>0?'ascending':'descending')+'"':'')+'><button class="th" data-act="sort" data-t="'+t+'" data-k="'+k+'">'+label+'<span aria-hidden="true">'+(on?(cur.dir>0?'▲':'▼'):'↕')+'</span></button></th>';}
@@ -2405,7 +2533,7 @@ function render(){
  const set=(id,v)=>{const el=$(id);if(el){el.textContent=v;el.hidden=!v;}};
  set('#bIni',pr);set('#bBell',un);set('#bAv',un);set('#bAj',pend);set('#bMenu',pr+un);
  const showX=canDo('importar')||canDo('exportar');
- document.querySelectorAll('[data-tab="ajustes"]').forEach(b=>{if(b.closest('.tabs'))b.hidden=!isAdmin();});
+ document.querySelectorAll('[data-tab="ajustes"]').forEach(b=>{if(b.closest('.tabs,.side,nav,.drawer,#drawer'))b.hidden=!isAdmin();});
  document.querySelectorAll('[data-tab="excel"]').forEach(b=>{if(b.closest('.tabs'))b.hidden=!showX;});
  const plus=document.querySelector('.tabs .plus');if(plus)plus.classList.toggle('dim',noReg());
  if((tab==='ajustes'&&!isAdmin())||(tab==='excel'&&!showX))tab='inicio';
@@ -2419,7 +2547,7 @@ function render(){
   if(MODE==='online'&&!navigator.onLine)t='Sin señal: lo que registres se guarda en este equipo y se sube solo cuando vuelva la conexión.';
   else if(MODE==='loading')t='Conectando con la base compartida…';
   else if(MODE==='local'&&isPending())t='Demo local: '+meName()+' está pendiente de aprobación. Solo puede ver y confirmar lo que le envíen. Entra como Rosa Quispe (Administrador) para aprobarlo.',act=' <button class="linkbtn" data-act="tab" data-tab="perfil">Cambiar de persona</button>';
-  else if(MODE==='local'&&DEMO)t='Demo con el inventario real de Almacén Lima (cuaderno del 13/10/2026). Lo que registres se guarda solo en este navegador.';
+  else if(MODE==='local'&&DEMO)t='Demo: lo que registres se guarda solo en este navegador.';
   else if(MODE==='local')t='Modo demo: los datos son de ejemplo y se guardan solo en este navegador. Abre la versión publicada para usar la base compartida con tu equipo.';
   else if(RO)t='Solo lectura: tu cuenta puede ver pero no guardar cambios. Pide acceso al administrador.';
   else if(viewAs)t='Estás viendo la app como '+viewAs+' ('+NIVELES[myNivel()]+') para probar. Lo que registres quedará a su nombre.',act=' <button class="linkbtn" data-act="viewAsOff">Volver a mi perfil</button>';
@@ -2491,9 +2619,9 @@ function vInicio(){
  const fechaL=DIAS[now.getDay()]+' '+now.getDate()+' de '+MESL[now.getMonth()];
  const cell=(n,l,sub,act,extra,cls)=>'<button class="kc-cell'+(cls?' '+cls:'')+'" data-act="'+act+'"'+(extra||'')+'><span class="kc-l">'+l+'</span><span class="kpi-n">'+n+'</span><span class="kc-s">'+sub+'</span></button>';
  const mv=(m)=>withMore(movRow(m),'mov',m.id,m.num);
- return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.2,seed:3,levels:12,hills:[[0.7,0.38,0.2,0.13,1,0.2],[0.15,1.2,0.25,0.2,0.7,0]]}):topoSvg(600,380,{fix:true,fixS:1.1,par:'xMaxYMin',seed:9,levels:12,hills:[[0.84,0.16,0.3,0.24,1,0.5],[0.05,1.05,0.35,0.25,0.6,0]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
+ return '<div class="pagehead home-head">'+(isDesk()?topoSvg(1200,240,{fix:true,fixS:1.2,seed:3,levels:12,hills:[[0.85,0.36,0.2,0.13,1,0.2],[0.15,1.2,0.25,0.2,0.7,0]]}):topoSvg(600,380,{fix:true,fixS:1.1,par:'xMaxYMin',seed:9,levels:12,hills:[[0.84,0.16,0.3,0.24,1,0.5],[0.05,1.05,0.35,0.25,0.6,0]]}))+'<div><p class="ph-date">'+esc(fechaL.charAt(0).toUpperCase()+fechaL.slice(1))+'</p><h1 class="h1">'+sal+(nm?', '+esc(nm.split(' ')[0]):'')+'</h1><p class="lead">'+(att.length?plural(att.length,'tema requiere','temas requieren')+' atención'+(retr?' · '+plural(retr,'envío retrasado','envíos retrasados'):''):'Todo en orden.')+'</p></div>'+quick+'</div>'
  +(mine.length?'<button class="pendbar" data-act="goPorRecibir"><span class="pb-ic">'+IC.truck+'</span><span class="pb-t"><b>'+(mine.length===1?'Tienes 1 envío por recibir':'Tienes '+mine.length+' envíos por recibir')+'</b><span>Confírmalo cuando llegue, equipo por equipo y con tu boleta.</span></span><span class="pb-go">Revisar</span></button>':'')
- +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep ns-top"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario del cuaderno de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
+ +(MODE==='online'&&!S.items.length&&!S.movs.length?'<section class="nextstep ns-top"><span class="ns-ic">'+IC.box+'</span><span class="ns-t"><b>La base compartida está vacía</b><span>'+(FB_ADM||ME.owner?'Carga el inventario inicial de Almacén Lima para empezar. Se hace una sola vez.':'Pide al administrador que cargue el inventario inicial.')+'</span></span>'+(FB_ADM||ME.owner?'<button class="btn primary" data-act="fbSeed">Cargar inventario</button>':'')+'</section>':'')
  +(!S.items.length&&MODE==='online'?'':'<div class="kstrip">')+(!S.items.length&&MODE==='online'?'':cell(S.items.length,'Equipos','Total registrado','tab',' data-tab="inv"')+cell(libres,'Libres en almacén',Object.keys(ac).length>1?esc(Object.keys(ac).sort((x,y)=>ac[y]-ac[x]).map(n=>almShort(n)+' '+ac[n]).join(' · ')):esc(Object.keys(ac)[0]||almPrin()),'goinv',' data-grp="libres"')+cell(c.transito,'En tránsito',retr?plural(retr,'retrasado','retrasados'):'Sin retrasos','goinv',' data-grp="transito"',retr?'warn':'')+cell(c.obra,'En obra','Con técnicos o instalados','goinv',' data-grp="obra"')+cell(S.kits.length?okK+'/'+S.kits.length:'0','Kits completos',S.kits.length?'De '+S.kits.length+' armados':'Sin kits armados','tab',' data-tab="kits"')+cell(bad,'Dañados',bad?'Ver cuáles':'Todo operativo','goinv',' data-grp="bad"',bad?'bad':'')+'</div>')
  +'<div class="home"><div class="col">'
  +''
@@ -2533,24 +2661,24 @@ function vInv(){
  return '<div class="pagehead"><div><h1 class="h1">Inventario</h1><p class="lead">'+plural(S.items.length,'equipo registrado','equipos registrados')+' · '+plural(S.prods.length,'modelo en el catálogo','modelos en el catálogo')+'</p></div><div class="actions">'+(canDo('importar')?'<button class="btn only-desk" data-act="tab" data-tab="excel">'+IC.xls+'Importar</button>':'')+(canDo('exportar')?'<button class="btn" data-act="xExport" data-what="filtro">'+IC.xls+'Exportar esta lista</button>':'')+(noReg()?'':'<button class="btn primary" data-act="form" data-kind="nuevo">'+IC.ingreso+'Nuevo equipo</button>')+'</div></div>'
  +'<div class="toolbar"><div class="seg2" role="group" aria-label="Vista del inventario"><button class="chip" data-act="invView" data-v="equipo" aria-pressed="'+(invView==='equipo')+'">Por equipo</button><button class="chip" data-act="invView" data-v="modelo" aria-pressed="'+(invView==='modelo')+'">Por modelo: qué hay y qué falta</button></div>'
  +'<div class="search inv-search"><input id="invq" type="search" placeholder="Buscar nombre, serie, N° de parte, obra o persona" value="'+esc(invFilter.q)+'" autocomplete="off" aria-label="Buscar equipos"></div>'
- +'<div class="selects"><select id="invcat" aria-label="Categoría"><option value="">Todas las categorías</option>'+Object.keys(CATS).map(k=>'<option value="'+k+'"'+(invFilter.cat===k?' selected':'')+'>'+CATS[k]+'</option>').join('')+'</select><select id="invmarca" aria-label="Marca"><option value="">Todas las marcas</option>'+marcas.map(m=>'<option'+(invFilter.marca===m?' selected':'')+'>'+esc(m)+'</option>').join('')+'</select></div></div>'
+ +'<div class="selects"><select id="invcat" aria-label="Categoría"><option value="">Todas las categorías</option>'+catList().map(c=>'<option value="'+esc(c.id)+'"'+(invFilter.cat===c.id?' selected':'')+'>'+esc(c.n)+'</option>').join('')+'</select><select id="invmarca" aria-label="Marca"><option value="">Todas las marcas</option>'+marcas.map(m=>'<option'+(invFilter.marca===m?' selected':'')+'>'+esc(m)+'</option>').join('')+'</select></div></div>'
  +(invView==='equipo'?'<div class="chips">'+grps.map(g=>'<button class="chip" data-act="grp" data-grp="'+esc(g[0])+'" aria-pressed="'+(invFilter.grp===g[0])+'">'+esc(g[1])+'</button>').join('')+'</div>':'')
  +'<div id="invList">'+listHtml()+'</div>';
 }
 function listHtml(){return invView==='equipo'?invList():modelList();}
 function invList(){
  const list=invFiltered();const g=groupItems(list);
- const head='<p class="small muted listhead">'+plural(list.length,'equipo','equipos')+(g.length<list.length?' · los equipos sin serie iguales y en el mismo lugar se agrupan':'')+(isDesk()&&!noReg()?' · marca las casillas para enviar o exportar varios a la vez':'')+'</p>';
+ const head='<p class="small muted listhead">'+plural(list.length,'equipo','equipos')+(g.length<list.length?' · el mismo modelo en el mismo lugar va en una sola fila; toca sus series para verlas o editarlas':'')+(isDesk()&&!noReg()?' · marca las casillas para enviar o exportar varios a la vez':'')+'</p>';
  if(!list.length)return head+emptyBox('No hay equipos con ese filtro','Cambia la búsqueda o los filtros.',(invFilter.q||invFilter.grp!=='todos'||invFilter.cat||invFilter.marca)?'<button class="btn sm" data-act="clearFilters">Quitar filtros</button>':'');
  if(isDesk())return head+invTable(g);
- return head+'<div class="list">'+g.map(e=>withMore(itemRow(e.i,e.n>1?'<span class="pill p-neutral">×'+e.n+' unidades</span>':''),'item',e.i.id,e.i.nombre)).join('')+'</div>';
+ return head+'<div class="list">'+g.map(e=>withMore(itemRowG(e),'item',e.i.id,e.i.nombre)).join('')+'</div>';
 }
 function invTable(g){
  const fns={nombre:e=>e.i.nombre,serie:e=>e.i.serie||'~',np:e=>e.i.np,n:e=>e.n,lugar:e=>locText(e.i.loc),kit:e=>{const k=kitOf(e.i.id);return k?k.code:'~';},ult:e=>{const m=lastMov(e.i);return m?m.fecha:'';}};
  if(invSort.k&&fns[invSort.k])g=sortList(g,fns[invSort.k],invSort.dir);
  const allSel=g.length&&g.every(e=>e.ids.every(id=>sel.has(id)));
  return '<div class="tablewrap"><table class="tbl"><thead><tr>'+(noReg()?'':'<th class="cbx"><input type="checkbox" id="selAll" aria-label="Seleccionar todos"'+(allSel?' checked':'')+'></th>')+thSort('inv','nombre','Artículo',invSort)+thSort('inv','serie','Serie',invSort)+thSort('inv','np','N° de parte',invSort)+thSort('inv','n','Cant.',invSort,'num')+thSort('inv','lugar','Ubicación',invSort)+thSort('inv','kit','Kit',invSort)+thSort('inv','ult','Último movimiento',invSort)+'<th class="actc"><span class="vh">Opciones</span></th></tr></thead><tbody>'
- +g.slice(0,400).map(e=>{const i=e.i,k=kitOf(i.id),m=lastMov(i);const on=e.ids.every(id=>sel.has(id));return '<tr data-act="item" data-id="'+i.id+'" tabindex="0"'+(on?' class="selrow"':'')+'>'+(noReg()?'':'<td class="cbx"><input type="checkbox" data-sel="'+e.ids.join(',')+'" aria-label="Seleccionar '+esc(i.nombre)+'"'+(on?' checked':'')+'></td>')+'<td><span class="art"><span class="thumb">'+thumb(i)+'</span><span><b>'+esc(i.nombre)+'</b><span class="sub">'+esc(i.marca)+' · '+esc(i.modelo)+' · '+esc(i.code)+'</span></span></span></td><td class="mono">'+(i.serie?esc(i.serie):'<span class="muted">Sin serie</span>')+'</td><td class="mono nowrap">'+esc(i.np)+'</td><td class="num"><b>'+e.n+'</b></td><td><span class="rmeta">'+locPill(i)+'</span>'+(i.loc.t!=='almacen'?'<span class="sub">'+esc(locShort(i.loc))+'</span>':'')+'</td><td class="mono nowrap">'+(k?esc(k.code):'<span class="muted">—</span>')+'</td><td class="nowrap">'+(m?fmt(m.fecha)+'<span class="sub">'+esc(m.tipo)+' · '+esc(m.por)+'</span>':'<span class="muted">—</span>')+'</td>'+moreTd('item',i.id,i.nombre)+'</tr>';}).join('')
+ +g.slice(0,400).map(e=>{const i=e.i,k=kitOf(i.id),m=lastMov(i);const on=e.ids.every(id=>sel.has(id));return '<tr data-act="item" data-id="'+i.id+'"'+(e.n>1?' data-g="1"':'')+' tabindex="0"'+(on?' class="selrow"':'')+'>'+(noReg()?'':'<td class="cbx"><input type="checkbox" data-sel="'+e.ids.join(',')+'" aria-label="Seleccionar '+esc(i.nombre)+'"'+(on?' checked':'')+'></td>')+'<td><span class="art"><span class="thumb">'+thumb(i)+'</span><span><b>'+esc(i.nombre)+'</b><span class="sub">'+esc(i.marca)+' · '+esc(i.modelo)+' · '+esc(e.n>1?codeRuns(e.ids.map(id=>item(id).code)):i.code)+'</span></span></span></td><td class="sercell">'+serCell(e)+'</td><td class="mono nowrap">'+esc(i.np)+'</td><td class="num"><b>'+e.n+'</b></td><td><span class="rmeta">'+locPill(i)+'</span>'+(i.loc.t!=='almacen'?'<span class="sub">'+esc(locShort(i.loc))+'</span>':'')+'</td><td class="mono nowrap">'+(k?esc(k.code):'<span class="muted">—</span>')+'</td><td class="nowrap">'+(m?fmt(m.fecha)+'<span class="sub">'+esc(m.tipo)+' · '+esc(m.por)+'</span>':'<span class="muted">—</span>')+'</td>'+moreTd('item',i.id,i.nombre)+'</tr>';}).join('')
  +'</tbody></table></div>'+(g.length>400?'<p class="small muted">Se muestran 400 de '+g.length+' filas. Usa la búsqueda o los filtros.</p>':'');
 }
 function bulkBar(){
@@ -2580,7 +2708,7 @@ function modelList(){
  const head='<p class="small muted listhead">'+plural(rows.length,'modelo','modelos')+(sinLib?' · <b style="color:var(--warn)">'+sinLib+' sin unidades libres en almacén</b>':'')+'. “Libres” = operativos, en almacén'+esc(AL.length>1?' ('+AL.map(almShort).join(' o ')+')':' '+almShort(AL[0]))+' y fuera de un kit.</p>';
  if(!rows.length)return head+emptyBox('No hay modelos con ese filtro','Cambia la búsqueda o los filtros.');
  if(isDesk())return head+'<div class="tablewrap"><table class="tbl"><thead><tr>'+thSort('mod','nombre','Modelo',modSort)+thSort('mod','np','N° de parte',modSort)+AL.map((n,ix)=>thSort('mod','alm'+ix,AL.length>1?almShort(n):n,modSort,'num')).join('')+thSort('mod','obra','En obra',modSort,'num')+thSort('mod','transito','Tránsito',modSort,'num')+thSort('mod','bad','Dañados',modSort,'num')+thSort('mod','total','Total',modSort,'num')+thSort('mod','libres','Libres',modSort)+'</tr></thead><tbody>'
-  +rows.map(r=>'<tr data-act="modelGo" data-np="'+esc(r.np)+'" data-n="'+esc(r.nombre)+'" tabindex="0"><td><span class="art"><span class="thumb">'+ill(r.cat)+'</span><span><b>'+esc(r.nombre)+'</b><span class="sub">'+esc(r.marca)+' · '+esc(CATS[r.cat]||'Otro')+(r.usos.length?' · '+plural(r.usos.length,'kit','kits'):'')+'</span></span></span></td><td class="mono nowrap">'+esc(r.np)+'</td>'+AL.map(n=>'<td class="num">'+(r.alm[n]||'<span class="muted">0</span>')+'</td>').join('')+'<td class="num">'+(r.obra||'<span class="muted">0</span>')+'</td><td class="num">'+(r.transito||'<span class="muted">0</span>')+'</td><td class="num">'+(r.bad?'<b style="color:var(--bad)">'+r.bad+'</b>':'<span class="muted">0</span>')+'</td><td class="num"><b>'+r.total+'</b></td><td>'+libresPill(r)+'</td></tr>').join('')+'</tbody></table></div>';
+  +rows.map(r=>'<tr data-act="modelGo" data-np="'+esc(r.np)+'" data-n="'+esc(r.nombre)+'" tabindex="0"><td><span class="art"><span class="thumb">'+ill(r.cat)+'</span><span><b>'+esc(r.nombre)+'</b><span class="sub">'+esc(r.marca)+' · '+esc(catName(r.cat))+(r.usos.length?' · '+plural(r.usos.length,'kit','kits'):'')+'</span></span></span></td><td class="mono nowrap">'+esc(r.np)+'</td>'+AL.map(n=>'<td class="num">'+(r.alm[n]||'<span class="muted">0</span>')+'</td>').join('')+'<td class="num">'+(r.obra||'<span class="muted">0</span>')+'</td><td class="num">'+(r.transito||'<span class="muted">0</span>')+'</td><td class="num">'+(r.bad?'<b style="color:var(--bad)">'+r.bad+'</b>':'<span class="muted">0</span>')+'</td><td class="num"><b>'+r.total+'</b></td><td>'+libresPill(r)+'</td></tr>').join('')+'</tbody></table></div>';
  return head+'<div class="list">'+rows.map(r=>'<button class="row" data-act="modelGo" data-np="'+esc(r.np)+'" data-n="'+esc(r.nombre)+'"><span class="thumb">'+ill(r.cat)+'</span><span class="rmain"><span class="rtop"><span class="rname">'+esc(r.nombre)+'</span><span class="rdate">'+r.total+' en total</span></span><span class="rsub mono">NP '+esc(r.np)+'</span><span class="rsub">'+esc(AL.map(n=>almShort(n)+' '+(r.alm[n]||0)).join(' · '))+' · Obra '+r.obra+' · Tránsito '+r.transito+(r.bad?' · Dañados '+r.bad:'')+'</span><span class="rmeta">'+libresPill(r)+'</span></span></button>').join('')+'</div>';
 }
 
@@ -2720,7 +2848,7 @@ function vAjustes(){
   b=agHtml();
  }else if(ajTab==='catalogo'){
   b='<div class="tablewrap"><table class="tbl"><thead><tr><th><span class="nosort">N° de parte</span></th><th><span class="nosort">Artículo</span></th><th><span class="nosort">Marca</span></th><th><span class="nosort">Categoría</span></th><th><span class="nosort">Lleva serie</span></th><th><span class="nosort">Sirve para</span></th><th class="num"><span class="nosort">Unidades</span></th><th></th></tr></thead><tbody>'
-  +S.prods.map(p=>{const us=S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np)));return '<tr><td class="mono nowrap">'+esc(p.np)+'</td><td><b>'+esc(p.nombre)+'</b><span class="sub">'+esc(p.modelo)+'</span></td><td>'+esc(p.marca)+'</td><td>'+esc(CATS[p.cat]||'Otro')+'</td><td>'+(p.serie?'<span class="pill p-info">Sí</span>':'<span class="pill p-neutral">No</span>')+'</td><td class="small">'+(us.length?esc(us.map(t=>t.n).join(', ')):'<span class="muted">Ningún kit</span>')+'</td><td class="num">'+S.items.filter(i=>i.np===p.np).length+'</td><td><button class="btn sm" data-act="prodEdit" data-id="'+p.id+'">Editar</button></td></tr>';}).join('')+'</tbody></table></div><div class="actions"><button class="btn primary" data-act="prodEdit" data-id="">+ Agregar modelo</button></div>';
+  +S.prods.map(p=>{const us=S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np)));return '<tr><td class="mono nowrap">'+esc(p.np)+'</td><td><b>'+esc(p.nombre)+'</b><span class="sub">'+esc(p.modelo)+'</span></td><td>'+esc(p.marca)+'</td><td>'+esc(catName(p.cat))+'</td><td>'+(p.serie?'<span class="pill p-info">Sí</span>':'<span class="pill p-neutral">No</span>')+'</td><td class="small">'+(us.length?esc(us.map(t=>t.n).join(', ')):'<span class="muted">Ningún kit</span>')+'</td><td class="num">'+S.items.filter(i=>i.np===p.np).length+'</td><td><button class="btn sm" data-act="prodEdit" data-id="'+p.id+'">Editar</button></td></tr>';}).join('')+'</tbody></table></div><div class="actions"><button class="btn primary" data-act="prodEdit" data-id="">+ Agregar modelo</button></div>';
  }else if(ajTab==='respaldos'){
   b=vRespaldos();
  }else if(ajTab==='empresa'){
@@ -2733,23 +2861,66 @@ function vAjustes(){
  }else if(ajTab==='plantillas'){
   b='<p class="sub-t">Una plantilla define el sistema: la marca, para qué máquinas sirve y qué números de parte acepta cada espacio. Una misma pieza (por ejemplo un panel) puede servir en varias plantillas. También puedes cargarlas desde Excel.</p><div class="actions" style="margin-bottom:12px"><button class="btn" data-act="tplXlsx">'+IC.xls+'Importar plantillas desde Excel</button><button class="btn" data-act="xExport" data-what="tplmodelo">Descargar plantillas en Excel</button></div><div class="tplgrid">'+S.tpls.map(t=>{const used=S.kits.filter(k=>k.tpl===t.id).length;return '<div class="card tplc"><div class="rtop"><span class="rname">'+esc(t.n)+'</span><span class="pill p-info">'+esc(t.marca)+'</span></div><span class="rmeta">'+(t.maquinas||[]).map(m=>'<span class="pill p-neutral">'+esc(m)+'</span>').join('')+'</span><span class="rsub">'+plural(t.slots.length,'componente','componentes')+' · '+plural(used,'kit armado','kits armados')+'</span><span class="rsub">'+esc(t.slots.map(s=>s.l).join(', '))+'</span><div class="actions"><button class="btn sm" data-act="tplEdit" data-id="'+t.id+'">Editar</button><button class="btn sm ghost" data-act="tplDup" data-id="'+t.id+'">Duplicar</button></div></div>';}).join('')+'</div><div class="actions"><button class="btn primary" data-act="tplEdit" data-id="">+ Nueva plantilla</button></div>';
  }
+ if(ajTab==='catalogo')b=catSection()+'<h2 class="sec-t" style="margin-top:6px">Modelos <span class="count">'+S.prods.length+'</span></h2>'+b;
+ if(ajTab==='plantillas')b+=maqSection();
  if(!ed)return emptyBox('Solo para administradores','Pide al administrador que te habilite si necesitas cambiar la configuración.');
  return '<div class="pagehead"><div><h1 class="h1">Ajustes</h1><p class="lead">Usuarios, almacenes y obras, agencias, catálogo de modelos, plantillas de kit y respaldos.</p></div></div>'
  +'<div class="chips">'+tabs.map(t=>'<button class="chip" data-act="ajTab" data-t="'+t[0]+'" aria-pressed="'+(ajTab===t[0])+'">'+t[1]+'</button>').join('')+'</div>'+b;
 }
 
 /* ================= Mi perfil ================= */
+function catSection(){
+ return '<section class="sec"><h2 class="sec-t">Categorías <span class="count">'+catList().length+'</span></h2><p class="sub-t">Sirven para agrupar y filtrar el inventario. Toca una para cambiarle el nombre; las que no se usan se pueden eliminar.</p><div class="chips wrap">'
+ +catList().map(c=>'<button class="chip" data-act="catEdit" data-id="'+esc(c.id)+'">'+esc(c.n)+' <span class="chip-n">'+S.items.filter(i=>i.cat===c.id).length+'</span></button>').join('')
+ +'<button class="chip add" data-act="catEdit" data-id="">+ Nueva categoría</button></div></section>';
+}
+function maqSection(){
+ return '<section class="sec" style="margin-top:18px"><h2 class="sec-t">Tipos de máquina <span class="count">'+maqTipos().length+'</span></h2><p class="sub-t">Se eligen en cada plantilla y sirven para avisar si un kit no corresponde a la máquina. Toca uno para cambiarle el nombre.</p><div class="chips wrap">'
+ +maqTipos().map(m=>'<button class="chip" data-act="maqEdit" data-n="'+esc(m)+'">'+esc(m)+' <span class="chip-n">'+S.tpls.filter(t=>(t.maquinas||[]).includes(m)).length+'</span></button>').join('')
+ +'<button class="chip add" data-act="maqEdit" data-n="">+ Nuevo tipo</button></div></section>';
+}
+/* «+ Nueva categoría…» desde cualquier selector: el selector vuelve a su valor hasta que se confirme */
+function newCatFor(el){
+ const st=el.dataset.ie&&G.ie?[G.ie,'cat']:el.dataset.pr&&G.pr?[G.pr,'cat']:el.dataset.f?[F,el.dataset.f]:null;
+ el.value=st?st[0][st[1]]:'';
+ ask({title:'Nueva categoría',ok:'Agregar',html:'<div class="field"><label class="lab" for="nc-n">Nombre de la categoría</label><input id="nc-n" placeholder="Ej. Nivel láser" autocomplete="off" maxlength="40"></div><p class="small muted" style="margin:8px 0 0">Queda disponible para todos los equipos.</p>',
+  fn:()=>{const v=(($('#nc-n')||{}).value||'').trim();if(!v){toast('Escribe el nombre de la categoría.','bad');return;}const id=addCat(v);if(st)st[0][st[1]]=id;commit();toast('Categoría «'+esc(v)+'» agregada.');}});
+ setTimeout(()=>{const i=$('#nc-n');if(i)i.focus();},60);
+}
+function catEdit(id){
+ if(guard('ajustes'))return;const c=id?catList().find(x=>x.id===id):null;const used=c?S.items.filter(i=>i.cat===c.id).length+S.prods.filter(p=>p.cat===c.id).length:0;
+ ask({title:c?'Categoría':'Nueva categoría',ok:'Guardar',html:'<div class="field"><label class="lab" for="ce-n">Nombre</label><input id="ce-n" value="'+esc(c?c.n:'')+'" placeholder="Ej. Nivel láser" autocomplete="off" maxlength="40"></div>'
+  +(c?(used?'<p class="small muted" style="margin:8px 0 0">La usan '+plural(used,'equipo o modelo','equipos o modelos')+'; por eso no se puede eliminar.</p>':'<label class="chkline" style="margin-top:10px"><input type="checkbox" id="ce-del"> Eliminar esta categoría (no la usa nadie)</label>'):''),
+  fn:()=>{const v=(($('#ce-n')||{}).value||'').trim();const del=c&&!used&&($('#ce-del')||{}).checked;
+   if(del){S.config.cats=catsMut().filter(x=>x.id!==c.id);commit();toast('Categoría eliminada.');return;}
+   if(!v){toast('Escribe el nombre.','bad');return;}
+   if(catList().some(x=>x.id!==(c&&c.id)&&norm(x.n)===norm(v))){toast('Ya hay una categoría con ese nombre.','bad');return;}
+   if(c){catsMut().find(x=>x.id===c.id).n=v;}else addCat(v);commit();toast(c?'Categoría actualizada.':'Categoría agregada.');}});
+ setTimeout(()=>{const i=$('#ce-n');if(i)i.focus();},60);
+}
+function maqEdit(n){
+ if(guard('ajustes'))return;const used=n?S.tpls.filter(t=>(t.maquinas||[]).includes(n)).length:0;
+ ask({title:n?'Tipo de máquina':'Nuevo tipo de máquina',ok:'Guardar',html:'<div class="field"><label class="lab" for="mq-n">Nombre</label><input id="mq-n" value="'+esc(n||'')+'" placeholder="Ej. Perforadora" autocomplete="off" maxlength="30"></div>'
+  +(n?(used?'<p class="small muted" style="margin:8px 0 0">Lo usan '+plural(used,'plantilla','plantillas')+'; el nombre nuevo se cambia también ahí.</p>':'<label class="chkline" style="margin-top:10px"><input type="checkbox" id="mq-del"> Eliminar este tipo (no lo usa ninguna plantilla)</label>'):''),
+  fn:()=>{const v=(($('#mq-n')||{}).value||'').trim();const del=n&&!used&&($('#mq-del')||{}).checked;
+   if(del){S.config.maqTipos=maqMut().filter(x=>x!==n);commit();toast('Tipo eliminado.');return;}
+   if(!v){toast('Escribe el nombre.','bad');return;}
+   if(maqTipos().some(x=>x!==n&&norm(x)===norm(v))){toast('Ese tipo ya existe.','bad');return;}
+   if(n){const L=maqMut();L[L.indexOf(n)]=v;S.tpls.forEach(t=>{t.maquinas=(t.maquinas||[]).map(x=>x===n?v:x);});}else addMaqTipo(v);
+   commit();toast(n?'Tipo actualizado.':'Tipo agregado.');}});
+ setTimeout(()=>{const i=$('#mq-n');if(i)i.focus();},60);
+}
 function cargoHtml(name,own){
  const items=cargoOf(name);const p=person(name);const ob=p&&p.obra?obra(p.obra):null;
  const byO={};items.forEach(i=>{const k=(obra(i.loc.o)||{n:'Sin obra'}).n;(byO[k]=byO[k]||[]).push(i);});
  const inst=ob?obraItems(ob.id):[];const ks=kitsOf(name);
  let h='<section class="sec"><h2 class="sec-t">'+(CARGOS?(own?'A mi cargo':'A cargo de '+esc(name)):(own?'Equipos conmigo':'Equipos con '+esc(name)))+' <span class="count">'+plural(items.length,'equipo','equipos')+'</span></h2>';
  if(!items.length)h+='<p class="empty">'+(own?'No tienes equipos a tu cargo.':'No tiene equipos a su cargo.')+'</p>';
- else h+=Object.keys(byO).map(o=>'<p class="sub-t" style="margin:6px 0">Obra '+esc(o)+' · '+plural(byO[o].length,'equipo','equipos')+'</p><div class="list">'+groupItems(byO[o]).map(e=>itemRow(e.i,e.n>1?'<span class="pill p-neutral">×'+e.n+'</span>':'')).join('')+'</div>').join('')
+ else h+=Object.keys(byO).map(o=>'<p class="sub-t" style="margin:6px 0">Obra '+esc(o)+' · '+plural(byO[o].length,'equipo','equipos')+'</p><div class="list">'+groupItems(byO[o]).map(itemRowG).join('')+'</div>').join('')
   +(own&&!noReg()?'<div class="actions" style="margin-top:10px"><button class="btn primary" data-act="entregar">'+IC.users+'Entregar a otro técnico</button><button class="btn" data-act="devolver">'+IC.envio+'Devolver a '+esc(almShort(almPrin()))+'</button>'+(ob&&items.some(i=>i.loc.o!==ob.id)?'<button class="btn" data-act="llevar">Me los llevo a '+esc(ob.n)+'</button>':'')+'</div>':'');
  h+='</section>';
  if(ks.length)h+='<section class="sec"><h2 class="sec-t">Kits '+(own?'a mi cargo':'a su cargo')+' <span class="count">'+ks.length+'</span></h2><div class="list">'+ks.map(kitRow).join('')+'</div></section>';
- if(ob)h+='<section class="sec"><h2 class="sec-t">Instalados en '+esc(ob.n)+' <span class="count">'+inst.length+'</span></h2>'+(inst.length?'<div class="list">'+groupItems(inst).map(e=>itemRow(e.i)).join('')+'</div>':'<p class="empty">No hay equipos instalados en esta obra.</p>')+'</section>';
+ if(ob)h+='<section class="sec"><h2 class="sec-t">Instalados en '+esc(ob.n)+' <span class="count">'+inst.length+'</span></h2>'+(inst.length?'<div class="list">'+groupItems(inst).map(itemRowG).join('')+'</div>':'<p class="empty">No hay equipos instalados en esta obra.</p>')+'</section>';
  return h;
 }
 function vPerfil(){
@@ -2810,6 +2981,9 @@ function ask(o){
  const ok=$('#mOk');ok.textContent=o.ok||'Confirmar';ok.className='btn '+(o.danger?'dangerfill':'primary');$('#mCancel').hidden=!!o.info;
  $('#modal').hidden=false;setTimeout(()=>{try{$(o.info?'#mOk':'#mCancel').focus();}catch(e){}},30);
 }
+document.addEventListener('keydown',e=>{const t=e.target;if(e.key==='Enter'&&t&&t.id==='f-serie'&&!e.isComposing){e.preventDefault();serAddForm();}});
+document.addEventListener('paste',e=>{const t=e.target;if(!t||t.id!=='f-serie')return;const txt=(e.clipboardData||window.clipboardData).getData('text')||'';if(!/[\r\n,;\t]/.test(txt.trim()))return;e.preventDefault();const n=serAddTokens(txt.split(/[\r\n,;\t]+/));F.serie='';renderSheet(false);if(n)toast(plural(n,'serie agregada','series agregadas')+'.');setTimeout(()=>{const i=$('#f-serie');if(i)i.focus();},30);});
+document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.isComposing)return;const t=e.target;if(!t||t.tagName!=='INPUT'||!t.closest('#modal')||/^(checkbox|radio)$/.test(t.type))return;e.preventDefault();const ok=$('#mOk');if(ok&&!$('#modal').hidden)ok.click();});
 function closeAsk(){$('#modal').hidden=true;askFn=null;if(lastFocus&&lastFocus.isConnected)try{lastFocus.focus();}catch(e){}}
 function guardRO(){if(RO){toast('Solo lectura: no puedes registrar cambios con esta cuenta.','bad');return true;}if(MODE==='online'&&!S.user&&!viewAs){openOnboarding();return true;}return false;}
 /* Permiso por acción: registrar, kits, importar, exportar, ajustes, usuarios, correos */
@@ -2822,20 +2996,78 @@ function histList(ms){
 }
 
 /* ---------- Equipo ---------- */
-function sItem(id){
- const i=item(id);if(!i)return null;const k=kitOf(id);
+function sItem(id,mode){
+ const i=item(id);if(!i)return null;const k=kitOf(id);const grp=groupOf(i);if(mode==='g'&&grp.length>1)return sItemGroup(i,grp);
  const hist=S.movs.filter(m=>m.items.includes(id)).sort(byDateDesc);
  const can={env:i.loc.t!=='transito'&&i.loc.t!=='instalado',inst:i.loc.t==='almacen'||i.loc.t==='tecnico',ret:i.loc.t==='instalado'};
  const slot=k?k.slots.indexOf(id):-1;
  const comp=S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(i.np)));
  const p=prodBy(i.np);
  return {title:i.code+' · '+i.nombre,html:
- '<div class="itemtop"><div class="photo">'+(i.photo?'<img src="'+esc(imgSrc(i.photo))+'" alt="Foto de '+esc(i.nombre)+'">':ill(i.cat))+(noReg()?'':'<label class="photo-btn">'+(i.photo?'Cambiar foto':'Agregar foto')+'<input class="vh" type="file" accept="image/*" data-file="itemPhoto" data-id="'+id+'"></label>')+'</div>'
- +'<div class="itemhead"><button class="plate" data-act="ctxCopy" data-t="'+esc(i.code)+'" title="Copiar código" aria-label="Código '+esc(i.code)+'. Toca para copiar">'+esc(i.code)+'</button><h1 class="h1">'+esc(i.nombre)+'</h1><p class="lead">'+esc(i.marca)+' · '+esc(CATS[i.cat]||'Otro')+' · '+esc(i.modelo)+'</p>'
- +'<div class="where"><span class="lab" style="margin:0">Dónde está ahora</span><div class="rmeta">'+locPill(i)+'</div><span class="big">'+esc(locText(i.loc))+'</span>'+(hist[0]?'<span class="small muted">Último movimiento: '+fmt(hist[0].fecha)+' · '+esc(hist[0].tipo)+' por '+esc(hist[0].por)+'</span>':'')+(i.loc.t==='transito'?'<button class="btn sm" data-act="mov" data-id="'+i.loc.mov+'" style="align-self:flex-start">Ver envío</button>':'')+'</div></div></div>'
- +'<dl class="dl"><dt>Serie</dt><dd class="mono">'+esc(i.serie||'Sin serie')+'</dd><dt>N° parte</dt><dd class="mono">'+esc(i.np)+'</dd><dt>Código</dt><dd class="mono">'+esc(i.code)+'</dd><dt>Condición</dt><dd>'+esc(i.cond)+(isAdmin()?' <button class="linkbtn" data-act="condEdit" data-id="'+id+'">Cambiar</button>':'')+'</dd>'+(k?'<dt>Kit</dt><dd><button class="btn sm" data-act="kit" data-id="'+k.id+'">'+esc(k.code)+' · '+esc(slotOf(tplOf(k),slot).l)+'</button></dd>':'')+(i.renglon?'<dt>Cuaderno</dt><dd>Renglón '+i.renglon+'</dd>':'')+(i.obs?'<dt>Revisar</dt><dd style="color:var(--warn)">'+esc(i.obs)+'</dd>':'')+'<dt>Sirve para</dt><dd>'+(comp.length?comp.map(t=>esc(t.n)+' <span class="muted">('+esc((t.maquinas||[]).join(', '))+')</span>').join('<br>'):'No está en ninguna plantilla de kit')+'</dd>'+(p&&p.serie&&!i.serie?'<dt>Atención</dt><dd style="color:var(--warn)">Este modelo lleva serie y esta unidad no la tiene registrada.</dd>':'')+'</dl>'
+ '<div class="itemtop"><div class="photo">'+(i.photo?'<img src="'+esc(imgSrc(i.photo))+'" alt="Foto de '+esc(i.nombre)+'">':ill(i.cat))+(noReg()?'':'<span class="photo-btns">'+(i.photo?'<button type="button" class="photo-btn" data-act="photoCrop" data-id="'+id+'">Encuadrar</button>':'')+'<label class="photo-btn">'+(i.photo?'Cambiar foto':'Agregar foto')+'<input class="vh" type="file" accept="image/*" data-file="itemPhoto" data-id="'+id+'"></label></span>')+'</div>'
+ +'<div class="itemhead"><button class="plate" data-act="ctxCopy" data-t="'+esc(i.code)+'" title="Copiar código" aria-label="Código '+esc(i.code)+'. Toca para copiar">'+esc(i.code)+'</button><h1 class="h1">'+esc(i.nombre)+'</h1><p class="lead">'+esc(i.marca)+' · '+esc(catName(i.cat))+' · '+esc(i.modelo)+'</p>'
+ +'<div class="where"><span class="lab" style="margin:0">Dónde está ahora</span><div class="rmeta">'+locPill(i)+'</div><span class="big">'+esc(locText(i.loc))+'</span>'+(hist[0]?'<span class="small muted">Último movimiento: '+fmt(hist[0].fecha)+' · '+esc(hist[0].tipo)+' por '+esc(hist[0].por)+'</span>':'')+(i.loc.t==='transito'?'<button class="btn sm" data-act="mov" data-id="'+i.loc.mov+'" style="align-self:flex-start">Ver envío</button>':'')+(grp.length>1?'<span class="small muted">Es 1 de '+grp.length+' unidades de este modelo aquí. <button class="linkbtn" data-act="item" data-id="'+id+'" data-g="1">Ver las '+grp.length+'</button></span>':'')+'</div></div></div>'
+ +'<dl class="dl"><dt>Serie</dt><dd><span class="mono">'+(i.serie?esc(i.serie):'<span class="muted">Sin asignar</span>')+'</span>'+(noReg()?'':' <button class="linkbtn" data-act="serOne" data-id="'+id+'">'+(i.serie?'Cambiar':'Asignar')+'</button>')+'</dd><dt>N° parte</dt><dd class="mono">'+esc(i.np)+'</dd><dt>Código</dt><dd class="mono">'+esc(i.code)+'</dd><dt>Condición</dt><dd>'+esc(i.cond)+(isAdmin()?' <button class="linkbtn" data-act="condEdit" data-id="'+id+'">Cambiar</button>':'')+'</dd>'+(k?'<dt>Kit</dt><dd><button class="btn sm" data-act="kit" data-id="'+k.id+'">'+esc(k.code)+' · '+esc(slotOf(tplOf(k),slot).l)+'</button></dd>':'')+(i.obs?'<dt>Revisar</dt><dd style="color:var(--warn)">'+esc(i.obs)+'</dd>':'')+'<dt>Sirve para</dt><dd>'+(comp.length?comp.map(t=>esc(t.n)+' <span class="muted">('+esc((t.maquinas||[]).join(', '))+')</span>').join('<br>'):'No está en ninguna plantilla de kit')+'</dd>'+'</dl>'
  +(noReg()?'':'<div class="actions">'+(can.env?'<button class="btn primary" data-act="form" data-kind="envio" data-id="'+id+'">'+IC.envio+'Enviar</button>':'')+(can.inst&&S.obras.length?'<button class="btn" data-act="form" data-kind="inst" data-id="'+id+'">Instalar en máquina</button>':'')+(can.ret?'<button class="btn" data-act="form" data-kind="ret" data-id="'+id+'">Retirar de máquina</button>':'')+(k&&i.loc.t!=='transito'&&!noKit()?'<button class="btn danger" data-act="slotEdit" data-mode="quitar" data-k="'+k.id+'" data-i="'+slot+'">Quitar del kit</button>':'')+'<button class="btn" data-act="itemEdit" data-id="'+id+'">Editar</button>'+(i.cond!=='De baja'&&i.loc.t!=='transito'?'<button class="btn danger" data-act="ctxBaja" data-id="'+id+'">Dar de baja</button>':'')+moreBtn('item',id,i.nombre).replace('class="rmore"','class="btn rmore-btn"')+'</div>')
  +'<section class="sec" style="margin:0"><h2 class="sec-t">Historial</h2>'+histList(hist)+'</section>'};
+}
+/* varias unidades del mismo modelo en el mismo lugar */
+function sItemGroup(i,g){
+ g=g.slice().sort((a,b)=>codeNum(a.code)-codeNum(b.code));
+ const ids=g.map(x=>x.id);const si=serInfo(ids);const ph=(g.find(x=>x.photo)||{}).photo;
+ const hist=S.movs.filter(m=>m.items.some(x=>ids.includes(x))).sort(byDateDesc);
+ const env=g.filter(x=>x.loc.t!=='transito'&&x.loc.t!=='instalado'&&x.cond!=='De baja');
+ const comp=S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(i.np)));
+ const obs=[...new Set(g.map(x=>x.obs||'').filter(Boolean))];
+ return {title:i.nombre+' · ×'+g.length,html:
+ '<div class="itemtop"><div class="photo">'+(ph?'<img src="'+esc(imgSrc(ph))+'" alt="Foto de '+esc(i.nombre)+'">':ill(i.cat))+(noReg()?'':'<span class="photo-btns">'+(ph?'<button type="button" class="photo-btn" data-act="photoCrop" data-id="'+(g.find(x=>x.photo)||i).id+'" data-all="1">Encuadrar</button>':'')+'<label class="photo-btn">'+(ph?'Cambiar foto':'Agregar foto')+'<input class="vh" type="file" accept="image/*" data-file="itemPhoto" data-id="'+i.id+'" data-all="1"></label></span>')+'</div>'
+ +'<div class="itemhead"><span class="unitsbadge">×'+g.length+' unidades</span><h1 class="h1">'+esc(i.nombre)+'</h1><p class="lead">'+esc(i.marca)+' · '+esc(catName(i.cat))+' · '+esc(i.modelo)+'</p>'
+ +'<div class="where"><span class="lab" style="margin:0">Dónde están ahora</span><div class="rmeta">'+locPill(i)+'</div><span class="big">'+esc(locText(i.loc))+'</span>'+(hist[0]?'<span class="small muted">Último movimiento: '+fmt(hist[0].fecha)+' · '+esc(hist[0].tipo)+' por '+esc(hist[0].por)+'</span>':'')+'</div></div></div>'
+ +'<dl class="dl"><dt>Series</dt><dd>'+si.con+' de '+g.length+' asignadas · <button class="linkbtn" data-act="serList" data-id="'+i.id+'">'+(noReg()?'Ver series':'Ver y editar series')+'</button></dd><dt>N° parte</dt><dd class="mono">'+esc(i.np)+'</dd><dt>Condición</dt><dd>'+esc(i.cond)+'</dd>'+(obs.length?'<dt>Nota</dt><dd>'+esc(obs.join(' · '))+'</dd>':'')+'<dt>Sirve para</dt><dd>'+(comp.length?comp.map(t=>esc(t.n)+' <span class="muted">('+esc((t.maquinas||[]).join(', '))+')</span>').join('<br>'):'No está en ninguna plantilla de kit')+'</dd></dl>'
+ +(noReg()?'':'<div class="actions">'+(env.length?'<button class="btn primary" data-act="ctxSend" data-id="'+i.id+'">'+IC.envio+'Enviar</button>':'')+'<button class="btn" data-act="serList" data-id="'+i.id+'">Series</button><button class="btn" data-act="itemEdit" data-id="'+i.id+'">Editar datos</button>'+(env.length?'<button class="btn danger" data-act="ctxBaja" data-id="'+i.id+'">Dar de baja</button>':'')+'</div>')
+ +'<section class="sec" style="margin:0"><h2 class="sec-t">Unidades <span class="count">'+g.length+'</span></h2><div class="list">'+g.map(x=>'<button class="row" data-act="unit" data-id="'+x.id+'"><span class="thumb">'+thumb(x)+'</span><span class="rmain"><span class="rname mono">'+esc(x.code)+'</span><span class="rsub'+(x.serie?' mono':'')+'">'+(x.serie?'S/N '+esc(x.serie):'Serie sin asignar')+'</span></span></button>').join('')+'</div></section>'
+ +'<section class="sec" style="margin:0"><h2 class="sec-t">Historial</h2>'+histList(hist.slice(0,30))+'</section>'};
+}
+/* menú de series: todas las unidades del grupo, cada una con su serie */
+function sSeries(id){
+ const it=item(id);if(!it)return null;const g=groupOf(it).slice().sort((a,b)=>codeNum(a.code)-codeNum(b.code));const ed=!noReg();
+ if(!G.ser||G.ser.id!==id){G.ser={id,v:{},err:{},bulk:''};g.forEach(x=>{G.ser.v[x.id]=x.serie||'';});}
+ const e=G.ser;const si=serInfo(g.map(x=>x.id));const vacias=g.filter(x=>!String(e.v[x.id]||'').trim()).length;
+ return {title:'Series · '+it.nombre,html:'<p class="sub-t" style="margin:0">'+esc(locShort(it.loc))+' · '+plural(g.length,'unidad','unidades')+' · '+si.con+' con serie, '+si.sin+' sin asignar.</p>'
+  +'<div class="serlist">'+g.map((x,ix)=>{const er=e.err[x.id];return '<div class="serrow'+(er?' bad':'')+'"><button class="codechip" data-act="unit" data-id="'+x.id+'" aria-label="Ver la ficha de '+esc(x.code)+'">'+esc(x.code)+'</button>'
+   +(ed?'<input id="ser-'+ix+'" data-ser="'+x.id+'" value="'+esc(e.v[x.id]||'')+'" placeholder="Sin asignar" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Serie de '+esc(x.code)+'"'+(er?' aria-invalid="true"':'')+'>':'<span class="mono">'+(x.serie?esc(x.serie):'<span class="muted">Sin asignar</span>')+'</span>')
+   +(er?'<span class="small sererr">'+esc(er)+'</span>':'')+'</div>';}).join('')+'</div>'
+  +(ed&&vacias?'<details class="serbulk"'+(e.bulk?' open':'')+'><summary>Pegar varias series a la vez</summary><textarea id="ser-bulk" data-serbulk="1" rows="3" placeholder="Una serie por línea (o separadas por coma)">'+esc(e.bulk||'')+'</textarea><button class="btn sm" type="button" data-act="serBulk">Repartir en las '+vacias+' sin asignar</button></details>':'')
+  +(ed?'<p class="small muted" style="margin:0">Deja vacío lo que no tenga serie: queda «Sin asignar». El cambio queda en el historial a nombre de <b>'+esc(meName())+'</b>.</p><div class="actions"><button class="btn primary" data-act="serSave">Guardar series</button><button class="btn ghost" data-act="back">Cancelar</button></div>':'')};
+}
+function serKey(v){return norm(String(v||'').trim()).replace(/\s+/g,' ');}
+function serBulk(){const e=G.ser;if(!e)return;const toks=String(e.bulk||'').split(/[\r\n,;\t]+/).map(x=>x.trim()).filter(Boolean);if(!toks.length){toast('Pega primero las series.','bad');return;}
+ const it=item(e.id);const g=groupOf(it).slice().sort((a,b)=>codeNum(a.code)-codeNum(b.code));let k=0;
+ g.forEach(x=>{if(k<toks.length&&!String(e.v[x.id]||'').trim())e.v[x.id]=toks[k++];});
+ const sobra=toks.length-k;e.bulk='';renderSheet(false);toast(plural(k,'serie repartida','series repartidas')+(sobra?' · sobraron '+sobra+' (no hay más unidades sin serie)':'')+'. Revisa y guarda.','',4500);}
+function serSave(){
+ if(guard('registrar'))return;const e=G.ser;if(!e)return;const it=item(e.id);if(!it)return;
+ const ids=Object.keys(e.v).filter(id=>item(id));const err={};const seen={};
+ ids.forEach(id=>{const v=String(e.v[id]||'').trim();e.v[id]=v;if(!v)return;const k=serKey(v);
+  if(seen[k]){err[id]='Repetida en esta lista';err[seen[k]]='Repetida en esta lista';}else seen[k]=id;
+  const o=S.items.find(x=>!ids.includes(x.id)&&x.serie&&serKey(x.serie)===k);if(o)err[id]='Ya la tiene '+o.code+' ('+o.nombre+')';});
+ e.err=err;
+ if(Object.keys(err).length){renderSheet(false);toast('Hay series repetidas. Revisa las marcadas.','bad');setTimeout(()=>{const f=document.querySelector('.serrow.bad input');if(f)f.focus();},60);return;}
+ const ch=ids.filter(id=>(item(id).serie||'')!==e.v[id]);
+ if(!ch.length){G.ser=null;closeSheet();toast('No hubo cambios.');return;}
+ const nota='Series: '+ch.map(id=>item(id).code+' '+(item(id).serie||'sin asignar')+' → '+(e.v[id]||'sin asignar')).join('; ')+'.';
+ ch.forEach(id=>{item(id).serie=e.v[id];});
+ newMov({tipo:'Edición de datos',por:meName(),origen:'Series',destino:clone(it.loc),items:ch,nota});
+ G.ser=null;commit();closeSheet();toast(plural(ch.length,'serie guardada','series guardadas')+'.');
+}
+function serOne(id){
+ if(guard('registrar'))return;const i=item(id);if(!i)return;
+ ask({title:i.serie?'Cambiar serie':'Asignar serie',ok:'Guardar',html:'<p class="small muted" style="margin:0 0 8px">'+esc(i.code)+' · '+esc(i.nombre)+'</p><div class="field"><label class="lab" for="so-s">Serie</label><input id="so-s" value="'+esc(i.serie||'')+'" placeholder="Sin asignar" autocomplete="off" autocapitalize="characters" spellcheck="false"></div><p class="small muted" style="margin:8px 0 0">Si la dejas vacía queda «Sin asignar».</p>',
+  fn:()=>{const v=(($('#so-s')||{}).value||'').trim();if(v===(i.serie||''))return;
+   const o=v&&S.items.find(x=>x.id!==i.id&&x.serie&&serKey(x.serie)===serKey(v));if(o){toast('Esa serie ya la tiene '+o.code+' ('+o.nombre+').','bad',5000);return;}
+   const prev=i.serie||'';i.serie=v;newMov({tipo:'Edición de datos',por:meName(),origen:'Series',destino:clone(i.loc),items:[i.id],nota:'Serie de '+i.code+': '+(prev||'sin asignar')+' → '+(v||'sin asignar')+'.'});
+   commit();toast(v?'Serie guardada.':'Serie quitada: queda «Sin asignar».');}});
+ setTimeout(()=>{const x=$('#so-s');if(x){x.focus();x.select();}},60);
 }
 function condEdit(id){if(guard('ajustes'))return;const i=item(id);ask({title:'Cambiar condición',ok:'Guardar',html:'<p style="margin:0 0 10px">'+esc(i.nombre)+' · '+esc(sn(i))+'</p><div class="seg">'+['Operativo','Dañado','En reparación','De baja'].map(v=>'<label><input type="radio" name="cnd" value="'+v+'"'+(i.cond===v?' checked':'')+'><span>'+v+'</span></label>').join('')+'</div>',fn:()=>{const v=(document.querySelector('input[name="cnd"]:checked')||{}).value;if(!v||v===i.cond)return;const prev=i.cond;i.cond=v;if(v!=='Operativo'&&prev==='Operativo')notify('danado',{titulo:i.nombre+' '+sn(i)+' marcado como '+v,texto:meName()+' cambió la condición a '+v+'. Ubicación: '+locText(i.loc)+'.',para:admins()});commit();toast('Condición actualizada.');}});}
 
@@ -2860,8 +3092,8 @@ function codeRuns(codes){
 }
 function constRows(m){
  const its=m.items.map(item).filter(Boolean);const out=[];const grp=new Map();
- its.forEach(i=>{if(i.serie){out.push({codes:[i.code],nombre:i.nombre,np:i.np,serie:i.serie,n:1});return;}
-  const k=i.np+'|'+i.nombre;if(!grp.has(k)){const r={codes:[],nombre:i.nombre,np:i.np,serie:'',n:0};grp.set(k,r);out.push(r);}const r=grp.get(k);r.codes.push(i.code);r.n++;});
+ its.forEach(i=>{const k=i.np+'|'+i.nombre;if(!grp.has(k)){const r={codes:[],nombre:i.nombre,np:i.np,series:[],sin:0,n:0};grp.set(k,r);out.push(r);}const r=grp.get(k);r.codes.push(i.code);r.n++;if(i.serie)r.series.push(i.serie);else r.sin++;});
+ out.forEach(r=>{r.serie=r.series.join(', ')+(r.sin?(r.series.length?' + '+r.sin+' sin asignar':(r.n>1?r.sin+' sin asignar':'Sin asignar')):'');});
  return out;
 }
 function constPdfBuild(m){
@@ -2893,13 +3125,13 @@ function constPdfBuild(m){
  if(m.nota||kit)row2(['Observaciones:',(kit?'Kit '+kit.code+' completo. ':'')+(m.nota||'')],null);
  // tabla
  y+=1.5;
- const cols=[['N°',8,'c'],['Código',33,'l'],['Descripción',60,'l'],['N° de parte',27,'l'],['Serie',26,'l'],['Cant.',12,'r'],['Empaque',16,'c']];
+ const cols=[['N°',8,'c'],['Código',31,'l'],['Descripción',52,'l'],['N° de parte',25,'l'],['Serie',38,'l'],['Cant.',12,'r'],['Empaque',16,'c']];
  const head=()=>{doc.setFillColor(233,239,244);doc.rect(L,y-4.2,R-L,6.4,'F');font('bold',7.8);let x=L;cols.forEach(c=>{const tx=c[2]==='c'?x+c[1]/2:c[2]==='r'?x+c[1]-1.5:x+1.5;T(c[0],tx,y,{align:c[2]==='c'?'center':c[2]==='r'?'right':'left'});x+=c[1];});y+=5.6;};
  head();
  const rows=constRows(m);const pk=m.empaque&&m.empaque.n>=m.items.length;
  rows.forEach((r,ix)=>{
   font('normal',7.8);
-  const cells=[String(ix+1),codeRuns(r.codes),r.nombre,r.np,r.serie||'Sin serie',String(r.n),pk?'Sí':'-'];
+  const cells=[String(ix+1),codeRuns(r.codes),r.nombre,r.np,r.serie||'Sin asignar',String(r.n),pk?'Sí':'-'];
   const lines=cells.map((v,i)=>doc.splitTextToSize(pdfTxt(v),cols[i][1]-3));
   const hh=Math.max.apply(null,lines.map(l=>l.length))*3.5+2.2;
   if(y+hh>H-24){doc.addPage();y=20;head();font('normal',7.8);}
@@ -2941,16 +3173,16 @@ const PAQ_SAMPLE='data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xm
 function paqBox(){
  const p=F.paq||[];
  return '<div class="field paqbox"><span class="lab">Fotos del paquete (obligatoria'+(PAQ_MAX>1?', hasta '+PAQ_MAX:'')+')</span><div class="paqs">'
-  +p.map((u,i)=>'<div class="paq"><img src="'+esc(u)+'" alt="Foto del paquete '+(i+1)+'"><button class="paq-x" type="button" data-act="paqDel" data-i="'+i+'" aria-label="Quitar la foto '+(i+1)+'">✕</button></div>').join('')
+  +p.map((u,i)=>'<div class="paq"><button type="button" class="paq-img" data-act="paqCrop" data-i="'+i+'" aria-label="Encuadrar de nuevo la foto '+(i+1)+'"><img src="'+esc(u)+'" alt=""></button><button class="paq-x" type="button" data-act="paqDel" data-i="'+i+'" aria-label="Quitar la foto '+(i+1)+'">✕</button></div>').join('')
   +(p.length<PAQ_MAX?'<label class="paq paq-add" for="f-paq"><input class="vh" type="file" id="f-paq" accept="image/*" data-file="paq">'+IC.camera+'<span>'+(p.length?'Otra foto':'Tomar foto del paquete')+'</span></label>':'')
   +'</div><span class="small muted">Las cajas o bolsas tal como salen, cerradas y con la etiqueta visible si la tienen.</span>'
   +(!FB_ON&&!p.length?'<button class="btn ghost sm" type="button" data-act="paqSample" style="align-self:flex-start">Usar foto de ejemplo (prueba)</button>':'')+'</div>';
 }
 async function addPaqPhoto(f){
  if(!f||!F||F.kind!=='envio')return;if((F.paq||[]).length>=PAQ_MAX){toast('Ya hay '+PAQ_MAX+' fotos del paquete.','bad');return;}
- let u;try{const img=await loadImage(f);for(const [mx,q] of [[1000,.62],[850,.55],[700,.5],[560,.5]]){u=drawScaled(img,mx).toDataURL('image/jpeg',q);if(u.length<=100000)break;}}
- catch(e){toast('No se pudo leer esa foto. Tómala de nuevo.','bad');return;}
- F.paq=(F.paq||[]).concat([u]);F.errs=(F.errs||[]).filter(x=>x.indexOf('foto del paquete')<0);renderSheet(false);
+ const c=await cropPhoto(f,{title:'Encuadra la foto del paquete'});if(!c)return;
+ let u;try{u=await smallJpeg(c);}catch(e){toast('No se pudo leer esa foto. Tómala de nuevo.','bad');return;}
+ const had=(F.errs||[]).some(x=>x.indexOf('foto del paquete')>=0);F.paq=(F.paq||[]).concat([u]);F.errs=(F.errs||[]).filter(x=>x.indexOf('foto del paquete')<0);renderSheet(false);if(had)hideToast();
 }
 function paqView(m){const p=(m&&m.paq)||[];return p.length?'<div class="paqs view">'+p.map((u,i)=>'<button class="paq" type="button" data-act="paqZoom" data-id="'+m.id+'" data-i="'+i+'" aria-label="Ampliar la foto del paquete '+(i+1)+'"><img src="'+esc(imgSrc(u))+'" alt="" loading="lazy"></button>').join('')+'</div>':'';}
 function bolBox(key,ctx,opts){
@@ -2978,7 +3210,7 @@ function sMov(id){
  const pend=pendingOf(m);const kit=m.kit?kitById(m.kit):null;const rd=retrasoDias(m);
  let h='<div><div class="rmeta">'+estadoPill(m)+'</div><h1 class="h1" style="margin-top:6px">'+esc(m.tipo)+' · '+plural(m.items.length,'equipo','equipos')+'</h1><p class="lead">'+esc(m.num)+' · '+fmt(m.fecha)+' · registró '+esc(m.por)+'</p></div>';
  const who=[...new Set([m.por].concat(m.dest||[]))].filter(n=>n&&n!==nm&&telLinks(n));
- h+='<dl class="dl"><dt>Desde</dt><dd>'+esc(m.origen)+'</dd><dt>Hacia</dt><dd>'+esc(isEnv?movDest(m):locText(m.destino))+'</dd>'+(isEnv?'<dt>Confirma</dt><dd>Solo '+esc(namesO(m.dest))+'</dd>':'')+(m.agencia?'<dt>Agencia</dt><dd>'+esc(m.agencia)+'</dd>':'')+(m.guia?'<dt>Guía</dt><dd class="mono">'+esc(m.guia)+'</dd>':'')+(m.bultos?'<dt>Bultos</dt><dd>'+m.bultos+'</dd>':'')+(kit?'<dt>Kit</dt><dd><button class="btn sm" data-act="kit" data-id="'+kit.id+'">'+esc(kit.code)+'</button></dd>':'')+(who.length?'<dt>Llamar</dt><dd class="telsdd">'+who.map(n=>telLinks(n)).join('')+'</dd>':'')+(m.nota?'<dt>Nota</dt><dd>'+esc(m.nota)+'</dd>':'')+(m.empaque?'<dt>Empaque</dt><dd>'+IC.check.replace('<svg','<svg class="ic14"')+' '+m.empaque.n+' de '+m.items.length+' revisados por '+esc(m.empaque.por)+'</dd>':'')+'</dl>';
+ h+='<dl class="dl">'+(m.tipo==='Edición de datos'?'<dt>Cambio</dt><dd>'+esc(m.origen==='Series'?'Series':m.origen==='Ficha del equipo'?'Datos del equipo':m.origen)+'</dd><dt>Dónde</dt><dd>'+esc(locText(m.destino))+'</dd>':'<dt>Desde</dt><dd>'+esc(m.origen)+'</dd><dt>Hacia</dt><dd>'+esc(isEnv?movDest(m):locText(m.destino))+'</dd>')+(isEnv?'<dt>Confirma</dt><dd>Solo '+esc(namesO(m.dest))+'</dd>':'')+(m.agencia?'<dt>Agencia</dt><dd>'+esc(m.agencia)+'</dd>':'')+(m.guia?'<dt>Guía</dt><dd class="mono">'+esc(m.guia)+'</dd>':'')+(m.bultos?'<dt>Bultos</dt><dd>'+m.bultos+'</dd>':'')+(kit?'<dt>Kit</dt><dd><button class="btn sm" data-act="kit" data-id="'+kit.id+'">'+esc(kit.code)+'</button></dd>':'')+(who.length?'<dt>Llamar</dt><dd class="telsdd">'+who.map(n=>telLinks(n)).join('')+'</dd>':'')+(m.nota?'<dt>Nota</dt><dd>'+esc(m.nota)+'</dd>':'')+(m.empaque?'<dt>Empaque</dt><dd>'+IC.check.replace('<svg','<svg class="ic14"')+' '+m.empaque.n+' de '+m.items.length+' revisados por '+esc(m.empaque.por)+'</dd>':'')+'</dl>';
  if(isEnv){loadPdfLibs().catch(()=>{});h+='<div class="actions"><button class="btn" data-act="constPdf" data-id="'+m.id+'">'+IC.doc+'Constancia de envío (PDF)</button></div>';}
  if(rd&&!noReg())h+='<div class="alertbox">'+IC.clock+'<span>Lleva <b>'+rd+' días</b> en tránsito (el límite es '+(S.config.diasRetraso||3)+').</span><button class="btn sm" data-act="avisarRetraso" data-id="'+m.id+'">Avisar retraso</button></div>';
  if(isEnv&&paqView(m))h+='<section class="sec" style="margin:0"><h2 class="sec-t">Fotos del paquete <span class="count">'+m.paq.length+'</span></h2>'+paqView(m)+'</section>';
@@ -3059,7 +3291,7 @@ function newMov(o){const m=Object.assign({id:newId('m'),num:nextCode(S.movs,'num
 /* ---------- Quitar / cambiar componente ---------- */
 function recRow(x,act,sel,best,extra){
  const i=x.i;const tag=act==='slotset'?'<span class="addtag">Asignar</span>':act==='gRep'?'<span class="radio" aria-hidden="true"></span>':'';
- return '<button class="row'+(sel?' selrow':'')+'" data-act="'+act+'" data-id="'+i.id+'"'+(extra||'')+(act==='gRep'?' aria-pressed="'+!!sel+'"':'')+'><span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname">'+esc(i.nombre)+'</span><span class="rsub mono">'+esc(sn(i))+' · NP '+esc(i.np)+'</span><span class="rsub">'+esc(locText(i.loc))+'</span><span class="rmeta">'+(best?'<span class="pill p-ok">Recomendado</span>':'')+'<span class="pill '+(x.sc<=1?'p-ok':'p-neutral')+'">'+esc(x.why)+'</span></span></span>'+tag+'</button>';
+ return '<button class="row'+(sel?' selrow':'')+'" data-act="'+act+'" data-id="'+i.id+'"'+(extra||'')+(act==='gRep'?' aria-pressed="'+!!sel+'"':'')+'><span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname">'+esc(i.nombre)+'</span><span class="rsub'+(i.serie?' mono':'')+'">'+esc(sn(i))+' · NP '+esc(i.np)+'</span><span class="rsub">'+esc(locText(i.loc))+'</span><span class="rmeta">'+(best?'<span class="pill p-ok">Recomendado</span>':'')+'<span class="pill '+(x.sc<=1?'p-ok':'p-neutral')+'">'+esc(x.why)+'</span></span></span>'+tag+'</button>';
 }
 function noRows(r){if(!r.no.length)return '';return '<details class="nocomp"><summary>'+plural(r.no.length,'equipo del mismo tipo no es compatible','equipos del mismo tipo no son compatibles')+'</summary><div class="list">'+r.no.map(x=>'<div class="row dis"><span class="thumb">'+thumb(x.i)+'</span><span class="rmain"><span class="rname">'+esc(x.i.nombre)+'</span><span class="rsub mono">'+esc(sn(x.i))+' · '+esc(locShort(x.i.loc))+'</span><span class="rmeta"><span class="pill p-bad">'+esc(x.why)+'</span></span></span></div>').join('')+'</div></details>';}
 function recBox(r){const near=r.ok.filter(x=>x.sc<=1).length;
@@ -3159,7 +3391,7 @@ function openForm(kind,ids,kitId){
  if(kind==='envio')Object.assign(F,{destT:'tecnico',obra:(S.obras[0]||{}).id||'',d1:'',d2:'',agencia:couriers()[0]||agencias()[0],guia:''});
  if(kind==='inst')Object.assign(F,{obra:(S.obras[0]||{}).id||'',maq:((S.obras[0]||{}).maqs||[])[0]||''});
  if(kind==='ret')Object.assign(F,{cond:'Operativo',persona:''});
- if(kind==='nuevo')Object.assign(F,{qty:'1',np:(S.prods[0]||{}).np||'otro',nombre:'',cat:'gnss',marca:'Leica',modelo:'',serie:'',alm:almPrin(),photo:null,npx:''});
+ if(kind==='nuevo')Object.assign(F,{qty:'1',np:(S.prods[0]||{}).np||'otro',nombre:'',cat:(catList()[0]||{}).id||'otro',marca:'Leica',modelo:'',serie:'',series:[],alm:almPrin(),photo:null,npx:''});
  (ids||[]).forEach(id=>{const it=item(id);if(it&&eligible(it)&&!F.items.includes(id))F.items.push(id);});
  if(kitId)addKit(kitId);
  const first=item(F.items[0]);
@@ -3189,7 +3421,7 @@ function selList(){
  SELG=selGroups();
  return pkHead()+'<div class="sel">'+SELG.map((g,gi)=>{const i=item(g.ids[0]);const k=kitOf(i.id);const n=g.ids.length;const on=pkOn()&&g.ids.every(id=>(F.pk||[]).includes(id));const max=n+availFor(g.key).length;
   return '<div class="selitem'+(on?' packed':'')+'">'+(pkOn()?'<label class="pkc" title="Marcar cuando esté en la caja"><input type="checkbox" data-pkg="'+gi+'"'+(on?' checked':'')+' aria-label="'+esc(i.nombre)+' está en la caja"><span>En caja</span></label>':'')
-  +'<span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname" style="font-size:14px">'+esc(i.nombre)+'</span><span class="rsub mono">'+esc(g.key?'Sin serie':sn(i))+' · '+esc(locShort(i.loc))+(k?' · '+esc(k.code):'')+'</span>'
+  +'<span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname" style="font-size:14px">'+esc(i.nombre)+'</span><span class="rsub mono">'+esc(g.key?'Serie sin asignar':sn(i))+' · '+esc(locShort(i.loc))+(k?' · '+esc(k.code):'')+'</span>'
   +(g.key&&max>1?qstep(['selDec','selInc','data-g="'+gi+'"','data-selq="'+gi+'"'],n,max,i.nombre):'')+'</span>'
   +'<button class="x" data-act="pickRmG" data-g="'+gi+'" aria-label="Quitar de la lista">×</button></div>';}).join('')+'</div>';
 }
@@ -3198,7 +3430,7 @@ function pickRes(){
  const pool=S.items.filter(i=>eligible(i)&&!F.items.includes(i.id)&&(!q||norm([i.nombre,i.serie,i.np,i.code,i.marca,locText(i.loc)].join(' ')).includes(q)));
  if(!pool.length)return '<p class="small muted" style="margin:6px 0 0">'+(q?'No hay equipos disponibles con esa búsqueda.':'No hay más equipos disponibles para este movimiento.')+'</p>';
  const rank=i=>i.loc.t==='almacen'?(i.loc.a===almPrin()?0:1):i.loc.t==='tecnico'?2:3;pool.sort((a,b)=>rank(a)-rank(b)||codeNum(a.code)-codeNum(b.code));
- const g=groupItems(pool),mx=isDesk()?8:6;
+ const g=groupItems(pool,grpKey),mx=isDesk()?8:6;
  return '<div class="list pickres">'+g.slice(0,mx).map(e=>{const i=e.i;
   const info='<span class="thumb">'+thumb(i)+'</span><span class="rmain"><span class="rname" style="font-size:14px">'+esc(i.nombre)+'</span><span class="'+(i.serie?'rsub mono':'rsub')+'">'+esc(sn(i))+(e.n>1?' · '+e.n+' disponibles':'')+'</span><span class="rsub">'+esc(locShort(i.loc))+'</span></span>';
   if(e.n>1)return '<div class="row pickrow">'+info+'<span class="pickctl">'+qstep(['pqDec','pqInc','data-id="'+i.id+'"','data-pq="'+i.id+'"'],1,e.n,i.nombre)+'<button class="btn sm primary" data-act="pickAddN" data-id="'+i.id+'">Agregar</button></span></div>';
@@ -3246,11 +3478,14 @@ function sForm(){
  if(F.kind==='nuevo'){
   const p=prodBy(F.np);
   return {title:'Nuevo equipo',html:errBox()
-  +'<div class="photo" style="aspect-ratio:16/9">'+(F.photo?'<img src="'+esc(F.photo)+'" alt="Foto del equipo">':ill(p?p.cat:F.cat))+'<label class="photo-btn">'+(F.photo?'Cambiar foto':'Tomar o subir foto')+'<input class="vh" type="file" accept="image/*" data-file="nuevoPhoto"></label></div>'
-  +'<div class="field"><label class="lab" for="f-np">Modelo del catálogo</label><select id="f-np" data-f="np">'+[...new Set(S.prods.map(x=>x.marca))].map(m=>'<optgroup label="'+esc(m)+'">'+opts(S.prods.filter(x=>x.marca===m).map(x=>[x.np,x.nombre+' '+x.modelo+' · '+x.np]),F.np)+'</optgroup>').join('')+'<option value="otro"'+(F.np==='otro'?' selected':'')+'>Otro (no está en el catálogo)</option></select></div>'
-  +(F.np==='otro'?'<div class="grid2"><div class="field"><label class="lab" for="f-cat">Categoría</label><select id="f-cat" data-f="cat">'+opts(Object.keys(CATS).map(k=>[k,CATS[k]]),F.cat)+'</select></div><div class="field"><label class="lab" for="f-marca">Marca</label><input id="f-marca" data-f="marca" value="'+esc(F.marca)+'"></div></div><div class="field"><label class="lab" for="f-nom">Nombre</label><input id="f-nom" data-f="nombre" value="'+esc(F.nombre)+'"></div><div class="grid2"><div class="field"><label class="lab" for="f-npx">N° de parte</label><input id="f-npx" data-f="npx" value="'+esc(F.npx||'')+'"></div><div class="field"><label class="lab" for="f-mod">Modelo</label><input id="f-mod" data-f="modelo" value="'+esc(F.modelo)+'"></div></div>'
-   :'<p class="info">'+esc(p.marca)+' · '+esc(CATS[p.cat]||'Otro')+' · '+esc(p.nombre)+' '+esc(p.modelo)+'. '+(p.serie?'<b>Lleva serie.</b> ':'No lleva serie: puedes ingresar varias unidades. ')+(S.tpls.some(t=>t.slots.some(s=>s.nps.includes(F.np)))?'Sirve para: '+esc(S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(F.np))).map(t=>t.n).join(', '))+'.':'No está en ninguna plantilla de kit.')+'</p>')
-  +'<div class="grid2"><div class="field"><label class="lab" for="f-serie">Serie'+(p&&p.serie?' (obligatoria)':' (opcional)')+'</label><input id="f-serie" data-f="serie" value="'+esc(F.serie)+'" autocomplete="off"></div><div class="field"><label class="lab" for="f-qty">Cantidad</label><input id="f-qty" data-f="qty" type="number" min="1" max="500" inputmode="numeric" value="'+esc(F.qty||'1')+'"'+(p&&p.serie?' disabled':'')+'></div><div class="field"><label class="lab" for="f-alm">Ingresa a</label><select id="f-alm" data-f="alm">'+opts(almNames(),F.alm)+'</select><button class="linkbtn" data-act="almEdit" data-ctx="nuevo" type="button" style="align-self:flex-start;margin-top:4px">+ Nuevo almacén</button></div></div>'
+  +'<div class="photo photo-form">'+(F.photo?'<img src="'+esc(F.photo)+'" alt="Foto del equipo">':ill(p?p.cat:F.cat))+'<label class="photo-btn">'+(F.photo?'Cambiar foto':'Tomar o subir foto')+'<input class="vh" type="file" accept="image/*" data-file="nuevoPhoto"></label></div>'
+  +'<div class="field"><label class="lab" for="f-np">Modelo del catálogo</label><select id="f-np" data-f="np">'+[...new Set(S.prods.map(x=>x.marca))].map(m=>'<optgroup label="'+esc(m)+'">'+opts(S.prods.filter(x=>x.marca===m).map(x=>[x.np,x.nombre+' '+x.modelo+' · '+x.np]),F.np)+'</optgroup>').join('')+'<option value="otro"'+(F.np==='otro'?' selected':'')+'>+ Otro modelo (queda en el catálogo)</option></select></div>'
+  +(F.np==='otro'?'<div class="grid2"><div class="field"><label class="lab" for="f-cat">Categoría</label><select id="f-cat" data-f="cat">'+catOpts(F.cat,true)+'</select></div><div class="field"><label class="lab" for="f-marca">Marca</label><input id="f-marca" data-f="marca" value="'+esc(F.marca)+'" list="f-marcas" autocomplete="off"><datalist id="f-marcas">'+[...new Set(S.prods.map(x=>x.marca).concat(S.items.map(x=>x.marca)))].filter(Boolean).map(m=>'<option value="'+esc(m)+'">').join('')+'</datalist></div></div><div class="field"><label class="lab" for="f-nom">Nombre</label><input id="f-nom" data-f="nombre" value="'+esc(F.nombre)+'"></div><div class="grid2"><div class="field"><label class="lab" for="f-npx">N° de parte</label><input id="f-npx" data-f="npx" value="'+esc(F.npx||'')+'"></div><div class="field"><label class="lab" for="f-mod">Modelo</label><input id="f-mod" data-f="modelo" value="'+esc(F.modelo)+'"></div></div>'
+   :'<p class="info">'+esc(p.marca)+' · '+esc(catName(p.cat))+' · '+esc(p.nombre)+' '+esc(p.modelo)+'. '+(p.serie?'Suele llevar serie. ':'')+(S.tpls.some(t=>t.slots.some(s=>s.nps.includes(F.np)))?'Sirve para: '+esc(S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(F.np))).map(t=>t.n).join(', '))+'.':'No está en ninguna plantilla de kit.')+'</p>')
+  +'<div class="field"><label class="lab" for="f-serie">Series <span class="muted" style="font-weight:500">(opcional; puedes agregar varias)</span></label><div class="serin"><input id="f-serie" data-f="serie" value="'+esc(F.serie)+'" placeholder="Escribe o pega una serie" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done"><button class="btn" type="button" data-act="serAdd">Agregar</button></div>'
+  +(F.series.length?'<div class="serchips">'+F.series.map((x,ix)=>'<span class="serchip"><span class="mono">'+esc(x)+'</span><button type="button" data-act="serDel" data-i="'+ix+'" aria-label="Quitar la serie '+esc(x)+'">×</button></span>').join('')+'</div>':'')
+  +'<span class="small muted" id="f-serhint">'+serHint()+'</span></div>'
+  +'<div class="grid2"><div class="field"><label class="lab" for="f-qty">Cantidad</label><input id="f-qty" data-f="qty" type="number" min="'+Math.max(1,F.series.length)+'" max="500" inputmode="numeric" value="'+esc(F.qty||'1')+'"></div><div class="field"><label class="lab" for="f-alm">Ingresa a</label><select id="f-alm" data-f="alm">'+opts(almNames(),F.alm)+'</select><button class="linkbtn" data-act="almEdit" data-ctx="nuevo" type="button" style="align-self:flex-start;margin-top:4px">+ Nuevo almacén</button></div></div>'
   +by+'<button class="btn primary block" data-act="saveNuevo">Agregar al inventario</button>'};
  }
  return null;
@@ -3334,21 +3569,34 @@ function saveRet(){
   persist();checkKits(false);render();replaceSheet(sDone,m.id,'Retiro guardado');
  }});
 }
+/* series del formulario de ingreso: se escriben una por una o se pegan varias */
+function serHint(){const n=(F.series||[]).length;const q=Math.max(n,parseInt(F.qty,10)||1);const sin=q-n;
+ return q===1?(n?'1 unidad con serie.':'1 unidad; la serie queda «Sin asignar» si no la escribes.'):q+' unidades: '+(n?n+' con serie'+(sin?' y '+sin+' sin asignar':''):'todas sin asignar')+'. Las series se pueden asignar o cambiar después.';}
+function serAddTokens(toks){let add=0;const rep=[];toks.map(x=>String(x).trim()).filter(Boolean).forEach(v=>{const k=serKey(v);
+  if((F.series||[]).some(x=>serKey(x)===k)){rep.push(v);return;}
+  const o=S.items.find(x=>x.serie&&serKey(x.serie)===k);if(o){rep.push(v+' (ya la tiene '+o.code+')');return;}
+  F.series.push(v);add++;});
+ if(F.series.length>(parseInt(F.qty,10)||1))F.qty=String(F.series.length);
+ if(rep.length)toast('No se agregó: '+rep.join(', ')+'.','bad',5000);return add;}
+function serAddForm(){const inp=$('#f-serie');const v=(inp?inp.value:F.serie)||'';if(!v.trim()){if(inp)inp.focus();return;}
+ serAddTokens(v.split(/[\r\n,;\t]+/));F.serie='';renderSheet(false);setTimeout(()=>{const i=$('#f-serie');if(i)i.focus();},30);}
 async function saveNuevo(){
  if(BUSY)return;
- const errs=[];const ser=F.serie.trim();const p=F.np==='otro'?null:prodBy(F.np);const qty=p&&p.serie?1:Number(F.qty||1);
+ if(String(F.serie||'').trim()){serAddTokens(F.serie.split(/[\r\n,;\t]+/));F.serie='';}
+ const errs=[];const p=F.np==='otro'?null:prodBy(F.np);const qty=Math.max((F.series||[]).length,Number(F.qty||1));
  if(F.np==='otro'&&!F.nombre.trim())errs.push('Escribe el nombre.');
- if(p&&p.serie&&!ser)errs.push('Este modelo lleva serie: escríbela.');
  if(!Number.isInteger(qty)||qty<1||qty>500)errs.push('La cantidad debe ser un número entero entre 1 y 500.');
- if(ser&&qty>1)errs.push('Con serie la cantidad es 1. Para varias unidades con serie usa la importación de Excel.');
- if(ser&&S.items.some(i=>i.serie&&norm(i.serie)===norm(ser)))errs.push('Ya existe un equipo con esa serie.');
- if(errs.length)return fail(errs,F.np==='otro'&&!F.nombre.trim()?'f-nom':((p&&p.serie&&!ser)||ser)?'f-serie':'f-qty');
+ const dup=(F.series||[]).find(v=>S.items.some(i=>i.serie&&serKey(i.serie)===serKey(v)));
+ if(dup)errs.push('La serie '+dup+' ya está registrada en otro equipo.');
+ if(errs.length)return fail(errs,F.np==='otro'&&!F.nombre.trim()?'f-nom':dup?'f-serie':'f-qty');
  setBusy('saveNuevo',true);try{
  const pp=p||{cat:F.cat,marca:F.marca.trim()||'Otra',nombre:F.nombre.trim(),modelo:F.modelo.trim()||'—'};
+ // un modelo nuevo queda en el catálogo para elegirlo la próxima vez
+ if(!p){const npx=(F.npx||'').trim();if(npx&&!S.prods.some(x=>norm(x.np)===norm(npx)))S.prods.push({id:'pr_'+npx.replace(/[^A-Za-z0-9_\-]/g,'_')+'_'+Date.now().toString(36),np:npx,nombre:pp.nombre,modelo:pp.modelo,marca:pp.marca,cat:pp.cat,serie:(F.series||[]).length>0});}
  let photo=null;if(F.photo){try{photo=await storeImage(F.photo);}catch(e){photo=null;}}
- const ids=[];for(let k=0;k<qty;k++){const it={id:newId('i'),code:nextCode(S.items,'code','MQ-',4),np:p?p.np:((F.npx||'').trim()||'—'),cat:pp.cat,marca:pp.marca,nombre:pp.nombre,modelo:pp.modelo,serie:ser,cond:'Operativo',loc:alm(F.alm),photo};S.items.push(it);ids.push(it.id);}
+ const ids=[];for(let k=0;k<qty;k++){const it={id:newId('i'),code:nextCode(S.items,'code','MQ-',4),np:p?p.np:((F.npx||'').trim()||'—'),cat:pp.cat,marca:pp.marca,nombre:pp.nombre,modelo:pp.modelo,serie:F.series[k]||'',cond:'Operativo',loc:alm(F.alm),photo};S.items.push(it);ids.push(it.id);}
  newMov({tipo:'Ingreso',por:meName(),origen:'Ingreso al inventario',destino:alm(F.alm),items:ids});
- persist();render();replaceSheet(sItem,ids[0]);toast(qty>1?plural(qty,'unidad agregada','unidades agregadas')+' sin serie.':'Equipo '+esc(item(ids[0]).code)+' agregado.');
+ const nser=F.series.length;persist();render();replaceSheet(sItem,ids[0],qty>1?'g':'');toast(qty>1?plural(qty,'unidad agregada','unidades agregadas')+(nser?' ('+nser+' con serie)':' (series sin asignar)')+'.':'Equipo '+esc(item(ids[0]).code)+' agregado.');
  }finally{setBusy('saveNuevo',false);}
 }
 function recibir(){
@@ -3465,7 +3713,7 @@ function sProd(id){
  const e=G.pr;const n=p?S.items.filter(i=>i.np===p.np).length:0;const us=p?S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np))):[];
  return {title:p?'Editar modelo':'Nuevo modelo',html:'<div class="grid2"><div class="field"><label class="lab" for="pr-np">N° de parte</label><input id="pr-np" data-pr="np" value="'+esc(e.np)+'"'+(p?' disabled':'')+'></div><div class="field"><label class="lab" for="pr-marca">Marca</label><input id="pr-marca" data-pr="marca" value="'+esc(e.marca)+'" list="marcas"><datalist id="marcas">'+[...new Set(S.prods.map(x=>x.marca))].map(m=>'<option value="'+esc(m)+'">').join('')+'</datalist></div></div>'
  +'<div class="grid2"><div class="field"><label class="lab" for="pr-nom">Artículo</label><input id="pr-nom" data-pr="nombre" value="'+esc(e.nombre)+'"></div><div class="field"><label class="lab" for="pr-mod">Modelo</label><input id="pr-mod" data-pr="modelo" value="'+esc(e.modelo)+'"></div></div>'
- +'<div class="field"><label class="lab" for="pr-cat">Categoría</label><select id="pr-cat" data-pr="cat">'+opts(Object.keys(CATS).map(k=>[k,CATS[k]]),e.cat)+'</select></div>'
+ +'<div class="field"><label class="lab" for="pr-cat">Categoría</label><select id="pr-cat" data-pr="cat">'+catOpts(e.cat,true)+'</select></div>'
  +'<label class="chkline"><input type="checkbox" data-pr="serie"'+(e.serie?' checked':'')+'> Lleva número de serie (equipos y cables seriados). Sin serie se cuentan por cantidad.</label>'
  +(p?'<p class="small muted">'+plural(n,'unidad registrada','unidades registradas')+(us.length?' · Sirve para: '+esc(us.map(t=>t.n).join(', ')):' · No está en ninguna plantilla')+'. Para usarlo en otro tipo de máquina, agrégalo a esa plantilla.</p>':'')
  +'<div class="actions"><button class="btn primary" data-act="prodSave">Guardar</button>'+(p&&!n&&!us.length?'<button class="btn danger" data-act="prodDel" data-id="'+p.id+'">Eliminar</button>':'')+'<button class="btn ghost" data-act="back">Cancelar</button></div>'};
@@ -3478,7 +3726,7 @@ function sTpl(id){
  const marcas=[...new Set(S.prods.map(p=>p.marca))];
  const prodsM=S.prods.filter(p=>p.marca===e.marca||p.marca==='Genérica');
  return {title:t?'Editar plantilla':'Nueva plantilla',wide:true,html:'<div class="grid2"><div class="field"><label class="lab" for="tp-n">Nombre</label><input id="tp-n" data-tp="n" value="'+esc(e.n)+'" placeholder="Ej. CHC · Dozer 3D"></div><div class="field"><label class="lab" for="tp-m">Marca del sistema</label><select id="tp-m" data-tp="marca">'+opts(marcas,e.marca)+'</select></div></div>'
- +'<div class="field"><span class="lab">Sirve para estas máquinas</span><div class="seg">'+MAQ_TIPOS.map(m=>'<label><input type="checkbox" data-tp="maq" value="'+m+'"'+(e.maquinas.includes(m)?' checked':'')+'><span>'+m+'</span></label>').join('')+'</div></div>'
+ +'<div class="field"><span class="lab">Sirve para estas máquinas</span><div class="seg">'+maqTipos().concat(e.maquinas.filter(m=>!maqTipos().includes(m))).map(m=>'<label><input type="checkbox" data-tp="maq" value="'+m+'"'+(e.maquinas.includes(m)?' checked':'')+'><span>'+esc(m)+'</span></label>').join('')+'</div><button class="linkbtn" type="button" data-act="maqNew" style="align-self:flex-start;margin-top:4px">+ Otro tipo de máquina</button></div>'
  +'<div class="recbox"><span class="lab">Un solo sistema</span><p>Todos los espacios solo pueden aceptar modelos '+esc(e.marca)+' (más accesorios genéricos). Un espacio puede aceptar varios modelos: por ejemplo un cable de 5 m o de 10 m.</p></div>'
  +(kitsN?'<p class="small" style="color:var(--warn);margin:0">'+plural(kitsN,'kit usa','kits usan')+' esta plantilla. Si quitas un espacio, la pieza que tenía queda libre en su lugar actual.</p>':'')
  +'<div class="slotsed">'+e.slots.map((s,ix)=>'<div class="sled"><div class="sled-h"><input id="tps-'+ix+'" data-tps="l" data-ix="'+ix+'" value="'+esc(s.l)+'" aria-label="Nombre del espacio" placeholder="Nombre del espacio"><div class="sled-b"><button class="x" data-act="tpsMove" data-ix="'+ix+'" data-d="-1" aria-label="Subir"'+(ix?'':' disabled')+'>↑</button><button class="x" data-act="tpsMove" data-ix="'+ix+'" data-d="1" aria-label="Bajar"'+(ix<e.slots.length-1?'':' disabled')+'>↓</button><button class="x" data-act="tpsDel" data-ix="'+ix+'" aria-label="Quitar espacio">×</button></div></div><div class="npchips">'+prodsM.map(p=>'<label class="npc'+(s.nps.includes(p.np)?' on':'')+'"><input type="checkbox" data-tps="np" data-ix="'+ix+'" value="'+esc(p.np)+'"'+(s.nps.includes(p.np)?' checked':'')+'><span>'+esc(p.nombre)+' '+esc(p.modelo)+'<i>'+esc(p.np)+'</i></span></label>').join('')+'</div>'+(s.nps.length?'':'<span class="small" style="color:var(--bad)">Marca al menos un modelo.</span>')+'</div>').join('')+'</div>'
@@ -3588,7 +3836,7 @@ function gsearchResults(q){
  +'<button class="gr all" data-act="gAll">Ver todos los equipos que coinciden en Inventario →</button>';
 }
 
-function filtDesc(){const g=invFilter.grp;const gl={todos:'',libres:'Libres en almacén',transito:'En tránsito',obra:'En obra',bad:'Dañados'}[g]||(g.indexOf('place:')===0?g.slice(6):g.indexOf('alm:')===0?g.slice(4):'');const p=[gl,invFilter.cat?CATS[invFilter.cat]:'',invFilter.marca||'',invFilter.q?'“'+invFilter.q+'”':''].filter(Boolean);return p.length?' ('+p.join(', ')+')':' (sin filtro: todo el inventario)';}
+function filtDesc(){const g=invFilter.grp;const gl={todos:'',libres:'Libres en almacén',transito:'En tránsito',obra:'En obra',bad:'Dañados'}[g]||(g.indexOf('place:')===0?g.slice(6):g.indexOf('alm:')===0?g.slice(4):'');const p=[gl,invFilter.cat?catName(invFilter.cat):'',invFilter.marca||'',invFilter.q?'“'+invFilter.q+'”':''].filter(Boolean);return p.length?' ('+p.join(', ')+')':' (sin filtro: todo el inventario)';}
 /* ---------- Excel: carga y descarga ---------- */
 let xlsxP=null;
 function loadXLSX(){
@@ -3613,9 +3861,9 @@ function movsAoa(movs){const mh=[['Fecha','N° movimiento','Tipo','Código','Art
  movs.slice().sort((a,b)=>a.fecha<b.fecha?-1:1).forEach(m=>{m.items.forEach(id=>{const i=item(id);if(!i)return;const r=(m.recs||[]).find(r=>r.items.includes(id));mh.push([toDate(m.fecha),m.num,m.tipo,i.code,i.nombre,i.serie,i.np,1,m.origen,m.tipo==='Envío'?movDest(m):locText(m.destino),(m.dest||[]).join(', '),m.agencia,m.guia,{pendiente:'Por recibir',parcial:r?'Recibido':'No llegó',recibido:'Recibido',anulado:'Anulado',na:''}[m.estado]||'',r?r.por:'',r?toDate(r.fecha):'',m.por,m.nota]);});});return mh;}
 function invAoa(items){
  const H=['Código','Artículo','Marca','Categoría','Modelo','N° de parte','Serie','Cantidad','Condición','Tipo de ubicación','Lugar','Ciudad','Persona','Obra','Máquina','Kit','Espacio en kit','Último movimiento','Tipo de último movimiento'];
- return [H].concat(items.map(i=>{const p=locParts(i.loc),k=kitOf(i.id),m=lastMov(i);return [i.code,i.nombre,i.marca,CATS[i.cat]||'Otro',i.modelo,i.np,i.serie,1,i.cond,p.tipo,p.lugar,p.ciudad,p.persona,p.obra,p.maq,k?k.code:'',k?slotOf(tplOf(k),k.slots.indexOf(i.id)).l:'',m?toDate(m.fecha):'',m?m.tipo:''];}));
+ return [H].concat(items.map(i=>{const p=locParts(i.loc),k=kitOf(i.id),m=lastMov(i);return [i.code,i.nombre,i.marca,catName(i.cat),i.modelo,i.np,i.serie,1,i.cond,p.tipo,p.lugar,p.ciudad,p.persona,p.obra,p.maq,k?k.code:'',k?slotOf(tplOf(k),k.slots.indexOf(i.id)).l:'',m?toDate(m.fecha):'',m?m.tipo:''];}));
 }
-function modAoa(rows){const AL=almCols(rows);return [['N° de parte','Modelo','Marca','Categoría'].concat(AL,['En obra','En tránsito','Dañados o de baja','Total','Libres en almacén','Situación'])].concat(rows.map(r=>[r.np,r.nombre,r.marca,CATS[r.cat]||'Otro'].concat(AL.map(n=>r.alm[n]||0),[r.obra,r.transito,r.bad,r.total,r.libres,r.total===0?'No hay':r.libres===0?'Sin libres en almacén':'Disponible'])));}
+function modAoa(rows){const AL=almCols(rows);return [['N° de parte','Modelo','Marca','Categoría'].concat(AL,['En obra','En tránsito','Dañados o de baja','Total','Libres en almacén','Situación'])].concat(rows.map(r=>[r.np,r.nombre,r.marca,catName(r.cat)].concat(AL.map(n=>r.alm[n]||0),[r.obra,r.transito,r.bad,r.total,r.libres,r.total===0?'No hay':r.libres===0?'Sin libres en almacén':'Disponible'])));}
 
 /* ---------- Excel: motor de exportación (ExcelJS: colores, anchos, filtros) ---------- */
 let xjsP=null;
@@ -3684,7 +3932,7 @@ function xResumen(wb){
  pl.forEach((x,i)=>{line(r2,5,[x[0],x[1],items.length?Math.round(x[1]/items.length*100)/100:0],i);ws.getCell(r2,7).numFmt='0%';r2++;});
  // Por categoría
  r2+=1;head(r2,5,'Por categoría',3);r2++;line(r2,5,['Categoría','Equipos','Libres'],-1);r2++;
- const cats={};items.forEach(i=>{const k=CATS[i.cat]||'Otro';cats[k]=cats[k]||[0,0];cats[k][0]++;if(i.loc.t==='almacen'&&i.cond==='Operativo'&&!kitOf(i.id))cats[k][1]++;});
+ const cats={};items.forEach(i=>{const k=catName(i.cat);cats[k]=cats[k]||[0,0];cats[k][0]++;if(i.loc.t==='almacen'&&i.cond==='Operativo'&&!kitOf(i.id))cats[k][1]++;});
  Object.entries(cats).sort((a,b)=>b[1][0]-a[1][0]).forEach((x,i)=>{line(r2,5,[x[0],x[1][0],x[1][1]],i);r2++;});
  // Pendientes
  r=Math.max(r,r2)+1;
@@ -3704,9 +3952,9 @@ async function xExport(what){
  const day=nowIso().slice(0,10);let fname;
  const wInv=[9,30,9,18,13,15,13,9,13,15,46,11,16,24,30,9,24,17,18],wMod=[15,34,9,18,12,14,9,11,15,8,15,20];
  if(what==='plantilla'){
-  add('Importar',[['Fecha','Artículo','Tipo','Lugar','Cantidad','Serie','N° de parte','Marca','Estado','Nota'],['14/10/2026','Antena GNSS Leica iCON gps 160','Ingreso','Almacén Lima',1,'1902231','LC-6014002','Leica','Operativo','Compra octubre'],['14/10/2026','Base magnética CHC','Ingreso','Almacén Arequipa',4,'','CHC-MNT-090','CHC','Operativo','Sin serie: se crean 4 unidades'],['15/10/2026','Radio Leica MCR 900','Traslado','Piura',2,'1902457, 1902458','LC-7930004','Leica','','Varias series separadas por coma'],['16/10/2026','Sensor IMU CHC','Baja','',1,'C24099001','CHC-1201-330','CHC','Dañado','Equipo irreparable']],[12,32,11,20,10,20,14,10,11,32],null,{plain:true});
-  add('Valores aceptados',[['Columna','Qué poner'],['Fecha','12/10/2026, 2026-10-12 o una celda con formato de fecha. Día primero.'],['Artículo','Nombre del equipo. Si pones el N° de parte del catálogo, se completa solo.'],['Tipo','Ingreso (también Entrada, Compra, Alta, Inventario) · Traslado (también Salida, Envío, Despacho, Devolución) · Baja'],['Lugar','Nombre o ciudad de un almacén (ver hoja Lugares), nombre de obra, ciudad de la obra o código de máquina (ej. EX-07)'],['Cantidad','Número entero. Si hay serie, cuenta cada serie como una unidad.'],['Serie','Una serie o varias separadas por coma. Sin serie se crean unidades “Sin serie”.'],['N° de parte','Ver hoja Catálogo.'],['Estado','Operativo, Dañado, En reparación o De baja.']],[14,110],null,{plain:true,wrap:true});
-  add('Catálogo',[['N° de parte','Artículo','Modelo','Marca','Categoría','Lleva serie','Sirve para']].concat(S.prods.map(p=>[p.np,p.nombre,p.modelo,p.marca,CATS[p.cat]||'Otro',p.serie?'Sí':'No',S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np))).map(t=>t.n).join(', ')])),[15,32,14,10,20,11,50]);
+  add('Importar',[['Fecha','Artículo','Tipo','Lugar','Cantidad','Serie','N° de parte','Marca','Estado','Nota'],['14/10/2026','Antena GNSS Leica iCON gps 160','Ingreso','Almacén Lima',1,'1902231','LC-6014002','Leica','Operativo','Compra octubre'],['14/10/2026','Base magnética CHC','Ingreso','Almacén Arequipa',4,'','CHC-MNT-090','CHC','Operativo','Sin serie: se crean 4 unidades «Sin asignar»'],['15/10/2026','Radio Leica MCR 900','Traslado','Piura',2,'1902457, 1902458','LC-7930004','Leica','','Varias series separadas por coma'],['16/10/2026','Sensor IMU CHC','Baja','',1,'C24099001','CHC-1201-330','CHC','Dañado','Equipo irreparable']],[12,32,11,20,10,20,14,10,11,32],null,{plain:true});
+  add('Valores aceptados',[['Columna','Qué poner'],['Fecha','12/10/2026, 2026-10-12 o una celda con formato de fecha. Día primero.'],['Artículo','Nombre del equipo. Si pones el N° de parte del catálogo, se completa solo.'],['Tipo','Ingreso (también Entrada, Compra, Alta, Inventario) · Traslado (también Salida, Envío, Despacho, Devolución) · Baja'],['Lugar','Nombre o ciudad de un almacén (ver hoja Lugares), nombre de obra, ciudad de la obra o código de máquina (ej. EX-07)'],['Cantidad','Número entero. Si hay serie, cuenta cada serie como una unidad.'],['Serie','Una serie o varias separadas por coma. Si no hay, las unidades quedan «Sin asignar».'],['N° de parte','Ver hoja Catálogo.'],['Estado','Operativo, Dañado, En reparación o De baja.']],[14,110],null,{plain:true,wrap:true});
+  add('Catálogo',[['N° de parte','Artículo','Modelo','Marca','Categoría','Lleva serie','Sirve para']].concat(S.prods.map(p=>[p.np,p.nombre,p.modelo,p.marca,catName(p.cat),p.serie?'Sí':'No',S.tpls.filter(t=>t.slots.some(s=>s.nps.includes(p.np))).map(t=>t.n).join(', ')])),[15,32,14,10,20,11,50]);
   add('Lugares',[['Lugar','Se registra como']].concat(alms().map(a=>[a.n+' / '+a.ciudad,a.n])).concat(S.obras.map(o=>[o.n+' / '+o.ciudad,'Con '+techFor(o.id)+' · Obra '+o.n])).concat(S.obras.flatMap(o=>o.maqs.map(m=>[m.split(' · ').pop(),'Instalado en '+m]))),[36,60]);
   fname='Maquitop_plantilla_importacion.xlsx';
  }else if((fname=xExportKits(what,add,X,day))!==null){if(!fname)return;
@@ -3776,7 +4024,7 @@ function parseDate(v){
  return y+'-'+pad2(mo)+'-'+pad2(d)+'T'+pad2(h)+':'+pad2(mi);
 }
 function tipoOf(v){const n=norm(v).trim();if(!n)return null;if(/^(ingreso|ingresa|entrada|entra|compra|alta|inventario|stock|inicial|nuevo|carga)/.test(n))return 'Ingreso';if(/^(traslado|salida|sale|envio|enviado|despacho|transferencia|devolucion|devuelto|reubicacion|movimiento)/.test(n))return 'Traslado';if(/^(baja|desecho|perdida|perdido|robo|chatarra)/.test(n))return 'Baja';return null;}
-function catOf(v){const n=norm(v);if(!n)return null;if(/cable|hdmi|conector|extension/.test(n))return 'cable';if(/base magnet|iman|soporte|montaje|base /.test(n))return 'iman';if(/camara/.test(n))return 'camara';if(/laser/.test(n))return 'laser';if(/radio/.test(n))return 'radio';if(/pantalla|panel|control box|monitor|display|tablet/.test(n))return 'pantalla';if(/sensor|imu|inclin|rotacion/.test(n))return 'sensor';if(/antena|gnss|gps|receptor/.test(n))return 'gnss';return null;}
+function catOf(v){const n=norm(v);if(!n)return null;{const cu=catList().find(c=>norm(c.n)===n||(!CATS[c.id]&&n.includes(norm(c.n))));if(cu)return cu.id;}if(/cable|hdmi|conector|extension/.test(n))return 'cable';if(/base magnet|iman|soporte|montaje|base /.test(n))return 'iman';if(/camara/.test(n))return 'camara';if(/laser/.test(n))return 'laser';if(/radio/.test(n))return 'radio';if(/pantalla|panel|control box|monitor|display|tablet/.test(n))return 'pantalla';if(/sensor|imu|inclin|rotacion/.test(n))return 'sensor';if(/antena|gnss|gps|receptor/.test(n))return 'gnss';return null;}
 function resolveLugar(v){
  const n=norm(v).trim();if(!n)return null;
  for(const o of S.obras)for(const m of o.maqs){const code=norm(m.split(' · ').pop());if(code&&n.includes(code))return inst(o.id,m);}
@@ -3876,7 +4124,7 @@ function analyze(){
    if(o.tipo==='Ingreso'){
     if(series.length){series.forEach(s=>{const ex=find(s);if(ex)o.msgs.push('La serie '+s+' ya existe ('+ex.code+' · '+locShort(ex.loc)+'). No se duplica.');else if(newSer.has(norm(s)))o.msgs.push('La serie '+s+' está repetida en el archivo.');else{newSer.add(norm(s));o.create.push(s);}});
      if(!o.create.length)o.level='skip';else if(o.create.length<series.length&&o.level==='ok')o.level='warn';}
-    else{for(let k=0;k<qty;k++)o.create.push('');if(prod?prod.serie:(o.cat!=='cable'&&o.cat!=='iman'&&o.cat!=='otro'))warn('Sin serie: se crean '+plural(qty,'unidad','unidades')+' marcadas “Sin serie”.');}
+    else{for(let k=0;k<qty;k++)o.create.push('');if(prod?prod.serie:(o.cat!=='cable'&&o.cat!=='iman'&&o.cat!=='otro'))warn('Sin serie: se crean '+plural(qty,'unidad','unidades')+' con la serie «Sin asignar».');}
    }else if(o.tipo==='Traslado'){
     if(series.length){series.forEach(s=>{const ex=find(s);if(!ex)o.msgs.push('La serie '+s+' no existe en el inventario.');else if(ex.loc.t==='transito')o.msgs.push('La serie '+s+' está en tránsito; no se mueve.');else if(locKey(ex.loc)===locKey(loc))o.msgs.push('La serie '+s+' ya está en '+locShort(loc)+'.');else{const k=kitOf(ex.id);if(k)warn('La serie '+s+' es parte de '+k.code+'; el kit quedará repartido.');o.move.push(ex.id);used.add(ex.id);}});}
     else{const c=S.items.filter(i=>!used.has(i.id)&&(prod?i.np===npK:norm(i.nombre)===norm(o.nombre))&&i.cond==='Operativo'&&!kitOf(i.id)&&i.loc.t!=='transito'&&i.loc.t!=='instalado'&&locKey(i.loc)!==locKey(loc)).sort((a,b)=>(a.loc.t==='almacen'?(a.loc.a===almPrin()?0:1):2)-(b.loc.t==='almacen'?(b.loc.a===almPrin()?0:1):2));
@@ -3975,7 +4223,7 @@ function vExcel(){
  +(exp?'<section class="sec"><h2 class="sec-t">Inventario</h2><div class="list">'
  +xcard('Inventario completo','Inventario (un equipo por fila), Por modelo (qué hay y qué falta), Movimientos, Kits y Plantillas.','todo','Exportar .xlsx',true)
  +'<div class="xcard xfil"><span class="rmain"><span class="rname">Lista con filtros</span><span class="rsub">Elige qué exportar: por lugar, categoría, marca o una búsqueda. Son los mismos filtros de Inventario.</span>'
- +'<div class="xfilters"><select id="xf-grp" data-xf="grp" aria-label="Lugar">'+opts(xfGrupos(),invFilter.grp)+'</select><select id="xf-cat" data-xf="cat" aria-label="Categoría"><option value="">Todas las categorías</option>'+opts(Object.keys(CATS).map(k=>[k,CATS[k]]),invFilter.cat)+'</select><select id="xf-marca" data-xf="marca" aria-label="Marca"><option value="">Todas las marcas</option>'+opts([...new Set(S.items.map(i=>i.marca))].sort(),invFilter.marca)+'</select><input id="xf-q" data-xf="q" type="search" placeholder="Buscar nombre, serie o N° de parte" value="'+esc(invFilter.q)+'" autocomplete="off" aria-label="Buscar"></div>'
+ +'<div class="xfilters"><select id="xf-grp" data-xf="grp" aria-label="Lugar">'+opts(xfGrupos(),invFilter.grp)+'</select><select id="xf-cat" data-xf="cat" aria-label="Categoría"><option value="">Todas las categorías</option>'+opts(catList().map(c=>[c.id,c.n]),invFilter.cat)+'</select><select id="xf-marca" data-xf="marca" aria-label="Marca"><option value="">Todas las marcas</option>'+opts([...new Set(S.items.map(i=>i.marca))].sort(),invFilter.marca)+'</select><input id="xf-q" data-xf="q" type="search" placeholder="Buscar nombre, serie o N° de parte" value="'+esc(invFilter.q)+'" autocomplete="off" aria-label="Buscar"></div>'
  +'<span class="rsub" id="xcount">'+xfCount()+'</span></span><button class="btn" data-act="xExport" data-what="filtro">Exportar lista</button></div>'
  +(imp?xcard('Formato para importar','Columnas listas para llenar, valores aceptados, catálogo de N° de parte y lugares.','plantilla','Descargar formato'):'')
  +'</div></section>'
@@ -4050,8 +4298,8 @@ function xExportKits(what,add,X,day){
  }
  if(what==='tplmodelo'){
   add('Plantillas',tplRowsAoa(),[26,9,24,26,30,50]);
-  add('Instrucciones',[['Columna','Qué poner'],['Plantilla','Nombre del kit, por ejemplo “Leica · Excavadora 3D”. Repite el nombre en cada fila (o deja vacío para usar el de arriba).'],['Marca','Leica o CHC. Un kit es un solo sistema: todos sus N° de parte deben ser de esa marca (o accesorios genéricos).'],['Máquinas','Tipos separados por coma: '+MAQ_TIPOS.join(', ')+'.'],['Espacio','Una fila por componente del kit: Antena GNSS izquierda, Panel, Cable de antena, etc. El nombre identifica el espacio: si lo cambias, se trata como un espacio nuevo.'],['N° de parte aceptados','Uno o varios separados por “/” o coma. Deben existir en la hoja Catálogo.'],['Modelos aceptados','Solo referencia; no se lee al importar.'],['Al importar','Se muestra una vista previa con lo nuevo, lo que cambia y los errores. Los kits armados se ajustan solos: si un espacio desaparece o deja de aceptar un modelo, la pieza queda libre en su lugar. Puedes deshacer.']],[22,110]);
-  add('Catálogo',[['N° de parte','Artículo','Modelo','Marca','Categoría','Lleva serie']].concat(S.prods.map(p=>[p.np,p.nombre,p.modelo,p.marca,CATS[p.cat]||'Otro',p.serie?'Sí':'No'])),[15,32,14,10,20,11]);
+  add('Instrucciones',[['Columna','Qué poner'],['Plantilla','Nombre del kit, por ejemplo “Leica · Excavadora 3D”. Repite el nombre en cada fila (o deja vacío para usar el de arriba).'],['Marca','Leica o CHC. Un kit es un solo sistema: todos sus N° de parte deben ser de esa marca (o accesorios genéricos).'],['Máquinas','Tipos separados por coma: '+maqTipos().join(', ')+'.'],['Espacio','Una fila por componente del kit: Antena GNSS izquierda, Panel, Cable de antena, etc. El nombre identifica el espacio: si lo cambias, se trata como un espacio nuevo.'],['N° de parte aceptados','Uno o varios separados por “/” o coma. Deben existir en la hoja Catálogo.'],['Modelos aceptados','Solo referencia; no se lee al importar.'],['Al importar','Se muestra una vista previa con lo nuevo, lo que cambia y los errores. Los kits armados se ajustan solos: si un espacio desaparece o deja de aceptar un modelo, la pieza queda libre en su lugar. Puedes deshacer.']],[22,110]);
+  add('Catálogo',[['N° de parte','Artículo','Modelo','Marca','Categoría','Lleva serie']].concat(S.prods.map(p=>[p.np,p.nombre,p.modelo,p.marca,catName(p.cat),p.serie?'Sí':'No'])),[15,32,14,10,20,11]);
   return 'Maquitop_plantillas_de_kit_'+day+'.xlsx';
  }
  return null;
@@ -4240,7 +4488,14 @@ document.addEventListener('click',e=>{
  if(a==='avTab'){avisoTab=d.t;if(d.t==='config')G.cfg=clone(S.config);if(d.t==='mios'){avisosHL=readUntil||'';setReadUntil(nowIso());}render();return;}
  if(a==='ajTab'){ajTab=d.t;render();return;}
  if(a==='guide')return guide(d.g);
- if(a==='item'){closeGres();return openSheet(sItem,d.id);}
+ if(a==='item'){closeGres();return openSheet(sItem,d.id,d.g?'g':'');}
+ if(a==='unit')return openSheet(sItem,d.id,'u');
+ if(a==='serList'){closeGres();G.ser=null;return openSheet(sSeries,d.id);}
+ if(a==='serSave')return serSave();
+ if(a==='serBulk')return serBulk();
+ if(a==='serOne')return serOne(d.id);
+ if(a==='serAdd')return serAddForm();
+ if(a==='serDel'){F.series.splice(+d.i,1);renderSheet(false);return;}
  if(a==='mov'){closeGres();if(!d.id)return;return openSheet(sMov,d.id);}
  if(a==='movTop'){sheetStack=[];return openSheet(sMov,d.id);}
  if(a==='kit'){closeGres();return openSheet(sKit,d.id);}
@@ -4255,7 +4510,13 @@ document.addEventListener('click',e=>{
  if(a==='fillEx'){fillExample();return renderSheet(true);}
  if(a==='pickAdd'){if(!F.items.includes(d.id))F.items.push(d.id);if(F.kind==='ret'&&F.items.length===1){F.persona=techFor(item(d.id).loc.o);renderSheet(false);return;}if(F.kind==='inst'&&F.items.length===1){const it=item(d.id);if(it.loc.t==='tecnico'){F.obra=it.loc.o;F.maq=(obra(it.loc.o)||{maqs:[]}).maqs[0]||'';renderSheet(false);return;}}refreshPicker();return;}
  if(a==='pickRm'){F.items=F.items.filter(x=>x!==d.id);if(F.kit&&kitById(F.kit)&&kitById(F.kit).slots.includes(d.id))F.kit=null;refreshPicker();return;}
+ if(a==='catEdit')return catEdit(d.id);
+ if(a==='maqEdit')return maqEdit(d.n);
+ if(a==='maqNew'){ask({title:'Nuevo tipo de máquina',ok:'Agregar',html:'<div class="field"><label class="lab" for="mq-n">Nombre</label><input id="mq-n" placeholder="Ej. Perforadora" autocomplete="off" maxlength="30"></div>',fn:()=>{const v=(($('#mq-n')||{}).value||'').trim();if(!v){toast('Escribe el nombre.','bad');return;}const t=addMaqTipo(v);if(G.tp&&!G.tp.maquinas.includes(t))G.tp.maquinas.push(t);commit();}});setTimeout(()=>{const i=$('#mq-n');if(i)i.focus();},60);return;}
  if(a==='paqZoom'){const m=mov(d.id);const p=(m&&m.paq)||[];const u=imgSrc(p[+d.i]);if(!u)return;ask({title:'Foto del paquete '+(+d.i+1)+' de '+p.length,html:'<img src="'+esc(u)+'" alt="Foto del paquete '+(+d.i+1)+'" style="display:block;width:100%;max-height:70vh;object-fit:contain;border-radius:12px;background:var(--surface-2)">',ok:'Cerrar',info:true,fn:()=>{}});return;}
+ if(a==='paqCrop'){const i=+d.i;const u=(F.paq||[])[i];if(!u)return;cropPhoto(u,{title:'Encuadra la foto del paquete'}).then(async c=>{if(!c)return;try{F.paq[i]=await smallJpeg(c);renderSheet(false);}catch(e){}});return;}
+ if(a==='photoCrop'){if(guard('registrar'))return;const it=item(d.id);if(!it||!it.photo)return;const tg=d.all?groupOf(it):[it];
+  cropPhoto(imgSrc(it.photo),{title:'Encuadra la foto del equipo'}).then(async c=>{if(!c)return;let ref;try{ref=await storeImage(c);}catch(e){toast('La foto es muy grande.','bad');return;}tg.forEach(x=>{x.photo=ref;});commit();toast('Encuadre guardado.');});return;}
  if(a==='paqDel'){F.paq.splice(+d.i,1);renderSheet(false);return;}
  if(a==='paqSample'){F.paq=(F.paq||[]).concat([PAQ_SAMPLE]);F.errs=(F.errs||[]).filter(x=>x.indexOf('foto del paquete')<0);renderSheet(false);return;}
  if(a==='constPdf')return constPdf(d.id);
@@ -4365,6 +4626,9 @@ document.addEventListener('input',e=>{
  const txt=el.tagName==='TEXTAREA'||(el.tagName==='INPUT'&&!/^(radio|checkbox|file)$/.test(el.type));
  if(!txt)return;
  if(el.dataset.f)F[el.dataset.f]=el.value;
+ if(el.id==='f-qty'){const h=$('#f-serhint');if(h)h.textContent=serHint();}
+ if(el.dataset.ser&&G.ser){G.ser.v[el.dataset.ser]=el.value;}
+ if(el.dataset.serbulk&&G.ser){G.ser.bulk=el.value;}
  if(el.dataset.g)G[el.dataset.g]=el.value;
  if(el.dataset.r==='nota')R.nota=el.value;
  if(el.dataset.pe)G.pe[el.dataset.pe]=el.value;
@@ -4376,6 +4640,7 @@ document.addEventListener('input',e=>{
  if(el.dataset.on)G.on[el.dataset.on]=el.value;
  if(el.dataset.cfg&&G.cfg){const ix=+el.dataset.ix;if(el.dataset.cfg==='nombre')G.cfg.emails[ix].nombre=el.value;if(el.dataset.cfg==='email')G.cfg.emails[ix].email=el.value;if(el.dataset.cfg==='dias'){const v=parseInt(el.value,10);if(v>=1&&v<=30)G.cfg.diasRetraso=v;}}
 });
+document.addEventListener('change',e=>{const el=e.target;if(el&&el.tagName==='SELECT'&&el.value==='__newcat'){e.stopPropagation();newCatFor(el);}},true);
 document.addEventListener('change',async e=>{
  const el=e.target;
  if(el.id==='selAll'){const g=groupItems(invFiltered());g.forEach(x=>x.ids.forEach(id=>{if(el.checked)sel.add(id);else sel.delete(id);}));render();return;}
@@ -4393,8 +4658,8 @@ document.addEventListener('change',async e=>{
  if(el.dataset.file==='bol'){const f=el.files&&el.files[0];el.value='';if(!f)return;const key=el.dataset.k;let ctx=null;if(key==='rec'){const m=mov(R.mid);ctx={otherHash:m&&m.bolHashEnv};}attachBoleta(f,key,ctx);return;}
  if(el.dataset.file){
   const f=el.files&&el.files[0];el.value='';if(!f)return;
-  try{const url=await readPhoto(f);const k=el.dataset.file;
-   if(k==='itemPhoto'){if(guard('registrar'))return;const it=item(el.dataset.id);try{it.photo=await storeImage(url);}catch(er){toast('La foto es muy grande.','bad');return;}commit();toast('Foto guardada.');}
+  try{const k=el.dataset.file;const url=(k==='itemPhoto'||k==='nuevoPhoto')?await cropPhoto(f,{title:'Encuadra la foto del equipo'}):await readPhoto(f);if(!url)return;
+   if(k==='itemPhoto'){if(guard('registrar'))return;const it=item(el.dataset.id);const tg=el.dataset.all?groupOf(it):[it];let ref;try{ref=await storeImage(url);}catch(er){toast('La foto es muy grande.','bad');return;}tg.forEach(x=>{x.photo=ref;});commit();toast(tg.length>1?'Foto guardada para las '+tg.length+' unidades.':'Foto guardada.');}
    else if(k==='nuevoPhoto'){F.photo=url;renderSheet(false);}
   }catch(err){toast('No se pudo leer esa imagen. Prueba con otra foto.','bad');}
   return;
@@ -4445,7 +4710,7 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  const inViewer=FB_ON||!!(window.claude&&typeof window.claude.use==='function');
  try{const h=decodeURIComponent(location.hash.slice(1));if(h.indexOf('mov/')===0){DEEP_MOV=h.slice(4);try{sessionStorage.setItem('rumbo-deep',DEEP_MOV);}catch(e){}}if(TABS.includes(h))tab=h;history.replaceState({tab,l:0},'','#'+tab);}catch(e){}
  const openDeep=()=>setTimeout(tryDeep,0);
- S=FB_ON?blankState():loadLocal();MODE=inViewer?'loading':'local';if(!FB_ON)loadReadLocal();checkKits(true);render();
+ S=FB_ON?blankState():loadLocal();MODE=inViewer?'loading':'local';if(!FB_ON){loadReadLocal();if(cleanOriginLocal())saveLocal();}checkKits(true);render();
  if(inViewer){
   if(!FB_ON)window.claude.use('sample').then(async s=>{SAMPLE=s;if(s){try{const l=await s.limits();sampleImg=!!(l&&l.images);}catch(e){}}}).catch(()=>{});
   const prevS=S;
@@ -4460,19 +4725,37 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
 function seedShared(){
  if(guard('registrar'))return;if(S.items.length||S.movs.length){toast('La base ya tiene equipos.','bad');return;}
  const sd=buildSeed();
- ask({title:'¿Cargar el inventario inicial?',ok:'Cargar',html:'<p style="margin:0">Se agregan <b>'+sd.items.length+' equipos</b> del cuaderno de Almacén Lima (13/10/2026) y el catálogo de '+sd.prods.length+' modelos. Todos quedan en Almacén Lima. Se hace una sola vez.</p>',fn:()=>{
+ ask({title:'¿Cargar el inventario inicial?',ok:'Cargar',html:'<p style="margin:0">Se agregan <b>'+sd.items.length+' equipos</b> y el catálogo de '+sd.prods.length+' modelos. Todos quedan en Almacén Lima. Se hace una sola vez.</p>',fn:()=>{
   if(S.items.length||S.movs.length){toast('La base ya tiene equipos.','bad');return;}
   seedApply(sd);commit();toast('Inventario cargado: '+sd.items.length+' equipos.');}});
 }
-/* agrega el inventario del cuaderno sin borrar modelos ni almacenes que ya existan */
+/* agrega el inventario inicial sin borrar modelos ni almacenes que ya existan */
 function seedApply(sd){const have=new Set(S.prods.map(p=>p.np));S.prods=S.prods.concat(sd.prods.filter(p=>!have.has(p.np)));S.items=sd.items;S.movs=sd.movs;if(!S.alms||!S.alms.length)S.alms=sd.alms;}
+function origenBad(t){return /cuaderno|en la foto|renglón|renglones/i.test(t||'');}
+function cleanOriginLocal(){let ch=false;
+ S.items.forEach(i=>{if('renglon' in i){delete i.renglon;ch=true;}if(i.obs&&origenBad(i.obs)){i.obs='';ch=true;}});
+ S.movs.forEach(m=>{if(origenBad(m.por||'')){m.por='Carga inicial';ch=true;}if(origenBad(m.origen||'')){m.origen='Inventario inicial';ch=true;}if(origenBad(m.nota||'')){m.nota='Inventario inicial.';ch=true;}});
+ return ch;}
+async function fbCleanOrigin(){
+ if(!FB_ON||!FBA||RO||!(ME.owner||FB_ADM))return;
+ if(S.config&&S.config.origenLimpio)return;
+ try{
+  const fs=FBA.fs,del=firebase.firestore.FieldValue.delete();
+  const [its,mvs]=await Promise.all(['items','movs'].map(c=>fs.collection(c).get({source:'server'})));
+  const ops=[];
+  its.forEach(d=>{const x=d.data()||{};const u={};if('renglon' in x)u.renglon=del;if(x.obs&&origenBad(x.obs))u.obs='';if(Object.keys(u).length)ops.push(d.ref.update(u));});
+  mvs.forEach(d=>{const x=d.data()||{};const u={};if(origenBad(x.por||''))u.por='Carga inicial';if(origenBad(x.origen||''))u.origen='Inventario inicial';if(origenBad(x.nota||''))u.nota='Inventario inicial.';if(Object.keys(u).length)ops.push(d.ref.update(u));});
+  await Promise.all(ops);
+  await fs.collection('config').doc((S.config&&S.config.id)||'main').set({origenLimpio:1},{merge:true});
+ }catch(e){console.warn('limpieza',e);}
+}
 async function fbAutoSeed(){
  if(!FB_ON||!FBA||!ME.owner||RO)return;
  if(S.items.length||S.movs.length)return;
  try{const r=await Promise.all(['items','movs'].map(c=>FBA.fs.collection(c).limit(1).get({source:'server'})));if(r.some(x=>!x.empty))return;}
  catch(e){return;} // sin señal o sin permiso: no se carga nada a ciegas
  if(S.items.length||S.movs.length)return;
- const sd=buildSeed();seedApply(sd);commit();toast('Inventario del cuaderno cargado: '+sd.items.length+' equipos en '+almPrin()+'.');
+ const sd=buildSeed();seedApply(sd);commit();toast('Inventario cargado: '+sd.items.length+' equipos en '+almPrin()+'.');
 }
 /* ---------- Respaldos: una copia diaria en la base (sin fotos) y copias completas en archivo ---------- */
 const BK_KEEP=30,BK_EVERY=20*3600*1000,BK_CHUNK=300000;
@@ -4932,7 +5215,7 @@ function renderDrawer(){
   +'</div>'
   +'<p class="dr-h">Secciones</p><div class="dr-nav">'
   +nav('inicio','home','Inicio',pr)+nav('inv','box','Inventario')+nav('kits','kit','Kits')+nav('movs','swap','Movimientos')
-  +nav('perfil','users',CARGOS?'Mi perfil y a mi cargo':'Mi perfil',carg)+nav('avisos','bell','Avisos y correos',un)+nav('excel','xls','Excel')+nav('ajustes','gear','Ajustes')
+  +nav('perfil','users',CARGOS?'Mi perfil y a mi cargo':'Mi perfil',carg)+nav('avisos','bell','Avisos y correos',un)+nav('excel','xls','Excel')+(isAdmin()?nav('ajustes','gear','Ajustes'):'')
   +'</div>'
   +'<p class="dr-h">Más</p><div class="dr-nav">'
   +(DEMO?'':'<button class="dr-link" data-act="guideOpen">'+IC.spark+'<span>Guía para usar la app</span></button>')
@@ -4971,15 +5254,16 @@ document.addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawerOpen()){closeDrawer();const b=$('#menuBtn');if(b)b.focus();}},true);
 
 /* ================= Menú contextual (clic derecho · botón ⋯ · mantener pulsado), edición de equipos, cantidades ================= */
-function groupOf(it){const k=grpKey(it);return k?S.items.filter(x=>grpKey(x)===k):[it];}
+function groupOf(it){const k=invKey(it);return k?S.items.filter(x=>invKey(x)===k):[it];}
 let CTX=null; // {type,id}
 function ctxItems(type,id){
  const L=[];const add=(label,ic,act,data,o)=>L.push(Object.assign({label,ic,act,data:data||{}},o||{}));const sep=()=>L.push({sep:true});
  if(type==='item'){
   const it=item(id);if(!it)return null;const g=groupOf(it);const n=g.length;const k=kitOf(id);
   const can={env:it.loc.t!=='transito'&&it.loc.t!=='instalado'&&it.cond!=='De baja',inst:(it.loc.t==='almacen'||it.loc.t==='tecnico')&&it.cond!=='De baja'&&S.obras.length,ret:it.loc.t==='instalado'};
-  const head={title:it.nombre,sub:(n>1?n+' unidades sin serie':sn(it))+' · '+locShort(it.loc)};
-  add('Ver ficha','box','item',{id});
+  const si=serInfo(g.map(x=>x.id));const head={title:it.nombre,sub:(n>1?n+' unidades · '+(si.con?plural(si.con,'serie','series'):'series sin asignar'):sn(it))+' · '+locShort(it.loc)};
+  add(n>1?'Ver las '+n+' unidades':'Ver ficha','box','item',n>1?{id,g:'1'}:{id});
+  add(n>1?'Series…':(it.serie?'Cambiar serie…':'Asignar serie…'),'edit',n>1?'serList':'serOne',{id});
   if(!noReg()){
    add(n>1?'Editar datos de las '+n+' unidades':'Editar datos','edit','itemEdit',{id});
    if(can.env)add(n>1?'Enviar… (elige cuántas)':'Enviar…','envio','ctxSend',{id});
@@ -5043,12 +5327,12 @@ function sItemEdit(id){
  const it=item(id);if(!it)return null;const g=groupOf(it);const n=g.length;
  if(!G.ie||G.ie.id!==id)G.ie={id,nombre:it.nombre,marca:it.marca,cat:it.cat,np:it.np,serie:it.serie||'',cond:it.cond,obs:it.obs||''};
  const e=G.ie;const marcas=[...new Set(S.prods.map(p=>p.marca).concat(S.items.map(i=>i.marca)))].filter(Boolean);
- return {title:n>1?'Editar '+n+' unidades':'Editar equipo',html:(n>1?'<div class="info">Los cambios se aplican a las <b>'+n+' unidades</b> sin serie de este grupo ('+esc(locShort(it.loc))+').</div>':'')
+ return {title:n>1?'Editar '+n+' unidades':'Editar equipo',html:(n>1?'<div class="info">Los cambios se aplican a las <b>'+n+' unidades</b> de este modelo en '+esc(locShort(it.loc))+'. Las series se editan una por una en <button class="linkbtn" data-act="serList" data-id="'+id+'">Series</button>.</div>':'')
  +'<div class="field"><label class="lab" for="ie-n">Nombre del artículo</label><input id="ie-n" data-ie="nombre" value="'+esc(e.nombre)+'"></div>'
  +'<div class="grid2"><div class="field"><label class="lab" for="ie-np">N° de parte</label><input id="ie-np" data-ie="np" value="'+esc(e.np)+'" list="ie-nps" autocomplete="off"><datalist id="ie-nps">'+S.prods.map(p=>'<option value="'+esc(p.np)+'">'+esc(p.nombre)+'</option>').join('')+'</datalist></div>'
- +'<div class="field"><label class="lab" for="ie-s">Serie</label><input id="ie-s" data-ie="serie" value="'+esc(e.serie)+'"'+(n>1?' disabled placeholder="Varias unidades sin serie"':' placeholder="Sin serie"')+' autocomplete="off"></div></div>'
+ +(n>1?'<div class="field"><span class="lab">Series</span><button class="btn" type="button" data-act="serList" data-id="'+id+'">'+serInfo(g.map(x=>x.id)).con+' de '+n+' asignadas · Editar</button></div></div>':'<div class="field"><label class="lab" for="ie-s">Serie</label><input id="ie-s" data-ie="serie" value="'+esc(e.serie)+'" placeholder="Sin asignar" autocomplete="off" spellcheck="false"></div></div>')
  +'<div class="grid2"><div class="field"><label class="lab" for="ie-m">Marca</label><input id="ie-m" data-ie="marca" value="'+esc(e.marca)+'" list="ie-ms"><datalist id="ie-ms">'+marcas.map(m=>'<option value="'+esc(m)+'">').join('')+'</datalist></div>'
- +'<div class="field"><label class="lab" for="ie-c">Categoría</label><select id="ie-c" data-ie="cat">'+opts(Object.keys(CATS).map(k=>[k,CATS[k]]),e.cat)+'</select></div></div>'
+ +'<div class="field"><label class="lab" for="ie-c">Categoría</label><select id="ie-c" data-ie="cat">'+catOpts(e.cat,true)+'</select></div></div>'
  +'<div class="field"><label class="lab" for="ie-cond">Condición</label><select id="ie-cond" data-ie="cond">'+opts(['Operativo','Dañado','En reparación','De baja'],e.cond)+'</select></div>'
  +'<div class="field"><label class="lab" for="ie-o">Nota</label><textarea id="ie-o" data-ie="obs" rows="2" placeholder="Ej. Revisar el largo, etiqueta despegada">'+esc(e.obs)+'</textarea></div>'
  +'<p class="small muted" style="margin:0">El cambio queda registrado en el historial a nombre de <b>'+esc(meName())+'</b>.</p>'
@@ -5060,7 +5344,7 @@ function saveItemEdit(){
  const nom=(e.nombre||'').trim(),np=(e.np||'').trim(),ser=(e.serie||'').trim();
  if(!nom){toast('Escribe el nombre del artículo.','bad');return;}
  if(!np){toast('Escribe el N° de parte.','bad');return;}
- if(single&&ser&&S.items.some(x=>x.id!==it.id&&x.serie&&norm(x.serie)===norm(ser))){toast('Ya existe otro equipo con la serie '+esc(ser)+'.','bad');return;}
+ if(single&&ser){const o=S.items.find(x=>x.id!==it.id&&x.serie&&serKey(x.serie)===serKey(ser));if(o){toast('Esa serie ya la tiene '+o.code+' ('+esc(o.nombre)+').','bad',5000);return;}}
  const ch=[];const lab={nombre:'nombre',np:'N° de parte',serie:'serie',marca:'marca',cat:'categoría',cond:'condición',obs:'nota'};
  const nv={nombre:nom,np,marca:(e.marca||'').trim()||it.marca,cat:e.cat,cond:e.cond,obs:(e.obs||'').trim()};if(single)nv.serie=ser;
  Object.keys(nv).forEach(f=>{if(String(it[f]||'')!==String(nv[f]||''))ch.push(lab[f]);});
@@ -5077,11 +5361,12 @@ function saveItemEdit(){
 function bajaItem(id){
  if(guard('registrar'))return;const it=item(id);if(!it)return;
  // en un grupo sin serie se elige cuántas unidades: primero las que no están en un kit
- const g=groupOf(it).filter(x=>x.cond!=='De baja'&&x.loc.t!=='transito').sort((a,b)=>(kitOf(a.id)?1:0)-(kitOf(b.id)?1:0));const n=g.length;
- ask({title:n>1?'Dar de baja unidades':'¿Dar de baja?',ok:'Dar de baja',danger:true,html:'<p style="margin:0 0 10px"><b>'+esc(it.nombre)+'</b> · '+esc(n>1?n+' unidades sin serie en '+locShort(it.loc):sn(it))+'. Queda'+(n>1?'n':'')+' en el inventario como “De baja” y deja'+(n>1?'n':'')+' de estar disponible'+(n>1?'s':'')+'.</p>'
-  +(n>1?'<div class="bj-q"><span class="lab" style="margin:0">Cuántas</span>'+qstep(['bjDec','bjInc','','id="bj-q"'],1,n,'unidades a dar de baja')+'</div>':'')
+ const g=groupOf(it).filter(x=>x.cond!=='De baja'&&x.loc.t!=='transito').sort((a,b)=>(kitOf(a.id)?1:0)-(kitOf(b.id)?1:0)||codeNum(a.code)-codeNum(b.code));const n=g.length;const pick=n>1&&g.some(x=>x.serie);
+ ask({title:n>1?'Dar de baja unidades':'¿Dar de baja?',ok:'Dar de baja',danger:true,html:'<p style="margin:0 0 10px"><b>'+esc(it.nombre)+'</b> · '+esc(n>1?n+' unidades en '+locShort(it.loc):sn(it))+'. Queda'+(n>1?'n':'')+' en el inventario como “De baja” y deja'+(n>1?'n':'')+' de estar disponible'+(n>1?'s':'')+'.</p>'
+  +(pick?'<span class="lab" style="margin:0 0 4px">Cuáles</span><div class="bj-list">'+g.map(x=>'<label class="chkline"><input type="checkbox" data-bj="'+x.id+'"> <span class="mono">'+esc(x.code)+'</span> · '+esc(sn(x))+'</label>').join('')+'</div>'
+   :n>1?'<div class="bj-q"><span class="lab" style="margin:0">Cuántas</span>'+qstep(['bjDec','bjInc','','id="bj-q"'],1,n,'unidades a dar de baja')+'</div>':'')
   +'<div class="field"><label class="lab" for="bj-n">Motivo</label><textarea id="bj-n" rows="2" placeholder="Ej. Conector roto, irreparable"></textarea></div><p class="small muted" style="margin:0">Si fue un error, se corrige con “Editar” › Condición.</p>',fn:()=>{
-  const nota=(($('#bj-n')||{}).value||'').trim();const q=n>1?Math.max(1,Math.min(n,+(($('#bj-q')||{}).value)||1)):1;const sel=n>1?g.slice(0,q):[it];
+  const nota=(($('#bj-n')||{}).value||'').trim();const q=n>1?Math.max(1,Math.min(n,+(($('#bj-q')||{}).value)||1)):1;const sel=pick?g.filter(x=>{const c=document.querySelector('[data-bj="'+x.id+'"]');return c&&c.checked;}):n>1?g.slice(0,q):[it];if(!sel.length){toast('Marca al menos una unidad.','bad');return;}
   sel.forEach(x=>{const k=kitOf(x.id);if(k){const ix=k.slots.indexOf(x.id);k.slots[ix]=null;k.mod=k.mod||[];k.mod.push({fecha:nowIso(),por:meName(),texto:slotOf(tplOf(k),ix).l+': se dio de baja '+sn(x)+'.'});}x.cond='De baja';});
   newMov({tipo:'Baja',por:meName(),origen:locShort(it.loc),destino:clone(it.loc),items:sel.map(x=>x.id),nota:nota||'Dado de baja.'});
   commit();toast(sel.length>1?plural(sel.length,'unidad dada de baja','unidades dadas de baja')+': '+esc(it.nombre)+'.':esc(it.nombre)+' dado de baja.');}});
